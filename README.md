@@ -1,32 +1,11 @@
-# Miorița
+# STATIC
 
-Miorița is a sheep that can be controlled by writing code. This is its source code.
+**This directory is not required, you can delete it if you don't want to use it.**
 
-The app was developed as an aid for teaching fundamental principles of programming on the Romanian website [Școala Web](https://scoalaweb.ro).
+This directory contains your static files.
+Each file inside this directory is mapped to `/`.
+Thus you'd want to delete this README.md before deploying to production.
 
-## Technical details
+Example: `/static/robots.txt` is mapped as `/robots.txt`.
 
-This is a simple Vue Nuxt.js app, written with TypeScript, 
-[Vue Class Components](https://class-component.vuejs.org/), 
-and [Vue Property Decorators](https://github.com/kaorun343/vue-property-decorator#readme)
-
-### Build Setup
-
-If you are interested in running this locally, you can use the traditional Nuxt commands:
-
-```bash
-# install dependencies
-$ npm install
-
-# serve with hot reload at localhost:3000
-$ npm run dev
-```
-
-For detailed explanation on how things work, check out [Nuxt.js docs](https://nuxtjs.org).
-
-## License &copy;
-
-You are free to download, tinker, and republish this.
-You are not to claim this is entirely your work. 
-Wherever possible, you are to mention the original author: 
-[@vladutcornel](https://github.com/vladutcornel) for [Școala Web](https://scoalaweb.ro)
+More information about the usage of this directory in [the documentation](https://nuxtjs.org/guide/assets#static).
