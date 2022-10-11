@@ -21,7 +21,7 @@
     "dependencies": {
         "@actions/cache": "^3.0.4",
         "@actions/core": "^1.10.0",
-        "@nuxt/content": "^1",
+        "@nuxt/content": "^2",
         "@nuxtjs/pwa": "^3.3.5",
         "core-js": "^3.25.5",
         "howler": "^2.2.3",
