@@ -2,16 +2,13 @@
     <div class="Layout">
         <TheHeadbar />
         <Nuxt />
+        <TheFooter />
     </div>
 </template>
 
-<script>
+<script setup>
 import TheHeadbar from "~/components/TheHeadbar.vue";
-
-export default {
-    name: "DefaultLayout",
-    components: { TheHeadbar },
-};
+import TheFooter from "~/components/TheFooter.vue";
 </script>
 
 <style>
@@ -33,27 +30,15 @@ html {
     margin: 0;
 }
 
-sup {
-    font-size: 0.6em;
-}
-
-.sr-only {
-    position: absolute;
-    width: 1px;
-    height: 1px;
-    padding: 0;
-    margin: -1px;
-    overflow: hidden;
-    clip: rect(0, 0, 0, 0);
-    white-space: nowrap;
-    border: 0;
-}
-
 .Layout {
     width: 100vw;
     height: 100vh;
     overflow: hidden;
     display: grid;
-    grid-template-rows: 4rem auto;
+    grid-template-rows: auto auto auto;
+    background-size: 50px 50px;
+    background-image:
+        linear-gradient(90deg, #DAD9FF 2px, transparent 0px),
+        linear-gradient(#DAD9FF 2px, transparent 0px);
 }
 </style>
