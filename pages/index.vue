@@ -60,7 +60,8 @@ export default {
 };
 </script>
 
-<style module>
+<style module lang="scss">
+@use "../assets/scss" as *;
 .container {
     width: 100%;
     max-width: 80ch;
