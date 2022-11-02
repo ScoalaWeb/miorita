@@ -50,12 +50,12 @@ import MainMenu from "./MainMenu.vue";
     text-decoration: none;
 }
 
-.bar a {
+.brand a {
     color: inherit;
 }
 
-.bar a:hover,
-.bar a:focus{
+.brand a:hover,
+.brand a:focus{
     color: var(--logo-hover);
 }
 
