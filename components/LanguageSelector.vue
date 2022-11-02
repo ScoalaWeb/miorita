@@ -27,7 +27,7 @@ import "~/assets/fonts/RobotoMono/RobotoMono.css";
     justify-content: center;
     align-items: center;
     gap: 0.3rem;
-    font-family: RobotoMono, monospace;
+    font-family: RobotoMono;
     cursor: pointer;
     color: var(--button-color);
     font-size: 1.37rem;

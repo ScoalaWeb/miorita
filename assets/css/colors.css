@@ -1,8 +1,10 @@
 :root {
     --pure-white: #FFF;
     --pure-black: #000;
-    --button-green: #80CC90;
-    --button-red: #CF0909;
+    --primary-button: #80CC90;
+    --primary-button-hover: #D7FFDF;
+    --secondary-button: #CF0909;
+    --secondary-button-hover: #FF4444;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -21,8 +23,8 @@
         --text-color: var(--pure-black);
         --background-color: #EEEEEE;
         --logo-color: #000;
-        --logo-hover: #000; /*requires a color*/
+        --logo-hover: #555555;
         --button-color: #555555;
-        --line-color: #DAD9FF;
+        --line-color: #E1E1E1;
     }
 }
