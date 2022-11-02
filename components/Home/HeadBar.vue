@@ -20,6 +20,8 @@ import MainMenu from "./MainMenu.vue";
 
 <style module>
 .bar {
+    background: transparent;
+    color: var(--logo-color);
     display: grid;
     grid-template-columns: 1fr min-content 2.81rem;
     justify-items: center;
@@ -46,6 +48,15 @@ import MainMenu from "./MainMenu.vue";
     font-weight: 700;
     font-size: clamp(3rem, 3vw, 5rem);
     text-decoration: none;
+}
+
+.bar a {
+    color: inherit;
+}
+
+.bar a:hover,
+.bar a:focus{
+    color: var(--logo-hover);
 }
 
 .menu {

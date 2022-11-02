@@ -1,13 +1,13 @@
 <template>
-    <div>
+    <div :class="$style.container">
         <About />
     </div>
 </template>
 
 <script setup>
-import About from "../components/Home/Screen/AboutScreen.vue";
+import About from "./about.vue";
 </script>
 
-<style lang="scss">
-@use "../assets/scss" as *;
+<style module>
+@import url("~/assets/css/colors.css");
 </style>
