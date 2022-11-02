@@ -1,6 +1,6 @@
 <!-- eslint-disable max-len -->
 <template>
-    <div :class="$style.about">
+    <div id="About" :class="$style.about">
         <h1>Miorița is here to help you in your programming journey</h1>
         <NuxtLink to="/" :class="$style.button">
             play now
@@ -47,28 +47,29 @@ import TheSheep from "../components/TheSheep.vue";
 }
 
 .button {
-    width: 17.25rem;
-    height: 4.44rem;
     display: flex;
-    justify-content: flex-end;
+    justify-content: center;
     align-items: center;
-    gap: 1.43rem;
+    gap: 1rem;
+    padding: 0.75rem 2rem 1rem 2rem;
     font-size: 1.75rem;
     text-decoration: none;
     border-radius: 3.12rem;
-    color: var(--pure-black);
-    background-color: var(--button-green);
+    color: var(--pure-white);
+    background-color: var(--secondary-button);
     z-index: 1;
 }
 
-.button svg {
-    margin-right: 1.81rem;
+.button:hover {
+    background-color: var(--secondary-button-hover);
 }
 
 .miorita {
+    height: 46vh;
+    width: auto;
     position: absolute;
-    top: 20rem;
-    left: 2.3rem;
+    bottom: -6%;
+    left: 2%;
     z-index: 0;
 }
 

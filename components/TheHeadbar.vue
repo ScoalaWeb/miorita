@@ -47,16 +47,16 @@ import TheMenu from "./TheMenu.vue";
 .main {
     font-family: CabinSketch, sans-serif;
     font-weight: 700;
-    font-size: 3rem;
+    font-size: clamp(3rem, 3vw, 5rem);
     text-decoration: none;
 }
 
-.bar a {
+.brand a {
     color: inherit;
 }
 
-.bar a:hover,
-.bar a:focus{
+.brand a:hover,
+.brand a:focus{
     color: var(--logo-hover);
 }
 

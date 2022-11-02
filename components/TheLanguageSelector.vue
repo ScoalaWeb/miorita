@@ -1,7 +1,6 @@
 <!-- eslint-disable max-len -->
 <template>
     <div :class="$style.languageSelector">
-        <img :class="$style.selectedLanguage" src="../assets/img/english.svg">
         <p>EN</p>
         <svg
             width="12"
@@ -27,7 +26,7 @@ import "~/assets/fonts/RobotoMono/RobotoMono.css";
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 0.62rem;
+    gap: 0.3rem;
     font-family: RobotoMono;
     cursor: pointer;
     color: var(--button-color);
