@@ -35,6 +35,6 @@
 <style module>
 .colorScheme {
     cursor: pointer;
-    color: #555555; /* this is light mode color; there is also a dark mode color: #959595*/
+    color: var(--button-color);
 }
 </style>

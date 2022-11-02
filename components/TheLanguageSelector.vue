@@ -30,12 +30,17 @@ import "~/assets/fonts/RobotoMono/RobotoMono.css";
     gap: 0.62rem;
     font-family: RobotoMono;
     cursor: pointer;
-    color: #555555; /* light mode color; dark mode color is: #959595; */
+    color: var(--button-color);
     font-size: 1.37rem;
 }
 
 .selectedLanguage {
     width: 1.43rem;
     height: 1.43rem;
+}
+
+.languageSelector svg {
+    align-self: flex-end;
+    margin-bottom: 0.7rem;
 }
 </style>
