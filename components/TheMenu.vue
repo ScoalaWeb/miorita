@@ -29,12 +29,13 @@ const selectButton = (index) => {
 .menuButtons {
     display: flex;
     gap: 3rem;
-    margin-bottom: 3.68rem;
-    font-size: 1.37rem;
-    color: #555555;
+    font-size: 1.38rem;
+    color: var(--button-color);
 }
 
 button {
+    padding: 0;
+    margin: 0;
     width: 10.56rem;
     cursor: pointer;
     color: inherit;
@@ -44,8 +45,9 @@ button {
     background-color: transparent;
 }
 .selected {
-    color: #000;
+    color: var(--text-color);
     font-size: 1.75rem;
-    border-bottom: 2px solid #555555;
+    border-bottom: 2px solid var(--button-color);
+    transform: translate(0, -0.8rem);
 }
 </style>

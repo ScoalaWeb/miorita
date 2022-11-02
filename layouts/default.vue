@@ -21,6 +21,7 @@ html {
     -moz-osx-font-smoothing: grayscale;
     -webkit-font-smoothing: antialiased;
     box-sizing: border-box;
+    background-color: var(--background-color);
 }
 
 *,
@@ -35,10 +36,11 @@ html {
     height: 100vh;
     overflow: hidden;
     display: grid;
-    grid-template-rows: auto auto auto;
+    grid-template-rows: 0.2fr 1fr 0.1fr;
     background-size: 50px 50px;
     background-image:
-        linear-gradient(90deg, #DAD9FF 2px, transparent 0px),
-        linear-gradient(#DAD9FF 2px, transparent 0px);
+        linear-gradient(90deg, var(--line-color) 2px, transparent 0px),
+        linear-gradient(var(--line-color) 2px, transparent 0px);
+    background-position: center;
 }
 </style>
