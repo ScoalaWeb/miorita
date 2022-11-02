@@ -29,7 +29,7 @@ import "~/assets/fonts/RobotoMono/RobotoMono.css";
     gap: 0.3rem;
     font-family: RobotoMono, monospace;
     cursor: pointer;
-    color: var(--link-color);
+    color: var(--button-color);
     font-size: 1.37rem;
 }
 
