@@ -2,16 +2,16 @@
     <div :class="$style.menu">
         <span :class="$style.menuButtons">
             <a
-                v-for="(button, index) in buttons"
+                v-for="(button, index) in store.buttons"
                 :key="button.slug"
                 :href="`#${button.slug}`"
-                :class="{[$style.selected]: selected === button.slug}"
+                :class="{[$style.selected]: store.selected === button.slug}"
                 @click="selectButton(index)"
             >
                 {{ button.label }}
             </a>
         </span>
-        <div :class="$style.underlines" :style="`--line-position: ${linePosition}`">
+        <div :class="$style.underlines" :style="`--line-position: ${store.selectedIndex}`">
             <div />
             <div />
             <div />
@@ -21,37 +21,14 @@
 
 <script setup>
 import "~/assets/fonts/RobotoMono/RobotoMono.css";
-import { onMounted, ref } from "vue";
+import useMenuStore from "~/stores/menu";
 
-const buttons = [
-    {
-        slug: "about",
-        label: "About",
-    },
-    {
-        slug: "lessons",
-        label: "Lessons",
-    },
-    {
-        slug: "playgrounds",
-        label: "Playgrounds",
-    },
-];
-const selected = ref(buttons[0].slug);
-const linePosition = ref("0px");
+const store = useMenuStore();
 
 const selectButton = (index) => {
-    selected.value = buttons[index].slug;
-    linePosition.value = index;
+    store.setSelected(index);
 };
 
-onMounted(() => {
-    const currentLocation = window.location.hash.substring(1);
-    const currentButtonIndex = buttons.findIndex(btn => btn.slug === currentLocation);
-    if (currentButtonIndex >= 0) {
-        selectButton(currentButtonIndex);
-    }
-});
 </script>
 
 <style module lang="scss">
@@ -79,6 +56,7 @@ onMounted(() => {
     &:hover {
         color: var(--menu-color-hover);
     }
+
 }
 
 .menuButtons .selected {

@@ -21,7 +21,6 @@ import MainMenu from "./MainMenu.vue";
 <style module>
 .bar {
     background: transparent;
-    color: var(--logo-color);
     display: grid;
     grid-template-columns: 1fr min-content 2.81rem;
     justify-items: center;
@@ -33,7 +32,6 @@ import MainMenu from "./MainMenu.vue";
     grid-column: 1/3;
     margin-top: 2.81rem;
     margin-bottom: 2.68rem;
-    align-self: end;
 }
 
 .buttons {
@@ -48,15 +46,6 @@ import MainMenu from "./MainMenu.vue";
     font-weight: 700;
     font-size: clamp(3rem, 3vw, 5rem);
     text-decoration: none;
-}
-
-.brand a {
-    color: inherit;
-}
-
-.brand a:hover,
-.brand a:focus{
-    color: var(--logo-hover);
 }
 
 .menu {

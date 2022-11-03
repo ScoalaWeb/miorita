@@ -1,0 +1,17 @@
+[
+    {
+        "title": "Empty playground",
+        "description": "Empty code and a 9x9 board where you can move however you wany. Miorița starts at the very center of the sheepfold.",
+        "link": "playgrounds"
+    },
+    {
+        "title": "The Hatchet",
+        "description": "Based on a Romanian novel, The Hatchet, Miorița has to pick the hatchet, and deliver it to Vitoria Lipan.",
+        "link": "playgrounds/hatchet"
+    },
+    {
+        "title": "The Escape",
+        "description": "Help Miorița escape a random sheepfold.",
+        "link": "playgrounds/escape"
+    }
+]
