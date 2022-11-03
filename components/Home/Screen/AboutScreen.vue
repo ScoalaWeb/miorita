@@ -69,7 +69,7 @@ import TheSheep from "../GhostSheep.vue";
     height: 46vh;
     width: auto;
     position: absolute;
-    bottom: -6%;
+    bottom: 1%;
     left: 2%;
     z-index: 0;
 }
