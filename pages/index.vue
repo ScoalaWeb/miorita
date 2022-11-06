@@ -1,20 +1,13 @@
 <template>
-    <div :class="$style.container">
+    <div>
         <About />
     </div>
 </template>
 
 <script setup>
-import About from "./about.vue";
+import About from "../components/Home/Screen/AboutScreen.vue";
 </script>
 
+<style lang="scss">
 @use "../assets/scss" as *;
-.container {
-    width: 100%;
-    max-width: 80ch;
-    margin: 1rem auto;
-    box-shadow: 0.4rem 0.2rem 1rem rgba(224 219 219 / 69%);
-    padding: 1rem;
-    overflow-y: auto;
-}
 </style>
