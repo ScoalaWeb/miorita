@@ -1,0 +1,31 @@
+{
+    "processors": ["stylelint-processor-html"],
+    "extends": ["stylelint-config-standard-scss", "stylelint-config-prettier"],
+    "rules": {
+        "indentation": 4,
+        "selector-class-pattern": null,
+        "at-rule-no-unknown": null,
+        "no-empty-source": null,
+        "no-duplicate-selectors": null,
+        "rule-empty-line-before": null,
+        "color-hex-length": null,
+        "no-descending-specificity": [true, {
+            "severity": "warning"
+        }]
+
+    },
+    "overrides": [
+        {
+            "files": ["*.vue", "**/*.vue"],
+            "customSyntax": "postcss-scss",
+            "rules": {
+                "selector-pseudo-class-no-unknown": [true, {
+                    "ignorePseudoClasses": ["deep"]
+                }],
+                "selector-pseudo-element-no-unknown": [true, {
+                    "ignorePseudoElements": ["v-deep"]
+                }]
+            }
+        }
+    ]
+}

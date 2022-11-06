@@ -1,0 +1,59 @@
+@use "/assets/scss/0-settings" as *;
+
+:root {
+    // Initial definitions of colors
+    // Dark mode
+    --dark-background: #{$dark-background};
+    --dark-stroke: #{$dark-stroke};
+    --dark-border: #{$dark-border};
+    --dark-secondary-button: #{$dark-button-secondary};
+    --dark-secondary-button-hover: #{$dark-button-secondary-hover};
+    // Light mode
+    --light-background: #{$light-background};
+    --light-stroke: #{$light-stroke};
+    --light-border: #{$light-border};
+    --light-button-secondary: #{$light-button-secondary};
+    --light-button-secondary-hover: #{$light-button-secondary-hover};
+    // Generic
+    --button-primary: #{$button-primary};
+    --button-primary-hover: #{$button-primary-hover};
+    --pure-black: #{$pure-black};
+    --pure-white: #{$pure-white};
+}
+
+@mixin light-mode-colors {
+    --bg-color: var(--light-background);
+    --stroke: var(--light-stroke);
+    --border: var(--light-border);
+    --text-color: var(--pure-black);
+    --text-color-negative: var(--pure-white);
+    --secondary-button: var(--light-button-secondary);
+    --secondary-button-hover: var(--light-button-secondary-hover);
+}
+
+@mixin dark-mode-colors {
+    --bg-color: var(--dark-background);
+    --stroke: var(--dark-stroke);
+    --border: var(--dark-border);
+    --text-color: var(--pure-white);
+    --text-color-negative: var(--pure-black);
+    --secondary-button: var(--dark-button-secondary);
+    --secondary-button-hover: var(--dark-button-secondary-hover);
+}
+
+:root {
+    @include light-mode-colors;
+}
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        @include dark-mode-colors;
+    }
+}
+
+.light-mode {
+    @include light-mode-colors;
+}
+.dark-mode {
+    @include dark-mode-colors;
+}
