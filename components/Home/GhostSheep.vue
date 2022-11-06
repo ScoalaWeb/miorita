@@ -189,7 +189,7 @@
 
 <style module>
 .sheep {
-    color: var(--line-color);
+    color: var(--background-accent);
 }
 .background {
     color: var(--background-color);

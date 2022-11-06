@@ -1,0 +1,10 @@
+a {
+    color: var(--link-color);
+    text-decoration: none;
+
+    &:hover,
+    &:focus,
+    &:active {
+        color: var(--link-color-hover);
+    }
+}

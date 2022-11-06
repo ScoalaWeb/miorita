@@ -35,6 +35,6 @@
 <style module>
 .colorScheme {
     cursor: pointer;
-    color: var(--button-color);
+    color: var(--link-color);
 }
 </style>

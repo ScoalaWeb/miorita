@@ -1,14 +1,14 @@
 <template>
     <div class="Layout">
-        <TheHeadbar />
+        <HomeHeadBar />
         <Nuxt />
-        <TheFooter />
+        <HomeFooter />
     </div>
 </template>
 
 <script setup>
-import TheHeadbar from "~/components/TheHeadbar.vue";
-import TheFooter from "~/components/TheFooter.vue";
+import HomeHeadBar from "~/components/Home/HeadBar.vue";
+import HomeFooter from "~/components/Home/Footer.vue";
 </script>
 
 <style>
@@ -36,11 +36,11 @@ html {
     height: 100vh;
     overflow: hidden;
     display: grid;
-    grid-template-rows: 0.2fr 1fr 0.1fr;
+    grid-template-rows: 2fr 10fr 1fr;
     background-size: 50px 50px;
     background-image:
-        linear-gradient(90deg, var(--line-color) 2px, transparent 0px),
-        linear-gradient(var(--line-color) 2px, transparent 0px);
+        linear-gradient(90deg, var(--background-accent) 2px, transparent 0),
+        linear-gradient(var(--background-accent) 2px, transparent 0);
     background-position: center;
 }
 </style>

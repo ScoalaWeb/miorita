@@ -15,17 +15,6 @@ import "~/assets/fonts/CabinSketch/RoCabinSketch.css";
     font-weight: 700;
     font-size: 2rem;
     gap: 0.3rem;
-    color: var(--logo-color);
     white-space: nowrap;
-}
-
-.footer a {
-    text-decoration: none;
-    color: inherit;
-}
-
-.footer a:hover,
-.footer a:focus {
-    color: var(--logo-hover);
 }
 </style>

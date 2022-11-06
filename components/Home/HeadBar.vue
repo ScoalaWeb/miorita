@@ -1,30 +1,27 @@
 <template>
     <div :class="$style.bar">
         <h1 :class="$style.brand">
-            <nuxt-link to="/" :class="$style.main">Miorița</nuxt-link>
+            <NuxtLink to="/" :class="$style.main">Miorița</NuxtLink>
         </h1>
         <div :class="$style.buttons">
-            <TheLanguageSelector />
-            <TheColorModeButton />
+            <LanguageSelector />
+            <ColorModeSwitcher />
         </div>
-        <TheMenu :class="$style.menu" />
+        <MainMenu :class="$style.menu" />
     </div>
 </template>
 
 <script setup>
 import "~/assets/fonts/CabinSketch/RoCabinSketch.css";
-import TheLanguageSelector from "./TheLanguageSelector.vue";
-import TheColorModeButton from "./TheColorModeButton.vue";
-import TheMenu from "./TheMenu.vue";
+import LanguageSelector from "../LanguageSelector.vue";
+import ColorModeSwitcher from "../ColorModeSwitcher.vue";
+import MainMenu from "./MainMenu.vue";
 </script>
 
 <style module>
 .bar {
-    background: transparent;
-    color: var(--logo-color);
     display: grid;
     grid-template-columns: 1fr min-content 2.81rem;
-    grid-template-rows: auto auto;
     justify-items: center;
     align-items: center;
 }
@@ -51,18 +48,8 @@ import TheMenu from "./TheMenu.vue";
     text-decoration: none;
 }
 
-.brand a {
-    color: inherit;
-}
-
-.brand a:hover,
-.brand a:focus{
-    color: var(--logo-hover);
-}
-
 .menu {
     grid-column: 1/3;
     grid-row: 2;
 }
-
 </style>
