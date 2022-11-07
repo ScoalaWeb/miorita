@@ -55,12 +55,12 @@
 }
 
 :root {
-    @include light-mode-colors;
+    @include dark-mode-colors;
 }
 
-@media (prefers-color-scheme: dark) {
+@media (prefers-color-scheme: light) {
     :root {
-        @include dark-mode-colors;
+        @include light-mode-colors;
     }
 }
 

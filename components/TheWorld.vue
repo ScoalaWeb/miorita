@@ -1,53 +1,5 @@
 <template>
     <div :class="$style.world">
-        <div>
-            <button
-                v-if="!isRunning"
-                type="button"
-                :class="$style.button"
-                @click="run()"
-            >
-                <i class="micon mi-run" />
-                Run
-            </button>
-            <button
-                v-if="!isRunning && canReset"
-                type="button"
-                :class="$style.button"
-                @click="reset"
-            >
-                <i class="micon mi-reset" />
-                Reset
-            </button>
-            <button
-                v-if="!isRunning"
-                type="button"
-                :class="$style.button"
-                @click="debug"
-            >
-                <i class="micon mi-debug" />
-                Debug
-            </button>
-            <button
-                v-if="isRunning && actions.debug"
-                type="button"
-                :class="$style.button"
-                @click="stepOver"
-            >
-                <i class="micon mi-step-over" />
-                Step over
-            </button>
-            <button
-                v-if="isRunning"
-                type="button"
-                :class="$style.button"
-                @click="stop"
-            >
-                <i class="micon mi-stop" />
-                Stop
-            </button>
-            <slot name="options" />
-        </div>
         <div ref="tableWrapper" :class="$style.table_wrapper">
             <table :class="$style.table" :style="cellWidthStyle">
                 <tbody>
@@ -106,6 +58,39 @@
                     </tr>
                 </tbody>
             </table>
+        </div>
+        <div :class="$style.menu">
+            <TheRunButton
+                v-if="!isRunning"
+                :class="[$style.button, $style.run]"
+                @click="run()"
+            />
+            <TheDebugButton
+                v-if="!isRunning"
+                :class="[$style.button, $style.debug]"
+                @click="debug"
+            />
+            <TheResetButton
+                type="button"
+                @click="reset"
+            />
+            <!--
+            <button
+                v-if="isRunning && actions.debug"
+                type="button"
+                :class="$style.button"
+                @click="stepOver"
+            >
+                <i class="micon mi-step-over" />
+                Step over
+            </button>
+            -->
+            <ThePauseButton
+                v-if="!isRunning"
+                type="button"
+                @click="stop"
+            />
+            <slot name="options" />
         </div>
         <div ref="console" :class="$style.console">
             <div
@@ -193,6 +178,10 @@
 <script lang="ts">
 import { Howl } from "howler";
 import { Vue, Component, Prop, Watch } from "vue-property-decorator";
+import TheDebugButton from "./buttons/TheDebugButton.vue";
+import ThePauseButton from "./buttons/ThePauseButton.vue";
+import TheResetButton from "./buttons/TheResetButton.vue";
+import TheRunButton from "./buttons/TheRunButton.vue";
 import GrassObject from "~/assets/img/grass.svg?inline";
 import HatchetObject from "~/assets/img/hatchet.svg?inline";
 import VitoriaObject from "~/assets/img/vitoria.svg?inline";
@@ -208,6 +197,10 @@ import "~/assets/css/icons.css";
         GrassObject,
         HatchetObject,
         VitoriaObject,
+        TheRunButton,
+        TheDebugButton,
+        TheResetButton,
+        ThePauseButton,
     },
 })
 export default class TheWorld extends Vue {
@@ -430,21 +423,39 @@ export default class TheWorld extends Vue {
 .world {
     display: flex;
     flex-direction: column;
+    background-color: var(--background-accent);
+}
+
+.menu {
+    display: flex;
+    border-bottom: 1px solid var(--color-gray-500);
 }
 
 .button {
-    padding: 0.2em 0.7em;
-    background: #fff;
-    border: 1px solid currentcolor;
+    margin: 1rem;
+    padding: 0.33rem 1rem;
+    background-color: var(--secondary-button);
+    font-size: 1.25rem;
+    border: 0;
     border-radius: 0.3em;
-    margin: 0.5em;
+    color: var(--text-color);
     cursor: pointer;
 }
 
 .button:hover,
 .button:focus {
-    background: #333;
-    color: #fff;
+    background: var(--secondary-button-hover);
+    color: var(--text-color);
+}
+
+.run {
+    border-radius: 1.25rem 0 0 1.25rem;
+    margin-right: 0;
+}
+
+.debug {
+    border-radius: 0 1.25rem 1.25rem 0;
+    margin-left: -0.7rem;
 }
 
 .table_wrapper {
@@ -464,6 +475,7 @@ export default class TheWorld extends Vue {
 }
 
 .cell {
+    height: var(--cell-width);
     width: var(--cell-width);
     padding-bottom: var(--cell-width);
     position: relative;
@@ -481,7 +493,7 @@ export default class TheWorld extends Vue {
     align-items: center;
     font-weight: bold;
     font-size: calc(var(--cell-width) / 3);
-    color: #eee;
+    color: var(--element-accent-color);
 }
 
 .cell__inner {
@@ -576,10 +588,10 @@ export default class TheWorld extends Vue {
     flex-direction: column;
     overflow: auto;
     gap: 0.5em;
-    background: #000;
-    color: #fff;
+    background: var(--background-color);
+    color: var(--text-color);
     padding: 1rem;
-    height: 7.5rem;
+    height: 9.5rem;
 }
 
 .error {
