@@ -1,17 +1,14 @@
 <template>
     <div class="Layout">
-        <TheHeadbar />
+        <HomeHeadBar />
         <Nuxt />
+        <HomeFooter />
     </div>
 </template>
 
-<script>
-import TheHeadbar from "~/components/TheHeadbar.vue";
-
-export default {
-    name: "DefaultLayout",
-    components: { TheHeadbar },
-};
+<script setup>
+import HomeHeadBar from "~/components/Home/HeadBar.vue";
+import HomeFooter from "~/components/Home/Footer.vue";
 </script>
 
 <style>
@@ -24,6 +21,7 @@ html {
     -moz-osx-font-smoothing: grayscale;
     -webkit-font-smoothing: antialiased;
     box-sizing: border-box;
+    background-color: var(--background-color);
 }
 
 *,
@@ -33,27 +31,16 @@ html {
     margin: 0;
 }
 
-sup {
-    font-size: 0.6em;
-}
-
-.sr-only {
-    position: absolute;
-    width: 1px;
-    height: 1px;
-    padding: 0;
-    margin: -1px;
-    overflow: hidden;
-    clip: rect(0, 0, 0, 0);
-    white-space: nowrap;
-    border: 0;
-}
-
 .Layout {
     width: 100vw;
     height: 100vh;
     overflow: hidden;
     display: grid;
-    grid-template-rows: 4rem auto;
+    grid-template-rows: 2fr 10fr 1fr;
+    background-size: 50px 50px;
+    background-image:
+        linear-gradient(90deg, var(--background-accent) 2px, transparent 0),
+        linear-gradient(var(--background-accent) 2px, transparent 0);
+    background-position: center;
 }
 </style>
