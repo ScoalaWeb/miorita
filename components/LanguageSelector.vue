@@ -17,17 +17,12 @@
     </div>
 </template>
 
-<script setup>
-import "~/assets/fonts/RobotoMono/RobotoMono.css";
-</script>
-
 <style module>
 .languageSelector {
     display: flex;
     justify-content: center;
     align-items: center;
     gap: 0.3rem;
-    font-family: RobotoMono, monospace;
     cursor: pointer;
     color: var(--link-color);
     font-size: 1.37rem;

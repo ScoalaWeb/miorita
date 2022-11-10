@@ -191,7 +191,6 @@
 </template>
 
 <script lang="ts">
-// import { computed, watch, nextTick, ref, onMounted, onUnmounted } from "vue";
 import { Howl } from "howler";
 import { Vue, Component, Prop, Watch } from "vue-property-decorator";
 import GrassObject from "~/assets/img/grass.svg?inline";
@@ -203,203 +202,6 @@ import Actions from "~/lib/Actions";
 import makeRunner from "~/lib/makeRunner";
 import useCodeStore from "~/stores/code";
 import "~/assets/css/icons.css";
-
-// const console = ref(null);
-
-// const tableWrapper = ref(null);
-
-// const store = useCodeStore();
-
-// const props = defineProps({
-//     options: {
-//         default: () => ({
-//             size: { x: 4, y: 4 },
-//             start: {
-//                 position: { x: 0, y: 0 },
-//                 orientation: "E",
-//             },
-//             walls: {},
-//             objects: [
-//                 {
-//                     type: "grass",
-//                     position: { x: 1, y: 0 },
-//                 },
-//             ],
-//             timeout: 1000,
-//         } as WorldOptions),
-//         type: Object,
-//     },
-// });
-
-// const range = (size:number): number[] => [...new Array(size)].map((_, index) => index);
-
-// const current: WorldCurrent = {
-//     position: { x: 0, y: 0 },
-//     orientation: "E",
-//     picked: {},
-// };
-
-// const isCurrent = (row:number, col:number) => {
-//     const { position: { x, y } } = current;
-
-//     return row === y && col === x;
-// };
-
-// const objectsAt = (row:number, col:number) => {
-//     if (actions) {
-//         return Object.values(actions.objects[`${col}x${row}`] || {});
-//     }
-//     return props.options.objects.filter(
-//         ({ position: { x, y } }) => row === y && col === x,
-//     );
-// };
-
-// const canReset = computed(() => {
-//     const { start } = props.options;
-
-//     return current.orientation !== start.orientation ||
-//         current.position.x !== start.position.x ||
-//         current.position.y !== start.position.y;
-// });
-
-// const isRunning = computed(() => actions && !actions.ended);
-
-// const hasWallRight = (row:number, col:number) => props.options.walls.x &&
-//     props.options.walls.x.some((pos:Coordinates) => row === pos.y && col === pos.x);
-
-// const hasWallLeft = (row:number, col:number) => hasWallRight(row, col - 1);
-
-// const hasWallBottom = (row:number, col:number) => props.options.walls.y &&
-//     props.options.walls.y.some((pos:Coordinates) => row === pos.y && col === pos.x);
-
-// const hasWallTop = (row:number, col:number) => hasWallBottom(row - 1, col);
-
-// const actions:Actions | null = null;
-
-// type moves = {
-//     message: string
-//     args?: any[]
-// }[] = [];
-
-// watch(moves, () => {
-//     nextTick(() => {
-//         // @ts-ignore
-//         console.value.scrollTop = console.value.scrollHeight;
-//     });
-// });
-
-// const run = (debug = false) => {
-//     const moves: moves = [];
-//     let actions = new Actions(props.options, current, debug);
-//     actions.onMove((message: string, ...args: any[]) => {
-//         moves.push({ message, args });
-//     });
-//     let runner: (_action: Actions) => Promise<any>;
-
-//     try {
-//         runner = makeRunner(store.code);
-//     } catch (e) {
-//         moves.push({ message: `error-build-${e.message}` });
-//         actions = null;
-//         return;
-//     }
-
-//     runner(actions)
-//         .then(() => {
-//             moves.push({ message: "end" });
-//         })
-//         .catch((e) => {
-//             (new Howl({
-//                 src: "~/sounds/bleating.mp3",
-//             })).play();
-//             if (e.isRunnerError) {
-//                 moves.push({ message: `error-${e.message}` });
-//             } else {
-//                 moves.push({ message: `error-generic-${e.message}` });
-//                 console.value.error(e);
-//             }
-//         })
-//         .then(() => {
-//             actions.ended = true;
-//         });
-//     if (debug) {
-//         nextTick(() => {
-//             if (actions) {
-//                 actions.stepOver();
-//             }
-//         });
-//     }
-// };
-
-// const debug = () => {
-//     run(true);
-// }
-// const stepOver = () => {
-//     if (actions) {
-//         actions.stepOver();
-//     }
-// }
-
-// const stop = () => {
-//     if (actions) {
-//         actions.stop();
-//     }
-// }
-
-// const cellWidth = "10%";
-
-// const cellWidthStyle = computed(() => { `--cell-width: ${cellWidth}` });
-
-// const resizeCell = () => {
-//     const wrapper = tableWrapper.value;
-//     if (!wrapper) {
-//         return;
-//     }
-//     // @ts-ignore
-//     wrapper.querySelector("table").attributes.style.value = "--cell-width: 1px";
-
-//     let cellWidth = Math.floor(
-//         Math.min(
-//             // @ts-ignore
-//             wrapper.clientWidth / props.options.size.x,
-//             // @ts-ignore
-//             wrapper.clientHeight / props.options.size.y,
-//         ) * 0.95,
-//     );
-//     // @ts-ignore
-//     cellWidth = `${cellWidth}px`;
-//     // @ts-ignore
-//     wrapper.querySelector("table").attributes.style.value = `--cell-width: ${cellWidth}px`;
-// }
-
-// const reset = () => {
-//     if (actions) {
-//         actions.stop();
-//     }
-//     const { start } = props.options;
-//     current = {
-//         position: { ...start.position },
-//         orientation: start.orientation || "E",
-//         picked: {},
-//     };
-//     moves = [];
-// }
-
-// reset();
-
-// // let resizeCellListener = (): void;
-
-// onMounted (() => {
-//     resizeCell();
-
-//     resizeCellListener = resizeCell.bind(this);
-//     window.addEventListener("resize", resizeCellListener);
-// });
-
-// onUnmounted (() => {
-//     // @ts-ignore
-//     window.removeEventListener("resize", resizeCellListener);
-// });
 
 @Component({
     components: {
@@ -600,6 +402,8 @@ export default class TheWorld extends Vue {
         };
         this.moves = [];
     }
+
+    store = null;
 
     created () {
         this.reset();

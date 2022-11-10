@@ -44,7 +44,7 @@ import MainMenu from "./MainMenu.vue";
 .main {
     font-family: CabinSketch, sans-serif;
     font-weight: 700;
-    font-size: clamp(3rem, 3vw, 5rem);
+    font-size: clamp(3rem, 6vh, 5rem);
     text-decoration: none;
 }
 
