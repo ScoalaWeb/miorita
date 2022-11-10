@@ -8,7 +8,9 @@
             ? '--background-color:  var(--secondary-button); --hover-color: var(--secondary-button-hover)'
             : '--background-color:  var(--primary-button); --hover-color: var(--primary-button-hover)'"
     >
-        play
+        <span class="label">
+            play
+        </span>
         <svg
             width="18"
             height="16"
@@ -33,3 +35,9 @@ defineProps<{
     link: string
 }>();
 </script>
+
+<style scoped>
+.arrows {
+    padding-top: 0.25rem;
+}
+</style>
