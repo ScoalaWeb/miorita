@@ -1,7 +1,7 @@
 <template>
     <div
         class="Layout"
-        :style="`--background-position: ${store.selectedIndex}`"
+        :style="{ '--background-position': -store.selectedIndex }"
     >
         <HomeHeadBar />
         <Nuxt class="content" />
