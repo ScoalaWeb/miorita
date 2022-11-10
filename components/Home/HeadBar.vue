@@ -13,8 +13,8 @@
 
 <script setup>
 import "~/assets/fonts/CabinSketch/RoCabinSketch.css";
-import LanguageSelector from "../LanguageSelector.vue";
 import ColorModeSwitcher from "../ColorModeSwitcher.vue";
+import LanguageSelector from "../LanguageSelector.vue";
 import MainMenu from "./MainMenu.vue";
 </script>
 

@@ -24,6 +24,12 @@ module.exports = {
         "import/extensions": "off",
         "import/no-cycle": "off",
         "import/no-extraneous-dependencies": "off",
+        "import/order": ["error", {
+            alphabetize: {
+                order: "asc",
+                caseInsensitive: false,
+            },
+        }],
         "@typescript-eslint/semi": ["warn", "always"],
         "@typescript-eslint/member-delimiter-style": ["error", {
             multiline: {

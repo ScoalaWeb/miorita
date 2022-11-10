@@ -1,8 +1,8 @@
 /* eslint-disable max-classes-per-file */
-import WorldOptions from "~/interfaces/WorldOptions";
-import WorldCurrent from "~/interfaces/WorldCurrent";
-import RunnerError from "~/lib/RunnerError";
 import WorldObject from "../interfaces/WorldObject";
+import WorldCurrent from "~/interfaces/WorldCurrent";
+import WorldOptions from "~/interfaces/WorldOptions";
+import RunnerError from "~/lib/RunnerError";
 
 const DIRECTIONS = "NESW";
 
