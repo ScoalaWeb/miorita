@@ -65,6 +65,10 @@ import TheSheep from "../GhostSheep.vue";
     background-color: var(--secondary-button-hover);
 }
 
+.arrows {
+    padding-top: 0.25rem;
+}
+
 .miorita {
     height: 46vh;
     width: auto;
