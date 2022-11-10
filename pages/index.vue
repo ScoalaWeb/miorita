@@ -6,6 +6,7 @@
             :key="index"
             class="screen"
             :class="{'active': index === store.selectedIndex}"
+            :style="{'--page-index': index }"
         />
     </div>
 </template>
@@ -27,14 +28,13 @@ const screenArr = [About, About, Playground];
 .screen {
     position: absolute;
     top: 0;
-    left: 0;
-    visibility: hidden;
+    left: calc((var(--background-position) + var(--page-index)) * 100%);
     opacity: 0;
-    transition: opacity .4s;
+    transition: opacity .4s, left .5s;
 }
 
 .active {
-    visibility: visible;
-    opacity: 100;
+    opacity: 1;
+    left: 0;
 }
 </style>
