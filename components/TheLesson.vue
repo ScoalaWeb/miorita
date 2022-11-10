@@ -11,8 +11,8 @@
 
 <script lang="ts">
 import { Vue, Component, Prop } from "vue-property-decorator";
-import TheWorld from "~/components/TheWorld.vue";
 import TheEditor from "~/components/TheEditor.vue";
+import TheWorld from "~/components/TheWorld.vue";
 import WorldOptions from "~/interfaces/WorldOptions";
 
 @Component({

@@ -26,10 +26,10 @@
 
 <script lang="ts">
 import { Vue, Component } from "vue-property-decorator";
-import TheLesson from "~/components/TheLesson.vue";
+import WorldObject from "../../interfaces/WorldObject";
 import { Coordinates } from "../../interfaces/WorldOptions";
 import arrayRandom from "../../lib/arrayRandom";
-import WorldObject from "../../interfaces/WorldObject";
+import TheLesson from "~/components/TheLesson.vue";
 
 @Component({
     components: { TheLesson },

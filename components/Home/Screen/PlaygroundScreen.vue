@@ -13,8 +13,8 @@
 </template>
 
 <script setup>
-import playground from "~/content/playground.json";
 import BaseCard from "~/components/BaseCard.vue";
+import playground from "~/content/playground.json";
 </script>
 
 <style module>
