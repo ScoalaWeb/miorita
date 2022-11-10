@@ -2,11 +2,10 @@
     <div :class="$style.menu">
         <span :class="$style.menuButtons">
             <a
-                v-for="(button, index) in store.buttons"
+                v-for="(button) in store.buttons"
                 :key="button.slug"
-                :href="`#${button.slug}`"
                 :class="{[$style.selected]: store.selected === button.slug}"
-                @click="selectButton(index)"
+                :href="`#${button.slug}`"
             >
                 {{ button.label }}
             </a>
@@ -20,15 +19,9 @@
 </template>
 
 <script setup>
-import "~/assets/fonts/RobotoMono/RobotoMono.css";
 import useMenuStore from "~/stores/menu";
 
 const store = useMenuStore();
-
-const selectButton = (index) => {
-    store.setSelected(index);
-};
-
 </script>
 
 <style module lang="scss">
@@ -48,7 +41,6 @@ const selectButton = (index) => {
     text-align: center;
     width: var(--item-width);
     color: var(--menu-color);
-    font-family: RobotoMono, monospace;
     font-size: 1.38rem;
     background-color: transparent;
     transition: font-size .2s;

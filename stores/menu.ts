@@ -28,15 +28,31 @@ const useMenuStore = defineStore("menu", () => {
         selectedIndex.value = index;
     };
 
-    onMounted(() => {
+    const init = () => {
+        if (!window) {
+            return;
+        }
+
         const currentLocation = window.location.hash.substring(1);
-        const currentButtonIndex = buttons.findIndex(btn => btn.slug === currentLocation);
-        if (currentButtonIndex >= 0) {
-            setSelected(currentButtonIndex);
+        if (currentLocation) {
+            const currentButtonIndex = buttons.findIndex(btn => btn.slug === currentLocation);
+            if (currentButtonIndex >= 0) {
+                setSelected(currentButtonIndex);
+            }
+        } else {
+            setSelected(0);
+        }
+    };
+
+    onMounted(() => {
+        init();
+
+        if (window) {
+            window.addEventListener("hashchange", init, false);
         }
     });
 
-    return { buttons, selected, selectedIndex, setSelected };
+    return { buttons, selected, selectedIndex, setSelected, init };
 });
 
 export default useMenuStore;

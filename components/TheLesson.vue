@@ -30,6 +30,8 @@ export default class TheLesson extends Vue {
 <style module>
 .container {
     display: flex;
+    position: fixed;
+    inset: 0;
 }
 
 .editor {

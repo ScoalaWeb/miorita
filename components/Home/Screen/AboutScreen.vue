@@ -1,13 +1,14 @@
 <template>
     <div id="About" :class="$style.about">
         <h1>Miorița is here to help you in your programming journey</h1>
-        <NuxtLink to="/" :class="$style.button">
+        <a href="#lessons" :class="$style.button">
             play now
             <svg
                 width="18"
                 height="21"
                 viewBox="0 0 18 21"
                 fill="none"
+                :class="$style.arrows"
                 xmlns="http://www.w3.org/2000/svg"
             >
                 <!-- eslint-disable max-len -->
@@ -17,7 +18,7 @@
                 />
                 <!-- eslint-enable max-len -->
             </svg>
-        </NuxtLink>
+        </a>
         <TheSheep :class="$style.miorita" />
     </div>
 </template>

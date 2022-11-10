@@ -27,10 +27,8 @@ defineProps<{
 }>();
 </script>
 
-<style module>
+<style module lang="scss">
 .card {
-    width: 34.75rem;
-    height: 19.25rem;
     display: grid;
     grid-template-rows: min-content 1fr 1fr;
     row-gap: 1rem;
@@ -40,6 +38,7 @@ defineProps<{
     background-color: var(--background-color);
     border: 2px solid var(--element-accent-color);
     border-radius: 1.25rem;
+    position: relative;
 }
 
 .title {
@@ -48,7 +47,6 @@ defineProps<{
 }
 
 .description {
-    font-family: RobotoMono, monospace;
     font-size: 1.25rem;
     font-weight: 400;
 }
@@ -56,5 +54,11 @@ defineProps<{
 .playButton {
     justify-self: end;
     align-self: end;
+
+    &::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+    }
 }
 </style>
