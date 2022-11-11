@@ -15,44 +15,28 @@
     </div>
 </template>
 
-<script>
+<script setup>
+import { computed, defineProps } from "vue";
 import MonacoEditor from "vue-monaco";
+import useCodeStore from "~/stores/code";
 
-export default {
-    components: {
-        MonacoEditor,
+const store = useCodeStore();
+
+defineProps({
+    code: {
+        type: String,
+        default: "",
     },
+});
 
-    props: {
-        code: {
-            type: String,
-            default: "",
-        },
+const workCode = computed({
+    get () {
+        return store.code;
     },
-
-    computed: {
-        workCode: {
-            get () {
-                return this.$store.state.code;
-            },
-            set (value) {
-                this.$store.dispatch("setCode", value);
-            },
-        },
+    set (value) {
+        store.setCode(value);
     },
-
-    mounted () {
-        let { code } = this;
-        if (localStorage.workCodeUrl === window.location.href) {
-            code = localStorage.workCode;
-        } else {
-            localStorage.workCodeUrl = window.location.href;
-        }
-
-        this.$store.dispatch("init", code);
-        this.workCode = this.$store.state.code;
-    },
-};
+});
 </script>
 
 <style module>

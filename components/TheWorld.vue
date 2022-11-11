@@ -191,15 +191,16 @@
 </template>
 
 <script lang="ts">
-import { Vue, Component, Prop, Watch } from "vue-property-decorator";
 import { Howl } from "howler";
-import WorldOptions, { Coordinates } from "~/interfaces/WorldOptions";
-import WorldCurrent from "~/interfaces/WorldCurrent";
-import Actions from "~/lib/Actions";
-import makeRunner from "~/lib/makeRunner";
+import { Vue, Component, Prop, Watch } from "vue-property-decorator";
 import GrassObject from "~/assets/img/grass.svg?inline";
 import HatchetObject from "~/assets/img/hatchet.svg?inline";
 import VitoriaObject from "~/assets/img/vitoria.svg?inline";
+import WorldCurrent from "~/interfaces/WorldCurrent";
+import WorldOptions, { Coordinates } from "~/interfaces/WorldOptions";
+import Actions from "~/lib/Actions";
+import makeRunner from "~/lib/makeRunner";
+import useCodeStore from "~/stores/code";
 import "~/assets/css/icons.css";
 
 @Component({
@@ -308,7 +309,7 @@ export default class TheWorld extends Vue {
         let runner: (_action: Actions) => Promise<any>;
 
         try {
-            runner = makeRunner(this.$store.state.code);
+            runner = makeRunner(this.store.code);
         } catch (e) {
             this.moves.push({ message: `error-build-${e.message}` });
             this.actions = null;
@@ -402,8 +403,11 @@ export default class TheWorld extends Vue {
         this.moves = [];
     }
 
+    store = null;
+
     created () {
         this.reset();
+        this.store = useCodeStore();
     }
 
     resizeCellListener?: ()=>void;

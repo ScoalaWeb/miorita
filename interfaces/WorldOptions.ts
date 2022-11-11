@@ -1,5 +1,5 @@
-import WorldCurrent from "~/interfaces/WorldCurrent";
 import WorldObject from "./WorldObject";
+import WorldCurrent from "~/interfaces/WorldCurrent";
 
 export type Coordinates<T=number> = {
     x: T

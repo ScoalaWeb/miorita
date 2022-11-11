@@ -29,6 +29,7 @@
     --secondary-button: var(--color-green-lighter);
     --secondary-button-color: var(--color-white);
     --secondary-button-hover: var(--color-green);
+    --element-accent-color: var(--color-gray-500);
 }
 
 @mixin dark-mode-colors {
@@ -44,6 +45,7 @@
     --secondary-button: var(--color-green);
     --secondary-button-color: var(--color-white);
     --secondary-button-hover: var(--color-green-lighter);
+    --element-accent-color: var(--color-gray-300);
 }
 
 :root {

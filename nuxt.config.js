@@ -37,6 +37,10 @@ export default {
         "@nuxtjs/eslint-module",
         // https://go.nuxtjs.dev/stylelint
         "@nuxtjs/stylelint-module",
+        // https://composition-api.nuxtjs.org/
+        "@nuxtjs/composition-api/module",
+        // https://pinia.vuejs.org/ssr/nuxt.html#nuxt-2-without-bridge
+        ["@pinia/nuxt", { disableVuex: false }],
     ],
 
     // Modules: https://go.nuxtjs.dev/config-modules

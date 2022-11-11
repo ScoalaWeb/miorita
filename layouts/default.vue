@@ -1,15 +1,6 @@
 <template>
-    <div class="Layout">
-        <HomeHeadBar />
-        <Nuxt />
-        <HomeFooter />
-    </div>
+    <Nuxt />
 </template>
-
-<script setup>
-import HomeHeadBar from "~/components/Home/HeadBar.vue";
-import HomeFooter from "~/components/Home/Footer.vue";
-</script>
 
 <style>
 html {
@@ -29,18 +20,5 @@ html {
 *::after {
     box-sizing: border-box;
     margin: 0;
-}
-
-.Layout {
-    width: 100vw;
-    height: 100vh;
-    overflow: hidden;
-    display: grid;
-    grid-template-rows: 2fr 10fr 1fr;
-    background-size: 50px 50px;
-    background-image:
-        linear-gradient(90deg, var(--background-accent) 2px, transparent 0),
-        linear-gradient(var(--background-accent) 2px, transparent 0);
-    background-position: center;
 }
 </style>

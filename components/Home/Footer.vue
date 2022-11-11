@@ -1,3 +1,4 @@
+<!-- eslint-disable vue/multi-word-component-names -->
 <template>
     <span :class="$style.footer">
         <a href="https://scoalaweb.ro" target="_blank">by Școala Web</a>

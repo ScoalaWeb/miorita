@@ -13,13 +13,14 @@
 
 <script setup>
 import "~/assets/fonts/CabinSketch/RoCabinSketch.css";
-import LanguageSelector from "../LanguageSelector.vue";
 import ColorModeSwitcher from "../ColorModeSwitcher.vue";
+import LanguageSelector from "../LanguageSelector.vue";
 import MainMenu from "./MainMenu.vue";
 </script>
 
 <style module>
 .bar {
+    background: transparent;
     display: grid;
     grid-template-columns: 1fr min-content 2.81rem;
     justify-items: center;
@@ -31,7 +32,6 @@ import MainMenu from "./MainMenu.vue";
     grid-column: 1/3;
     margin-top: 2.81rem;
     margin-bottom: 2.68rem;
-    align-self: end;
 }
 
 .buttons {
@@ -44,7 +44,7 @@ import MainMenu from "./MainMenu.vue";
 .main {
     font-family: CabinSketch, sans-serif;
     font-weight: 700;
-    font-size: clamp(3rem, 3vw, 5rem);
+    font-size: clamp(3rem, 6vh, 5rem);
     text-decoration: none;
 }
 
