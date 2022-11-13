@@ -8,11 +8,13 @@ const schemes = {
 };
 
 onMounted(() => {
+    let mediaColorScheme = schemes.dark;
+
     if (window.matchMedia && window.matchMedia("(prefers-color-scheme: light)").matches) {
-        scheme.value = localStorage.theme || schemes.light;
-        return;
+        mediaColorScheme = schemes.light;
     }
-    scheme.value = localStorage.theme || schemes.dark;
+
+    scheme.value = localStorage.theme || mediaColorScheme;
 });
 
 watch(scheme, () => {
@@ -28,12 +30,7 @@ const changeTheme = () => {
     localStorage.theme = scheme.value;
 };
 
-const checkTheme = computed(() => {
-    if (scheme.value === schemes.light) {
-        return true;
-    }
-    return false;
-});
+const isLightTheme = computed(() => scheme.value === schemes.light);
 </script>
 <!-- eslint-disable max-len -->
 <template>
@@ -48,7 +45,7 @@ const checkTheme = computed(() => {
     >
         <path
             d="M5.125 20.5H6.83333M20.5 5.125V6.83333M34.1667 20.5H35.875M9.56667 9.56667L10.7625 10.7625M31.4333 9.56667L30.2375 10.7625"
-            :stroke="checkTheme ? 'currentColor' : 'none'"
+            :stroke="isLightTheme ? 'currentColor' : 'none'"
             stroke-width="2"
             stroke-linecap="round"
             stroke-linejoin="round"
