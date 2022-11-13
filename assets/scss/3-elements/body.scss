@@ -1,5 +1,6 @@
 @import "~/assets/fonts/RobotoMono/RobotoMono.css";
 
 body {
-    font-family: RobotoMono, monospace;
+    font-family: var(--font-default);
+    color: var(--text-color);
 }
