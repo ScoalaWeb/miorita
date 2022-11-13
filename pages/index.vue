@@ -23,12 +23,13 @@ import { onMounted } from "vue";
 import HomeFooter from "~/components/Home/Footer.vue";
 import HomeHeadBar from "~/components/Home/HeadBar.vue";
 import About from "~/components/Home/Screen/AboutScreen.vue";
+import Lessons from "~/components/Home/Screen/LessonsScreen.vue";
 import Playground from "~/components/Home/Screen/PlaygroundScreen.vue";
 import useMenuStore from "~/stores/menu";
 
 const store = useMenuStore();
 
-const screenArr = [About, About, Playground];
+const screenArr = [About, Lessons, Playground];
 
 onMounted(() => {
     store.init();

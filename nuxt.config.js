@@ -39,6 +39,8 @@ export default {
         "@nuxtjs/stylelint-module",
         // https://composition-api.nuxtjs.org/
         "@nuxtjs/composition-api/module",
+        // https://github.com/nuxt-community/svg-module
+        "@nuxtjs/svg",
         // https://pinia.vuejs.org/ssr/nuxt.html#nuxt-2-without-bridge
         ["@pinia/nuxt", { disableVuex: false }],
     ],
@@ -49,8 +51,6 @@ export default {
         "@nuxtjs/pwa",
         // https://go.nuxtjs.dev/content
         "@nuxt/content",
-        // https://github.com/nuxt-community/svg-module
-        "@nuxtjs/svg",
     ],
 
     // PWA module configuration: https://go.nuxtjs.dev/pwa
