@@ -74,6 +74,7 @@ onMounted(() => {
     bottom: 0;
     left: calc((var(--background-position) + var(--page-index)) * 100%);
     width: 100%;
+    min-height: 100%;
     opacity: 0;
     transition: opacity .4s, left .5s;
     overflow: auto;

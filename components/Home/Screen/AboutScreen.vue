@@ -1,5 +1,5 @@
 <template>
-    <div id="About" :class="$style.about">
+    <header id="About" :class="$style.about">
         <h1>Miorița is here to help you in your programming journey</h1>
         <a href="#lessons" :class="$style.button">
             play now
@@ -20,16 +20,15 @@
             </svg>
         </a>
         <TheSheep :class="$style.miorita" />
-    </div>
+    </header>
 </template>
+
 <script setup>
 import TheSheep from "../GhostSheep.vue";
 </script>
 
 <style module>
 .about {
-    width: 100%;
-    height: 100%;
     position: relative;
     display: flex;
     flex-direction: column;
