@@ -9,6 +9,7 @@
         "no-duplicate-selectors": null,
         "rule-empty-line-before": null,
         "color-hex-length": null,
+        "value-keyword-case": null,
         "no-descending-specificity": [true, {
             "severity": "warning"
         }]
