@@ -1,3 +1,37 @@
+<script setup>
+import { ref, onMounted, watch, computed } from "vue";
+
+const scheme = ref(null);
+const schemes = {
+    light: "light-mode",
+    dark: "dark-mode",
+};
+
+onMounted(() => {
+    let mediaColorScheme = schemes.dark;
+
+    if (window.matchMedia && window.matchMedia("(prefers-color-scheme: light)").matches) {
+        mediaColorScheme = schemes.light;
+    }
+
+    scheme.value = localStorage.theme || mediaColorScheme;
+});
+
+watch(scheme, () => {
+    const htmlClass = document.documentElement.classList;
+    htmlClass.remove(schemes.light, schemes.dark);
+    htmlClass.add(scheme.value);
+});
+
+const changeTheme = () => {
+    scheme.value = scheme.value === schemes.light
+        ? schemes.dark
+        : schemes.light;
+    localStorage.theme = scheme.value;
+};
+
+const isLightTheme = computed(() => scheme.value === schemes.light);
+</script>
 <!-- eslint-disable max-len -->
 <template>
     <svg
@@ -7,10 +41,11 @@
         fill="none"
         :class="$style.colorScheme"
         xmlns="http://www.w3.org/2000/svg"
+        @click="changeTheme"
     >
         <path
             d="M5.125 20.5H6.83333M20.5 5.125V6.83333M34.1667 20.5H35.875M9.56667 9.56667L10.7625 10.7625M31.4333 9.56667L30.2375 10.7625"
-            stroke="currentColor"
+            :stroke="isLightTheme ? 'currentColor' : 'none'"
             stroke-width="2"
             stroke-linecap="round"
             stroke-linejoin="round"
@@ -35,6 +70,11 @@
 <style module>
 .colorScheme {
     cursor: pointer;
-    color: var(--link-color);
+    color: var(--color-mode);
+    transition: color .5s;
+}
+
+.colorScheme:hover {
+    color: var(--color-mode-hover);
 }
 </style>

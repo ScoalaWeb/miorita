@@ -29,6 +29,8 @@
     --secondary-button: var(--color-green-lighter);
     --secondary-button-color: var(--color-white);
     --secondary-button-hover: var(--color-green);
+    --color-mode: var(--color-gray-500);
+    --color-mode-hover: var(--color-green);
     --element-accent-color: var(--color-gray-500);
 }
 
@@ -45,6 +47,8 @@
     --secondary-button: var(--color-green);
     --secondary-button-color: var(--color-white);
     --secondary-button-hover: var(--color-green-lighter);
+    --color-mode: var(--color-gray-300);
+    --color-mode-hover: var(--color-white);
     --element-accent-color: var(--color-gray-300);
 }
 
