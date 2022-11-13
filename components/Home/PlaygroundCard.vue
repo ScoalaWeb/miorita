@@ -42,7 +42,7 @@ defineProps<{
 }
 
 .title {
-    font-family: CabinSketch, monospace;
+    font-family: var(--font-highlight);
     font-size: 2.5rem;
 }
 
