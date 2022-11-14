@@ -52,7 +52,7 @@
         "eslint-plugin-editorconfig": "^4.0.2",
         "eslint-plugin-nuxt": "^4.0.0",
         "eslint-plugin-vue": "^9.6.0",
-        "husky": "^8.0.1",
+        "husky": "^8.0.2",
         "lint-staged": "^13.0.3",
         "patch-package": "^6.4.7",
         "postcss-html": "^1.5.0",
