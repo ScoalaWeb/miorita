@@ -1,0 +1,26 @@
+[
+    {
+        "title": "Meet Miorița",
+        "description": "take a look at what Miorița can do",
+        "link": "lessons/1-intro",
+        "background": "1-bg"
+    },
+    {
+        "title": "Conditional statements",
+        "description": "learn to run different sets of instructions depending on a condition.",
+        "link": "lessons/2-if",
+        "background": "2-bg"
+    },
+    {
+        "title": "Loops & variables",
+        "description": "find ways to run the same commands multiple times in succesion",
+        "link": "lessons/3-while",
+        "background": "3-bg"
+    },
+    {
+        "title": "Functions",
+        "description": "create your own insructions that you can reuse whenever you want.",
+        "link": "lessons/4-function",
+        "background": "4-bg"
+    }
+]

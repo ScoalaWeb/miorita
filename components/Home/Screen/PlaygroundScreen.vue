@@ -1,6 +1,6 @@
 <template>
-    <div>
-        <div
+    <nav>
+        <article
             :class="$style.cards"
             :style="{'--grid-cards-count': playground.length}"
         >
@@ -13,8 +13,8 @@
                 :title="scenario.title"
                 color="green"
             />
-        </div>
-    </div>
+        </article>
+    </nav>
 </template>
 
 <script setup>
@@ -27,8 +27,6 @@ import playground from "~/content/playground.json";
     --grid-columns: 2;
     --grid-rows: calc(var(--grid-cards-count) / var(--grid-columns));
 
-    width: 100%;
-    min-height: 100%;
     display: grid;
     grid-template-rows: repeat(var(--grid-rows), 1fr);
     grid-template-columns: repeat(var(--grid-columns), 1fr);

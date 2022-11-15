@@ -32,6 +32,7 @@
     --color-mode: var(--color-gray-500);
     --color-mode-hover: var(--color-green);
     --element-accent-color: var(--color-gray-500);
+    --border-color: var(--color-gray-500);
 }
 
 @mixin dark-mode-colors {
@@ -50,6 +51,7 @@
     --color-mode: var(--color-gray-300);
     --color-mode-hover: var(--color-white);
     --element-accent-color: var(--color-gray-300);
+    --border-color: var(--color-gray-300);
 }
 
 :root {

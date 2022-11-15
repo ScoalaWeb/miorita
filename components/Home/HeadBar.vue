@@ -12,7 +12,6 @@
 </template>
 
 <script setup>
-import "~/assets/fonts/CabinSketch/RoCabinSketch.css";
 import ColorModeSwitcher from "../ColorModeSwitcher.vue";
 import LanguageSelector from "../LanguageSelector.vue";
 import MainMenu from "./MainMenu.vue";
@@ -42,7 +41,7 @@ import MainMenu from "./MainMenu.vue";
 }
 
 .main {
-    font-family: CabinSketch, sans-serif;
+    font-family: var(--font-highlight);
     font-weight: 700;
     font-size: clamp(3rem, 6vh, 5rem);
     text-decoration: none;
