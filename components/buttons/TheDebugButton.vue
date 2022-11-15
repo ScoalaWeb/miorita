@@ -1,5 +1,8 @@
 <template>
-    <button class="debug">
+    <button
+        :class="$style.debug"
+        @click="$emit('debug')"
+    >
         <!-- eslint-disable-next-line vue/html-self-closing -->
         <hr />
         <svg
@@ -18,17 +21,15 @@
     </button>
 </template>
 
-<style lang="scss" scoped>
+<style module lang="scss">
     .debug {
         display: inline-flex;
         align-items: center;
         justify-content: center;
-        height: 2.18rem;
-        width: 3rem;
     }
 
     hr {
-        height: 100%;
+        height: 1.37rem;
         width: 1px;
         border: none;
         background-color: white;
