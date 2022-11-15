@@ -1,105 +1,52 @@
+<script setup>
+import ColorModeSwitcher from "./ColorModeSwitcher.vue";
+import LanguageSelector from "./LanguageSelector.vue";
+</script>
+
 <template>
     <div :class="$style.bar">
         <h1 :class="$style.brand">
             <nuxt-link to="/" :class="$style.main">Miorița</nuxt-link>
-            <span :class="$style.secondary">
-                <a href="https://scoalaweb.ro" target="_blank">by Școala Web</a>
-            </span>
+            <a :class="$style.secondary" href="https://scoalaweb.ro" target="_blank">by Școala Web</a>
         </h1>
+        <span :class="$style.options">
+            <LanguageSelector />
+            <ColorModeSwitcher />
+        </span>
     </div>
 </template>
 
 <style module>
 .bar {
     height: 5rem;
-    background: var(--background-color);
-    color: var(--text-color);
     display: flex;
     justify-content: space-between;
     align-items: center;
+    border-bottom: var(--editor-border);
+    background: var(--background-color);
+    color: var(--text-color);
 }
 
 .brand {
-    padding: 0 0.5rem;
+    padding: 0 1rem;
+}
+
+.options {
+    padding: 0 1rem;
+    display: flex;
+    gap:  2.56rem;
 }
 
 .main {
-    font-family: CabinSketch, sans-serif;
-    font-weight: 700;
+    font-family: var(--font-highlight);
     font-size: 3rem;
     padding: 0.5rem;
     text-decoration: none;
 }
 
 .secondary {
-    font-family: CabinSketch, sans-serif;
-    font-weight: 700;
+    font-family: var(--font-highlight);
     font-size: 1.5rem;
     white-space: nowrap;
-}
-
-.bar a {
-    color: inherit;
-    text-decoration: none;
-}
-
-.bar a:hover,
-.bar a:focus{
-    color: var(--link-color-hover);
-}
-
-.about::before {
-    display: inline-grid;
-    content: "?";
-    border: 1px solid currentcolor;
-    border-radius: 50%;
-    justify-content: center;
-    align-items: center;
-    font-family: CabinSketch, sans-serif;
-    font-weight: 700;
-    width: 1.5em;
-    height: 1.5em;
-    cursor: pointer;
-    margin-right: 0.5rem;
-}
-
-.about:hover::before {
-    background-color: #dcdcdc;
-    color: #333;
-}
-
-.about_opener {
-    display: none;
-}
-
-.about_content {
-    display: none;
-}
-
-.about_opener:checked + .about_content {
-    position: fixed;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    background: rgba(255 255 255 / 78%);
-    color: #000;
-    border: 1px solid #dcdcdc;
-    z-index: 3;
-    display: grid;
-    justify-content: center;
-    align-items: center;
-    padding: 2em;
-}
-
-.nuxt_content {
-    max-width: 60ch;
-    background: #fff;
-    padding: 2em;
-    box-shadow: 0.4rem 0.2rem 1rem rgba(224 219 219 / 69%);
-}
-
-.nuxt_content * + * {
-    margin-top: 1em;
 }
 </style>
