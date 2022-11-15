@@ -66,11 +66,13 @@ onMounted(() => {
     margin-left: 1rem;
     align-items: center;
     color: var(--text-color);
+    pointer-events: none;
 }
 
 .slides {
     margin-right: 0.5rem;
     font-size: 1.5rem;
+    color: var(--color-gray-300);
 }
 
 .lesson {
@@ -83,6 +85,7 @@ onMounted(() => {
 }
 
 .button {
+    cursor: pointer;
     width: 6.18rem;
     height: 2rem;
     background-color: var(--background-color);
@@ -93,6 +96,8 @@ onMounted(() => {
 }
 
 .button:hover {
-    background-color: var(--secondary-button-hover);
+    background-color: var(--color-gray-500);
+    color: var(--color-white);
+    border: none;
 }
 </style>

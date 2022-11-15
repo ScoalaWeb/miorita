@@ -63,32 +63,22 @@
             <TheRunButton
                 v-if="!isRunning"
                 :class="[$style.button, $style.run]"
-                @click="run()"
+                @run="run"
             />
             <TheDebugButton
                 v-if="!isRunning"
                 :class="[$style.button, $style.debug]"
-                @click="debug"
+                @debug="debug"
             />
             <TheResetButton
-                type="button"
-                @click="reset"
-            />
-            <!--
-            <button
-                v-if="isRunning && actions.debug"
-                type="button"
-                :class="$style.button"
-                @click="stepOver"
-            >
-                <i class="micon mi-step-over" />
-                Step over
-            </button>
-            -->
-            <ThePauseButton
                 v-if="!isRunning"
                 type="button"
-                @click="stop"
+                @reset="reset"
+            />
+            <ThePauseButton
+                v-if="isRunning"
+                type="button"
+                @stop="stop"
             />
             <slot name="options" />
         </div>
@@ -433,19 +423,17 @@ export default class TheWorld extends Vue {
 
 .button {
     margin: 1rem;
-    padding: 0.33rem 1rem;
     background-color: var(--secondary-button);
     font-size: 1.25rem;
     border: 0;
-    border-radius: 0.3em;
-    color: var(--text-color);
+    border-radius: 0.3rem;
+    color: var(--color-white);
     cursor: pointer;
 }
 
 .button:hover,
 .button:focus {
     background: var(--secondary-button-hover);
-    color: var(--text-color);
 }
 
 .run {
@@ -455,7 +443,8 @@ export default class TheWorld extends Vue {
 
 .debug {
     border-radius: 0 1.25rem 1.25rem 0;
-    margin-left: -0.7rem;
+    padding: 0.25rem 1.43rem 0.31rem 1rem;
+    margin-left: 0;
 }
 
 .table_wrapper {

@@ -6,6 +6,7 @@
         viewBox="0 0 24 24"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
+        @click="$emit('stop')"
     >
         <path
             d="M14.125 19V5H18V19H14.125ZM6 19V5H9.875V19H6Z"

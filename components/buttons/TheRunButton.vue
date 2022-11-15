@@ -1,5 +1,8 @@
 <template>
-    <button class="run" @click="$emit('click', $event)">
+    <button
+        :class="$style.runButton"
+        @click="$emit('run')"
+    >
         <svg
             width="14"
             height="17"
@@ -17,24 +20,13 @@
     </button>
 </template>
 
-<style lang="scss" scoped>
-    .run {
-        display: inline-flex;
-        flex-direction: row;
-        align-items: center;
-        justify-content: center;
-        height: 2.18rem;
-        width: 6.13rem;
-    }
-
-    svg {
-        height: 1.2rem;
-        width: 0.8rem;
-        margin-right: 0.5rem;
-    }
-
-    p {
-        font-family: RobotoMono, sans-serif;
-        font-size: 1.24rem;
-    }
+<style module lang="scss">
+.runButton {
+    display: flex;
+    align-items: center;
+    gap: 0.41rem;
+    padding: 0.25rem 0.81rem 0.31rem 1.68rem;
+    font-family: RobotoMono, sans-serif;
+    font-size: 1.24rem;
+}
 </style>
