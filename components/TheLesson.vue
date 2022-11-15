@@ -14,8 +14,7 @@
     </div>
 </template>
 
-<script lang="ts">
-import { Vue, Component, Prop } from "vue-property-decorator";
+<script setup lang="ts">
 import TheBottombar from "~/components/TheBottombar.vue";
 import TheDescription from "~/components/TheDescription.vue";
 import TheEditor from "~/components/TheEditor.vue";
@@ -23,26 +22,16 @@ import TheHeadbar from "~/components/TheHeadbar.vue";
 import TheWorld from "~/components/TheWorld.vue";
 import WorldOptions from "~/interfaces/WorldOptions";
 
-@Component({
-    components: {
-        TheWorld,
-        TheEditor,
-        TheDescription,
-        TheHeadbar,
-        TheBottombar,
-    },
-})
+defineProps<{
+    code: string
+    options: WorldOptions
+}>();
 
-export default class TheLesson extends Vue {
-    @Prop(String) code!:string;
-    @Prop(Object) options!:WorldOptions;
-}
 </script>
 
 <style module>
 .mainContainer {
     height: 100vh;
-    width: 100vw;
     display: grid;
     grid: 5rem auto 3rem/ auto;
 }
@@ -52,16 +41,12 @@ export default class TheLesson extends Vue {
 }
 
 .container {
-    display: flex;
-    inset: 0;
+    position: relative;
+    display: grid;
+    grid-template-columns: min-content 5fr 3fr;
 }
-
-.editor {
-    flex-basis: 65%;
-}
-
 .world {
-    flex-basis: 35%;
+    grid-column: 3/4;
     border: 1px solid var(--color-gray-500);
 }
 
