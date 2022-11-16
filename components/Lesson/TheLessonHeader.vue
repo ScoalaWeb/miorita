@@ -1,6 +1,5 @@
 <script setup>
-import ColorModeSwitcher from "./ColorModeSwitcher.vue";
-import LanguageSelector from "./LanguageSelector.vue";
+import ColorModeSwitcher from "../ColorModeSwitcher.vue";
 </script>
 
 <template>
@@ -10,7 +9,6 @@ import LanguageSelector from "./LanguageSelector.vue";
             <a :class="$style.secondary" href="https://scoalaweb.ro" target="_blank">by Școala Web</a>
         </h1>
         <span :class="$style.options">
-            <LanguageSelector />
             <ColorModeSwitcher />
         </span>
     </div>
@@ -18,21 +16,22 @@ import LanguageSelector from "./LanguageSelector.vue";
 
 <style module>
 .bar {
-    height: 5rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    padding: 0.62rem 1rem 0.81rem;
     border-bottom: var(--editor-border);
     background: var(--background-color);
     color: var(--text-color);
 }
 
 .brand {
-    padding: 0 1rem;
+    display: flex;
+    gap: 0.5rem;
+    align-items: baseline;
 }
 
 .options {
-    padding: 0 1rem;
     display: flex;
     gap:  2.56rem;
 }

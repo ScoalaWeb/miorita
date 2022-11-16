@@ -1,5 +1,5 @@
-title: Loops
 description: 'Learn how to'
+
 
 worldOptions:
     size:
@@ -52,6 +52,10 @@ worldOptions:
             position: { x: 3, y: 3 }
             fixed: false
     timeout: 1000
+    lesson: 3
+    nextLesson: '4-function'
+    previousLesson: '2-if'
+    title: Loops
 
 workCode: |-
     /*

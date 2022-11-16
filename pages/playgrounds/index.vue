@@ -9,14 +9,15 @@
             },
             walls: {},
             objects: [],
-            timeout: 1000
+            timeout: 1000,
+            title: 'Empty playground',
         }"
     />
 </template>
 
 <script lang="ts">
 import { Vue, Component } from "vue-property-decorator";
-import TheLesson from "~/components/TheLesson.vue";
+import TheLesson from "~/components/Lesson/TheLesson.vue";
 
 @Component({
     components: { TheLesson },

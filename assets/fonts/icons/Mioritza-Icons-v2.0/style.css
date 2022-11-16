@@ -1,12 +1,10 @@
-/* stylelint-disable */
-
 @font-face {
   font-family: 'Mioritza-Icons';
   src:
-    url('fonts/Mioritza-Icons.ttf?eipav0') format('truetype'),
-    url('fonts/Mioritza-Icons.woff?eipav0') format('woff'),
-    url('fonts/Mioritza-Icons.woff2?eipav0') format('woff2'),
-    url('fonts/Mioritza-Icons.svg?eipav0#Mioritza-Icons') format('svg');
+    url('fonts/Mioritza-Icons.woff2?1hogoh') format('woff2'),
+    url('fonts/Mioritza-Icons.ttf?1hogoh') format('truetype'),
+    url('fonts/Mioritza-Icons.woff?1hogoh') format('woff'),
+    url('fonts/Mioritza-Icons.svg?1hogoh#Mioritza-Icons') format('svg');
   font-weight: normal;
   font-style: normal;
   font-display: block;
@@ -27,6 +25,9 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+.mi-check:before {
+  content: "\e907";
+}
 .mi-offlight:before {
   content: "\e905";
 }
