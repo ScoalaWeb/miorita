@@ -60,26 +60,42 @@
             </table>
         </div>
         <div :class="$style.menu">
-            <TheRunButton
-                v-if="!isRunning"
-                :class="[$style.button, $style.run]"
-                @run="run"
-            />
-            <TheDebugButton
-                v-if="!isRunning"
-                :class="[$style.button, $style.debug]"
-                @debug="debug"
-            />
-            <TheResetButton
-                v-if="!isRunning"
-                type="button"
-                @reset="reset"
-            />
-            <ThePauseButton
-                v-if="isRunning"
-                type="button"
-                @stop="stop"
-            />
+            <span :class="$style.buttons">
+                <TheRunButton
+                    v-if="!isRunning"
+                    :class="[$style.button, $style.run]"
+                    @click="run"
+                />
+                <TheDebugButton
+                    v-if="!isRunning"
+                    :class="[$style.button, $style.debug]"
+                    @click="debug"
+                />
+                <BaseActionButton
+                    v-if="isRunning && actions.debug"
+                    icon="mi-step-over"
+                    :class="$style.button"
+                    @click="stepOver"
+                >
+                    Step over
+                </BaseActionButton>
+                <BaseActionButton
+                    v-if="!isRunning && canReset"
+                    icon="mi-undo"
+                    :class="$style.button"
+                    @click="reset"
+                >
+                    Reset
+                </BaseActionButton>
+                <BaseActionButton
+                    v-if="isRunning"
+                    icon="mi-stop"
+                    :class="$style.button"
+                    @click="stop"
+                >
+                    Stop
+                </BaseActionButton>
+            </span>
             <slot name="options" />
         </div>
         <div ref="console" :class="$style.console">
@@ -168,10 +184,9 @@
 <script lang="ts">
 import { Howl } from "howler";
 import { Vue, Component, Prop, Watch } from "vue-property-decorator";
-import TheDebugButton from "./buttons/TheDebugButton.vue";
-import ThePauseButton from "./buttons/ThePauseButton.vue";
-import TheResetButton from "./buttons/TheResetButton.vue";
-import TheRunButton from "./buttons/TheRunButton.vue";
+import BaseActionButton from "./BaseActionButton.vue";
+import TheDebugButton from "./TheDebugButton.vue";
+import TheRunButton from "./TheRunButton.vue";
 import GrassObject from "~/assets/img/grass.svg?inline";
 import HatchetObject from "~/assets/img/hatchet.svg?inline";
 import VitoriaObject from "~/assets/img/vitoria.svg?inline";
@@ -189,8 +204,7 @@ import "~/assets/css/icons.css";
         VitoriaObject,
         TheRunButton,
         TheDebugButton,
-        TheResetButton,
-        ThePauseButton,
+        BaseActionButton,
     },
 })
 export default class TheWorld extends Vue {
@@ -418,37 +432,40 @@ export default class TheWorld extends Vue {
 
 .menu {
     display: flex;
+    justify-content: space-between;
     border-bottom: 1px solid var(--color-gray-500);
 }
 
+.buttons {
+    display: flex;
+}
+
 .button {
-    margin: 1rem;
+    padding: 0.38rem 1.68rem;
     background-color: var(--secondary-button);
+    margin: 0.68rem 0.81rem;
     font-size: 1.25rem;
     border: 0;
-    border-radius: 0.3rem;
     color: var(--color-white);
     cursor: pointer;
 }
 
-.button:hover,
-.button:focus {
+.button:hover {
     background: var(--secondary-button-hover);
+}
+.table_wrapper {
+    flex-grow: 1;
 }
 
 .run {
-    border-radius: 1.25rem 0 0 1.25rem;
+    padding-right: 0.81rem;
     margin-right: 0;
 }
 
 .debug {
-    border-radius: 0 1.25rem 1.25rem 0;
-    padding: 0.25rem 1.43rem 0.31rem 1rem;
+    padding-left: 1rem;
+    padding-right: 1.43rem;
     margin-left: 0;
-}
-
-.table_wrapper {
-    flex-grow: 1;
 }
 
 .table {

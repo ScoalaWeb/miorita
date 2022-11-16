@@ -14,6 +14,7 @@
     --color-red-lighter: #{$color-red-lighter};
     --color-green: #{$color-green};
     --color-green-lighter: #{$color-green-lighter};
+    --color-green-checkmark: #{$color-green-checkmark};
 }
 
 @mixin light-mode-colors {
@@ -33,6 +34,7 @@
     --color-mode-hover: var(--color-green);
     --element-accent-color: var(--color-gray-500);
     --border-color: var(--color-gray-500);
+    --checkmark-color: var(--color-green);
 }
 
 @mixin dark-mode-colors {
@@ -41,7 +43,7 @@
     --text-color: var(--color-white);
     --menu-color: var(--color-gray-300);
     --menu-color-hover: var(--color-white);
-    --link-color: var(--color-gray-300);
+    --link-color: var(--color-gray-100);
     --link-color-hover: var(--color-green-lighter);
     --primary-button: var(--color-red);
     --primary-button-hover: var(--color-red-lighter);
@@ -52,6 +54,7 @@
     --color-mode-hover: var(--color-white);
     --element-accent-color: var(--color-gray-300);
     --border-color: var(--color-gray-300);
+    --checkmark-color: var(--color-green-checkmark);
 }
 
 :root {

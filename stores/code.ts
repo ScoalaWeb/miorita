@@ -1,8 +1,9 @@
 import { defineStore } from "pinia";
-import { ref, onMounted } from "vue";
+import { ref } from "vue";
 
 const useCodeStore = defineStore("code", () => {
     const code = ref("");
+    const editor = ref(null);
 
     const setCode = (value: string) => {
         code.value = value;
@@ -13,15 +14,11 @@ const useCodeStore = defineStore("code", () => {
         code.value = value || localStorage.workCode || "";
     };
 
-    onMounted(() => {
-        if (localStorage.workCodeUrl === window.location.href) {
-            code.value = localStorage.workCode;
-        } else {
-            localStorage.workCodeUrl = window.location.href;
-        }
-    });
+    const setEditor = (monaco: any) => {
+        editor.value = monaco;
+    };
 
-    return { code, setCode, init };
+    return { code, setCode, init, editor, setEditor };
 });
 
 export default useCodeStore;

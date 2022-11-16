@@ -13,11 +13,12 @@
         :theme="schemeStore.isLightScheme ? 'miorita-light' : 'miorita-dark'"
         language="javascript"
         @editorWillMount="editorWillMount"
+        @editorDidMount="editorDidMount"
     />
 </template>
 
 <script setup>
-import { computed, defineProps } from "vue";
+import { computed, defineProps, onMounted } from "vue";
 import MonacoEditor from "vue-monaco";
 import useCodeStore from "~/stores/code";
 import useSchemeStore from "~/stores/scheme";
@@ -25,7 +26,7 @@ import useSchemeStore from "~/stores/scheme";
 const codeStore = useCodeStore();
 const schemeStore = useSchemeStore();
 
-defineProps({
+const props = defineProps({
     code: {
         type: String,
         default: "",
@@ -59,6 +60,20 @@ const editorWillMount = (monaco) => {
         },
     });
 };
+
+const editorDidMount = (monaco) => {
+    codeStore.setEditor(monaco);
+};
+
+onMounted(() => {
+    if (localStorage.workCodeUrl === window.location.href) {
+        codeStore.code = localStorage.workCode;
+    } else {
+        localStorage.workCodeUrl = window.location.href;
+    }
+    codeStore.init(props.code);
+});
+
 </script>
 
 <style module>
@@ -67,7 +82,5 @@ const editorWillMount = (monaco) => {
     height: 100%;
     grid-column: 2/3;
     position: absolute !important;
-    border-top: var(--editor-border);
-    border-bottom: var(--editor-border);
 }
 </style>

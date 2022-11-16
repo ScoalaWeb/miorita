@@ -1,6 +1,6 @@
 <template>
     <div :class="$style.mainContainer">
-        <TheHeadbar :class="$style.headbar" />
+        <TheLessonHeader :class="$style.header" />
         <div :class="$style.container">
             <TheDescription />
             <TheEditor :code="code" :class="$style.editor" />
@@ -10,22 +10,30 @@
                 </template>
             </TheWorld>
         </div>
-        <TheBottombar />
+        <TheLessonFooter />
     </div>
 </template>
 
 <script setup lang="ts">
-import TheBottombar from "~/components/TheBottombar.vue";
-import TheDescription from "~/components/TheDescription.vue";
-import TheEditor from "~/components/TheEditor.vue";
-import TheHeadbar from "~/components/TheHeadbar.vue";
-import TheWorld from "~/components/TheWorld.vue";
+import TheDescription from "~/components/Lesson/TheDescription.vue";
+import TheEditor from "~/components/Lesson/TheEditor.vue";
+import TheLessonFooter from "~/components/Lesson/TheLessonFooter.vue";
+import TheLessonHeader from "~/components/Lesson/TheLessonHeader.vue";
+import TheWorld from "~/components/Lesson/TheWorld.vue";
 import WorldOptions from "~/interfaces/WorldOptions";
+import useLessonStore from "~/stores/lesson";
 
-defineProps<{
+const props = defineProps<{
     code: string
     options: WorldOptions
 }>();
+
+const store = useLessonStore();
+
+store.setLessonNumber(props.options.lesson || undefined);
+store.setLessonTitle(props.options.title);
+store.setNextLesson(props.options.nextLesson || undefined);
+store.setPreviousLesson(props.options.previousLesson || undefined);
 
 </script>
 
@@ -36,7 +44,7 @@ defineProps<{
     grid: 5rem auto 3rem/ auto;
 }
 
-.headbar {
+.header {
     width: 100%;
 }
 
@@ -47,7 +55,7 @@ defineProps<{
 }
 .world {
     grid-column: 3/4;
-    border: 1px solid var(--color-gray-500);
+    border-left: 1px solid var(--color-gray-500);
 }
 
 @media (orientation: portrait) {

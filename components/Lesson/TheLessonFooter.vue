@@ -1,48 +1,50 @@
 <script setup>
-import { ref, onMounted } from "vue";
+import { useRouter } from "@nuxtjs/composition-api";
+import useLessonStore from "~/stores/lesson";
 
-const isLesson = ref(false);
-const lessonName = ref(null);
-const lessonNumber = ref(null);
+const store = useLessonStore();
+const router = useRouter();
 
-const lessons = {
-    intro: "Meet Miorița",
-    if: "Conditional statement",
-    while: "Loops & variables",
-    function: "Functions",
+const nextLesson = () => {
+    router.push(store.nextLesson);
 };
 
-onMounted(() => {
-    if (!window.location.href.includes("playground")) {
-        isLesson.value = true;
-        const lessonHref = window.location.href.split("/").splice(-1);
-        const [number, lesson] = lessonHref.toString().split("-");
-        lessonNumber.value = number;
-        lessonName.value = lessons[lesson];
-    }
-});
+const previousLesson = () => {
+    router.push(store.previousLesson);
+};
 
 </script>
 
 <template>
     <div :class="$style.bottom">
         <div :class="$style.leftSide">
-            <p :class="$style.slides">{{ lessonNumber }}/{{ Object.keys(lessons).length }}</p>
+            <p
+                v-if="store.lessonNumber"
+                :class="$style.slides"
+            >
+                {{ store.lessonNumber }}/{{ "4" }}
+            </p>
             <h3
-                v-if="isLesson"
+                v-if="store.lessonTitle"
                 :class="$style.lesson"
             >
-                {{ lessonName }}
+                {{ store.lessonTitle }}
             </h3>
         </div>
-        <div :class="$style.rightSide">
+        <div
+            v-if="store.nextLesson"
+            :class="$style.rightSide"
+        >
             <button
+                v-if="store.lessonNumber !== 1"
                 :class="$style.button"
+                @click="previousLesson"
             >
                 Back
             </button>
             <button
                 :class="$style.button"
+                @click="nextLesson"
             >
                 Next
             </button>
@@ -52,8 +54,8 @@ onMounted(() => {
 
 <style lang="scss" module>
 .bottom {
-    height: 3rem;
     width: 100%;
+    padding: 0.5rem 1rem;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -63,14 +65,13 @@ onMounted(() => {
 
 .leftSide {
     display: flex;
-    margin-left: 1rem;
     align-items: center;
+    gap: 0.5rem;
     color: var(--text-color);
     pointer-events: none;
 }
 
 .slides {
-    margin-right: 0.5rem;
     font-size: 1.5rem;
     color: var(--color-gray-300);
 }
@@ -80,24 +81,19 @@ onMounted(() => {
     font-size: 1.25rem;
 }
 
-.rightSide {
-    margin-right: 1rem;
-}
-
 .button {
-    cursor: pointer;
-    width: 6.18rem;
-    height: 2rem;
+    padding: 0.25rem 1.56rem;
     background-color: var(--background-color);
-    border: 2px solid var(--color-gray-300);;
+    border: 2px solid var(--color-gray-300);
     border-radius: 1.25rem;
     font-size: 1.25rem;
     color: var(--text-color);
+    cursor: pointer;
 }
 
 .button:hover {
     background-color: var(--color-gray-500);
     color: var(--color-white);
-    border: none;
+    border: 2px solid var(--color-gray-500);
 }
 </style>

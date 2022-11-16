@@ -5,7 +5,7 @@
 <style module>
     .closed {
         background-color: var(--background-color);
-        border: 1px solid var(--color-gray-500);
+        border-right: 1px solid var(--color-gray-500);
         width: 3rem;
         height: 100%;
     }

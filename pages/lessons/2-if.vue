@@ -1,3 +1,4 @@
+<!-- eslint-disable max-len -->
 <template>
     <TheLesson
         :code="code"
@@ -25,13 +26,26 @@
                     fixed: true
                 },
             ],
-            timeout: 1000
+            timeout: 1000,
+            title: 'Conditional statements',
+            lesson: 2,
+            nextLesson: '3-while',
+            previousLesson: '1-intro',
         }"
     >
         <template #options>
-            <label>
-                <input v-model="wall" type="checkbox">
-                Fence
+            <label :class="$style.fence">
+                <input
+                    v-model="wall"
+                    type="checkbox"
+                    :class="$style.checkbox"
+                >
+                fence
+                <i
+                    v-if="wall"
+                    class="micon mi-check"
+                    :class="$style.checked"
+                />
             </label>
         </template>
     </TheLesson>
@@ -39,7 +53,7 @@
 
 <script lang="ts">
 import { Vue, Component } from "vue-property-decorator";
-import TheLesson from "~/components/TheLesson.vue";
+import TheLesson from "~/components/Lesson/TheLesson.vue";
 
 @Component({
     components: { TheLesson },
@@ -144,3 +158,28 @@ move()
 `;
 }
 </script>
+
+<style module lang="scss">
+.fence {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 0.42rem;
+    margin-right: 0.81rem;
+}
+
+.checkbox {
+    appearance: none;
+    margin-top: 0.2rem;
+    width: 0.59rem;
+    height: 0.59rem;
+    border: 1px solid var(--element-accent-color);
+}
+
+.checked {
+    position: absolute;
+    left: -0.15rem;
+    top: 1.25rem;
+    color: var(--checkmark-color);
+}
+</style>

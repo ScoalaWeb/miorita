@@ -1,5 +1,5 @@
-title: Meet Miorița
 description: 'Let me introduce you to Miorița, the programmable sheep'
+
 
 worldOptions:
     size:
@@ -18,6 +18,9 @@ worldOptions:
             position: { x: 1, y: 0 }
             fixed: false
     timeout: 1000
+    lesson: 1
+    nextLesson: '2-if'
+    title: Meet Miorița
 
 workCode: |-
     /*

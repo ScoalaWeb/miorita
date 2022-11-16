@@ -45,5 +45,6 @@ module.exports = {
         "vue/html-indent": ["error", 4],
         "vue/script-indent": ["error", 4],
         "vue/singleline-html-element-content-newline": "off",
+        "vue/html-self-closing": "off",
     },
 };
