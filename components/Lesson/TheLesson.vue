@@ -30,11 +30,7 @@ const props = defineProps<{
 
 const store = useLessonStore();
 
-store.setLessonNumber(props.options.lesson || undefined);
-store.setLessonTitle(props.options.title);
-store.setNextLesson(props.options.nextLesson || undefined);
-store.setPreviousLesson(props.options.previousLesson || undefined);
-
+store.setOptions(props.options);
 </script>
 
 <style module>

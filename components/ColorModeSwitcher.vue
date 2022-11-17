@@ -2,7 +2,6 @@
 import useSchemeStore from "~/stores/scheme.ts";
 
 const store = useSchemeStore();
-
 </script>
 <!-- eslint-disable max-len -->
 <template>

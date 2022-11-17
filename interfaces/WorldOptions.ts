@@ -9,7 +9,7 @@ export type Coordinates<T=number> = {
 export default interface WorldOptions {
     size: Coordinates
     start: WorldCurrent
-    walls: Coordinates<Coordinates[]>
+    walls?: Coordinates<Coordinates[]>
 
     objects: WorldObject[]
 
