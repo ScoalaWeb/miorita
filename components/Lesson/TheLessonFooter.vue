@@ -1,16 +1,19 @@
 <script setup>
 import { useRouter } from "@nuxtjs/composition-api";
+import { computed } from "vue";
 import useLessonStore from "~/stores/lesson";
 
 const store = useLessonStore();
 const router = useRouter();
 
+const options = computed(() => store.options);
+
 const nextLesson = () => {
-    router.push(store.nextLesson);
+    router.push(store.options.nextLesson);
 };
 
 const previousLesson = () => {
-    router.push(store.previousLesson);
+    router.push(store.options.previousLesson);
 };
 
 </script>
@@ -19,24 +22,24 @@ const previousLesson = () => {
     <div :class="$style.bottom">
         <div :class="$style.leftSide">
             <p
-                v-if="store.lessonNumber"
+                v-if="options.lesson"
                 :class="$style.slides"
             >
-                {{ store.lessonNumber }}/{{ "4" }}
+                {{ options.lesson }}/{{ store.lessons.length }}
             </p>
             <h3
-                v-if="store.lessonTitle"
+                v-if="options.title"
                 :class="$style.lesson"
             >
-                {{ store.lessonTitle }}
+                {{ options.title }}
             </h3>
         </div>
         <div
-            v-if="store.nextLesson"
+            v-if="options.nextLesson"
             :class="$style.rightSide"
         >
             <button
-                v-if="store.lessonNumber !== 1"
+                v-if="options.lessonNumber !== 1"
                 :class="$style.button"
                 @click="previousLesson"
             >

@@ -1,4 +1,3 @@
-<!-- eslint-disable max-len -->
 <template>
     <TheLesson
         :code="code"
@@ -38,14 +37,10 @@
                 <input
                     v-model="wall"
                     type="checkbox"
+                    class="micon"
                     :class="$style.checkbox"
                 >
                 fence
-                <i
-                    v-if="wall"
-                    class="micon mi-check"
-                    :class="$style.checked"
-                />
             </label>
         </template>
     </TheLesson>
@@ -160,8 +155,9 @@ move()
 </script>
 
 <style module lang="scss">
+@import "@/assets/fonts/icons/Mioritza-Icons-v2.0/variables";
+
 .fence {
-    position: relative;
     display: flex;
     align-items: center;
     gap: 0.42rem;
@@ -174,12 +170,20 @@ move()
     width: 0.59rem;
     height: 0.59rem;
     border: 1px solid var(--element-accent-color);
+    position: relative;
+
+    &::before {
+        position: absolute;
+        left: -2px;
+        top: -3px;
+        color: var(--checkmark-color);
+    }
+
+    &:checked {
+        &::before {
+            content: $mi-check;
+        }
+    }
 }
 
-.checked {
-    position: absolute;
-    left: -0.15rem;
-    top: 1.25rem;
-    color: var(--checkmark-color);
-}
 </style>

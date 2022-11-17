@@ -4,7 +4,7 @@
         :class="$style.action"
         @click="$emit('click', $event)"
     >
-        <i :class="`micon ${icon}`" />
+        <i class="micon" :class="icon" />
         <slot />
     </button>
 </template>

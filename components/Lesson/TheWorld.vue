@@ -63,13 +63,8 @@
             <span :class="$style.buttons">
                 <TheRunButton
                     v-if="!isRunning"
-                    :class="[$style.button, $style.run]"
-                    @click="run"
-                />
-                <TheDebugButton
-                    v-if="!isRunning"
-                    :class="[$style.button, $style.debug]"
-                    @click="debug"
+                    @run="run"
+                    @debug="debug"
                 />
                 <BaseActionButton
                     v-if="isRunning && actions.debug"
@@ -185,7 +180,6 @@
 import { Howl } from "howler";
 import { Vue, Component, Prop, Watch } from "vue-property-decorator";
 import BaseActionButton from "./BaseActionButton.vue";
-import TheDebugButton from "./TheDebugButton.vue";
 import TheRunButton from "./TheRunButton.vue";
 import GrassObject from "~/assets/img/grass.svg?inline";
 import HatchetObject from "~/assets/img/hatchet.svg?inline";
@@ -194,7 +188,7 @@ import WorldCurrent from "~/interfaces/WorldCurrent";
 import WorldOptions, { Coordinates } from "~/interfaces/WorldOptions";
 import Actions from "~/lib/Actions";
 import makeRunner from "~/lib/makeRunner";
-import useCodeStore from "~/stores/code";
+import useLessonStore from "~/stores/lesson";
 import "~/assets/css/icons.css";
 
 @Component({
@@ -203,7 +197,6 @@ import "~/assets/css/icons.css";
         HatchetObject,
         VitoriaObject,
         TheRunButton,
-        TheDebugButton,
         BaseActionButton,
     },
 })
@@ -404,7 +397,7 @@ export default class TheWorld extends Vue {
 
     created () {
         this.reset();
-        this.store = useCodeStore();
+        this.store = useLessonStore();
     }
 
     resizeCellListener?: ()=>void;
@@ -428,6 +421,7 @@ export default class TheWorld extends Vue {
     display: flex;
     flex-direction: column;
     background-color: var(--background-accent);
+    user-select: none;
 }
 
 .menu {
@@ -448,6 +442,7 @@ export default class TheWorld extends Vue {
     border: 0;
     color: var(--color-white);
     cursor: pointer;
+    border-radius: 1.25rem;
 }
 
 .button:hover {
@@ -455,17 +450,6 @@ export default class TheWorld extends Vue {
 }
 .table_wrapper {
     flex-grow: 1;
-}
-
-.run {
-    padding-right: 0.81rem;
-    margin-right: 0;
-}
-
-.debug {
-    padding-left: 1rem;
-    padding-right: 1.43rem;
-    margin-left: 0;
 }
 
 .table {
