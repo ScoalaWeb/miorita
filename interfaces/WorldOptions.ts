@@ -9,9 +9,13 @@ export type Coordinates<T=number> = {
 export default interface WorldOptions {
     size: Coordinates
     start: WorldCurrent
-    walls: Coordinates<Coordinates[]>
+    walls?: Coordinates<Coordinates[]>
 
     objects: WorldObject[]
 
     timeout: number
+    title: string
+    lesson?: number
+    nextLesson?: string
+    previousLesson?: string
 }

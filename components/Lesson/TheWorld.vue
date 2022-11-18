@@ -1,53 +1,5 @@
 <template>
     <div :class="$style.world">
-        <div>
-            <button
-                v-if="!isRunning"
-                type="button"
-                :class="$style.button"
-                @click="run()"
-            >
-                <i class="micon mi-run" />
-                Run
-            </button>
-            <button
-                v-if="!isRunning && canReset"
-                type="button"
-                :class="$style.button"
-                @click="reset"
-            >
-                <i class="micon mi-reset" />
-                Reset
-            </button>
-            <button
-                v-if="!isRunning"
-                type="button"
-                :class="$style.button"
-                @click="debug"
-            >
-                <i class="micon mi-debug" />
-                Debug
-            </button>
-            <button
-                v-if="isRunning && actions.debug"
-                type="button"
-                :class="$style.button"
-                @click="stepOver"
-            >
-                <i class="micon mi-step-over" />
-                Step over
-            </button>
-            <button
-                v-if="isRunning"
-                type="button"
-                :class="$style.button"
-                @click="stop"
-            >
-                <i class="micon mi-stop" />
-                Stop
-            </button>
-            <slot name="options" />
-        </div>
         <div ref="tableWrapper" :class="$style.table_wrapper">
             <table :class="$style.table" :style="cellWidthStyle">
                 <tbody>
@@ -106,6 +58,40 @@
                     </tr>
                 </tbody>
             </table>
+        </div>
+        <div :class="$style.menu">
+            <span :class="$style.buttons">
+                <TheRunButton
+                    v-if="!isRunning"
+                    @run="run"
+                    @debug="debug"
+                />
+                <BaseActionButton
+                    v-if="isRunning && actions.debug"
+                    icon="mi-step-over"
+                    :class="$style.button"
+                    @click="stepOver"
+                >
+                    Step over
+                </BaseActionButton>
+                <BaseActionButton
+                    v-if="!isRunning && canReset"
+                    icon="mi-undo"
+                    :class="$style.button"
+                    @click="reset"
+                >
+                    Reset
+                </BaseActionButton>
+                <BaseActionButton
+                    v-if="isRunning"
+                    icon="mi-stop"
+                    :class="$style.button"
+                    @click="stop"
+                >
+                    Stop
+                </BaseActionButton>
+            </span>
+            <slot name="options" />
         </div>
         <div ref="console" :class="$style.console">
             <div
@@ -193,6 +179,8 @@
 <script lang="ts">
 import { Howl } from "howler";
 import { Vue, Component, Prop, Watch } from "vue-property-decorator";
+import BaseActionButton from "./BaseActionButton.vue";
+import TheRunButton from "./TheRunButton.vue";
 import GrassObject from "~/assets/img/grass.svg?inline";
 import HatchetObject from "~/assets/img/hatchet.svg?inline";
 import VitoriaObject from "~/assets/img/vitoria.svg?inline";
@@ -200,7 +188,7 @@ import WorldCurrent from "~/interfaces/WorldCurrent";
 import WorldOptions, { Coordinates } from "~/interfaces/WorldOptions";
 import Actions from "~/lib/Actions";
 import makeRunner from "~/lib/makeRunner";
-import useCodeStore from "~/stores/code";
+import useLessonStore from "~/stores/lesson";
 import "~/assets/css/icons.css";
 
 @Component({
@@ -208,6 +196,8 @@ import "~/assets/css/icons.css";
         GrassObject,
         HatchetObject,
         VitoriaObject,
+        TheRunButton,
+        BaseActionButton,
     },
 })
 export default class TheWorld extends Vue {
@@ -407,7 +397,7 @@ export default class TheWorld extends Vue {
 
     created () {
         this.reset();
-        this.store = useCodeStore();
+        this.store = useLessonStore();
     }
 
     resizeCellListener?: ()=>void;
@@ -430,23 +420,34 @@ export default class TheWorld extends Vue {
 .world {
     display: flex;
     flex-direction: column;
+    background-color: var(--background-accent);
+    user-select: none;
+}
+
+.menu {
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid var(--color-gray-500);
+}
+
+.buttons {
+    display: flex;
 }
 
 .button {
-    padding: 0.2em 0.7em;
-    background: #fff;
-    border: 1px solid currentcolor;
-    border-radius: 0.3em;
-    margin: 0.5em;
+    padding: 0.38rem 1.68rem;
+    background-color: var(--secondary-button);
+    margin: 0.68rem 0.81rem;
+    font-size: 1.25rem;
+    border: 0;
+    color: var(--color-white);
     cursor: pointer;
+    border-radius: 1.25rem;
 }
 
-.button:hover,
-.button:focus {
-    background: #333;
-    color: #fff;
+.button:hover {
+    background: var(--secondary-button-hover);
 }
-
 .table_wrapper {
     flex-grow: 1;
 }
@@ -464,6 +465,7 @@ export default class TheWorld extends Vue {
 }
 
 .cell {
+    height: var(--cell-width);
     width: var(--cell-width);
     padding-bottom: var(--cell-width);
     position: relative;
@@ -481,7 +483,7 @@ export default class TheWorld extends Vue {
     align-items: center;
     font-weight: bold;
     font-size: calc(var(--cell-width) / 3);
-    color: #eee;
+    color: var(--element-accent-color);
 }
 
 .cell__inner {
@@ -576,10 +578,10 @@ export default class TheWorld extends Vue {
     flex-direction: column;
     overflow: auto;
     gap: 0.5em;
-    background: #000;
-    color: #fff;
+    background: var(--background-color);
+    color: var(--text-color);
     padding: 1rem;
-    height: 7.5rem;
+    height: 9.5rem;
 }
 
 .error {

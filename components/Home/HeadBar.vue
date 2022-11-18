@@ -4,7 +4,6 @@
             <NuxtLink to="/" :class="$style.main">Miorița</NuxtLink>
         </h1>
         <div :class="$style.buttons">
-            <LanguageSelector />
             <ColorModeSwitcher />
         </div>
         <MainMenu :class="$style.menu" />
@@ -13,7 +12,6 @@
 
 <script setup>
 import ColorModeSwitcher from "../ColorModeSwitcher.vue";
-import LanguageSelector from "../LanguageSelector.vue";
 import MainMenu from "./MainMenu.vue";
 </script>
 

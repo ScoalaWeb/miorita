@@ -19,7 +19,8 @@
                 ].filter(w => w),
             },
             objects: grassObjects,
-            timeout: 1000
+            timeout: 1000,
+            title: 'The Escape',
         }"
     />
 </template>
@@ -29,7 +30,7 @@ import { Vue, Component } from "vue-property-decorator";
 import WorldObject from "../../interfaces/WorldObject";
 import { Coordinates } from "../../interfaces/WorldOptions";
 import arrayRandom from "../../lib/arrayRandom";
-import TheLesson from "~/components/TheLesson.vue";
+import TheLesson from "~/components/Lesson/TheLesson.vue";
 
 @Component({
     components: { TheLesson },

@@ -3,7 +3,7 @@
 </template>
 
 <script>
-import TheLesson from "~/components/TheLesson.vue";
+import TheLesson from "~/components/Lesson/TheLesson.vue";
 
 export default {
     name: "LessonPage",
