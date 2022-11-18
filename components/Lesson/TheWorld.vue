@@ -420,7 +420,7 @@ export default class TheWorld extends Vue {
 .world {
     display: flex;
     flex-direction: column;
-    background-color: var(--background-accent);
+    background-color: var(--sheepfold-background-color);
     user-select: none;
 }
 

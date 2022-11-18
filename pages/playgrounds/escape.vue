@@ -21,6 +21,31 @@
             objects: grassObjects,
             timeout: 1000,
             title: 'The Escape',
+            details: [
+                {
+                    title: 'challenge',
+                    text: [
+                        'You can never know where the fence is going to be or how big the sheepfold is.',
+                        'Think of a solution that will get Miorița to a patch of grass as quickly as possible.',
+                    ],
+                    class: 'paragraph'
+                },
+                {
+                    title: 'commands',
+                    text: [
+                        'move()',
+                        'canMove()',
+                        'turnRight()',
+                        'reset()',
+                        'if() { }',
+                        'else { }',
+                        'while() { }',
+                        'for() { }',
+                        'var',
+                    ],
+                    class: 'code'
+                },
+            ],
         }"
     />
 </template>
@@ -90,17 +115,6 @@ export default class Escape extends Vue {
         return objects;
     }
 
-    code:string = `/*
-    The Escape
-    ==========
-
-    Miorița is in the middle of a sheepfold of random size.
-    She was surrounded by fences, but one of them broke down.
-    She starts facing a random direction.
-
-    Help her get to the grass zone at the edge of the sheepfold.
-*/
-
-`;
+    code:string = "";
 }
 </script>

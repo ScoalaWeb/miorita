@@ -15,11 +15,11 @@
 </template>
 
 <script setup lang="ts">
-import TheDescription from "~/components/Lesson/TheDescription.vue";
-import TheEditor from "~/components/Lesson/TheEditor.vue";
-import TheLessonFooter from "~/components/Lesson/TheLessonFooter.vue";
-import TheLessonHeader from "~/components/Lesson/TheLessonHeader.vue";
-import TheWorld from "~/components/Lesson/TheWorld.vue";
+import TheDescription from "./TheDescription.vue";
+import TheEditor from "./TheEditor.vue";
+import TheLessonFooter from "./TheLessonFooter";
+import TheLessonHeader from "./TheLessonHeader.vue";
+import TheWorld from "./TheWorld.vue";
 import WorldOptions from "~/interfaces/WorldOptions";
 import useLessonStore from "~/stores/lesson";
 
@@ -40,7 +40,7 @@ store.setOptions(props.options);
     grid: 5rem auto 3rem/ auto;
 }
 
-.header {
+.headbar {
     width: 100%;
 }
 

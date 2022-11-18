@@ -56,6 +56,7 @@ onMounted(() => {
     width: 100%;
     height: 100%;
     grid-column: 2/3;
+    overflow: hidden;
     position: absolute;
 }
 </style>
