@@ -39,7 +39,7 @@ const previousLesson = () => {
             :class="$style.rightSide"
         >
             <button
-                v-if="options.lessonNumber !== 1"
+                v-if="options.lesson !== 1"
                 :class="$style.button"
                 @click="previousLesson"
             >

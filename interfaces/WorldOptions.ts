@@ -18,4 +18,9 @@ export default interface WorldOptions {
     lesson?: number
     nextLesson?: string
     previousLesson?: string
+    details: {
+        title: string
+        text: string[]
+        class: "paragraph" | "code"
+    }[]
 }

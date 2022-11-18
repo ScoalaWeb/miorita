@@ -1,3 +1,4 @@
+<!-- eslint-disable max-len -->
 <template>
     <TheLesson
         :code="code"
@@ -30,6 +31,34 @@
             lesson: 2,
             nextLesson: '3-while',
             previousLesson: '1-intro',
+            details: [
+                {
+                    title: 'instructions',
+                    text: [
+                        'We are faced with two paths, both having a happy ending: A happy and stuffed Miorița.',
+                        'She is very hungry, and needs to be led to the nearest patch of grass. However, there may be a fence in the way.',
+                        'We should come up with one set of instructions that will tackle both scenarios.',
+                    ],
+                    class: 'paragraph'
+                },
+                {
+                    title: 'new commands',
+                    text: [
+                        'if() && else',
+                        'canMove()',
+                        '!canMove()',
+                    ],
+                    class: 'code'
+                },
+                {
+                    title: 'challenge',
+                    text: [
+                        'Help Miorița reach the closest patch of grass so she can finally eat.',
+                        'Delete the code that already does this and come up with the best way to do it.',
+                    ],
+                    class: 'paragraph'
+                },
+            ],
         }"
     >
         <template #options>
@@ -57,27 +86,14 @@ export default class LessonSimpleIf extends Vue {
     wall:boolean = true;
 
     code:string = `/*
-    IF Statement
-    ============
-
-    In this scenario, Miorița is very hungry.
-    We want to help her reach the closest grass zone.
-    Problem is a wall that may appear right in front of her.
-    When the wall appears, she needs to go around the wall, to the top grass.
-    Without a wall, she can go straight to the bottom grass.
-
-    We want to handle both cases in the same code.
-    For this, we use a special instruction "if()", that accepts a condition.
-    The condition is just an instruction that happens to return true or false.
-    We also have the "canMove()" instruction which happens to return true when
-    Miorița can move forward, and false if she cannot.
-    Combining the two allows us to run a set of instructions, depending on the
-    ability to move.
+    if() is a special instruction that causes the next instruction to run or not
+    depending on the condition given between the parenthesis.
 */
+
 if ( canMove() ) {
     /*
         Using { curly braces } allows running multiple instructions in response
-        to a single condition. These are called "code blocks"
+        to a single condition. These are called "code blocks".
     */
 
     move()
@@ -92,7 +108,7 @@ if ( canMove() ) {
     turnRight()
     turnRight()
     turnRight()
-    // Turing right 3 times gets us to the same result as turning left one time
+    // Turing right 3 times gets us to the same result as turning left one time.
 
     move()
     turnRight()
@@ -115,27 +131,14 @@ reset()
     We can move the 3 instructions after the if+else statement.
     We can also remove the "else" statement if we use the ! operator in the
     "if" condition. ! flips the expression after it.
-    So true becomes false, and false becomes true
+    So true becomes false, and false becomes true.
 */
+
 if ( ! canMove() ) {
-    /*
-        The "else" statement can be attached to an "if" statement and represents
-        instructions that run when the "if" condition is false.
-    */
-
-    turnRight()
-    turnRight()
-    turnRight()
-    // Turing right 3 times gets us to the same result as turning left one time
-
-    move()
-    turnRight()
+    // Handle the case where Miorița is blocked by a fence.
 }
 
-// Run the 3 move commands regardless of anything else
-move()
-move()
-move()
+// Then, run 3 move commands regardless of anything else.
 
 /*
     Final note #1
@@ -147,8 +150,8 @@ move()
 
     Final note #2
     -------------
-    There are a lot of spaces in the code used in this lesson.
-    None of them is required, but they make the code slightly more readable.
+    See how instructions inside a block are indented to the right?
+    This is not required, but it makes the code slightly more readable.
 */
 `;
 }
