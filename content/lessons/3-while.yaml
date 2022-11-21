@@ -55,7 +55,7 @@ worldOptions:
     lesson: 3
     nextLesson: '4-function'
     previousLesson: '2-if'
-    title: Loops
+    title: Loops & variables
     details:
         -   title: 'instructions'
             text:
