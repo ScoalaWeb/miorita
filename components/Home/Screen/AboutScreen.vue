@@ -3,21 +3,7 @@
         <h1>Miorița is here to help you in your programming journey</h1>
         <a href="#lessons" :class="$style.button">
             play now
-            <svg
-                width="18"
-                height="21"
-                viewBox="0 0 18 21"
-                fill="none"
-                :class="$style.arrows"
-                xmlns="http://www.w3.org/2000/svg"
-            >
-                <!-- eslint-disable max-len -->
-                <path
-                    d="M1.34579 20.5301L0 18.7337L6.34446 10.2651L0 1.79639L1.34579 0L9.03605 10.2651L1.34579 20.5301ZM9.4526 20.5301L8.10681 18.7337L14.4513 10.2651L8.10681 1.79639L9.4526 0L17.1429 10.2651L9.4526 20.5301Z"
-                    fill="currentColor"
-                />
-                <!-- eslint-enable max-len -->
-            </svg>
+            <span class="micon mi-caret" :class="$style.arrows" />
         </a>
         <TheSheep :class="$style.miorita" />
     </header>
@@ -66,6 +52,7 @@ import TheSheep from "../GhostSheep.vue";
 }
 
 .arrows {
+    font-size: 1rem;
     padding-top: 0.25rem;
 }
 
