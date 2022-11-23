@@ -30,6 +30,12 @@ module.exports = {
                 caseInsensitive: false,
             },
         }],
+        "max-len": ["error", {
+            code: 120,
+            ignoreComments: true,
+            ignoreStrings: true,
+            ignorePattern: "^import .*",
+        }],
         "@typescript-eslint/semi": ["warn", "always"],
         "@typescript-eslint/member-delimiter-style": ["error", {
             multiline: {

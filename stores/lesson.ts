@@ -22,6 +22,7 @@ const useLessonStore = defineStore("lesson", () => {
         ],
         timeout: 1000,
         title: "",
+        details: [],
     });
 
     const storageKey = (title: string) => title.replace(/[^a-z0-9]/g, "");
