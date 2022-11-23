@@ -1,0 +1,27 @@
+image: node:lts-alpine # Image chosen
+
+stages: # List of stages for jobs, and their order of execution
+    - build
+    - test
+
+.yarn-install:
+    before_script:
+        - yarn install
+
+build-job: # This job runs in the build stage, which runs first.
+    extends: .yarn-install
+    stage: build
+    only:
+        - main
+    script:
+        - echo "Dependencies installed!"
+        - yarn run generate
+        - echo "Everything works!"
+
+lint-test-job: # This job also runs in the test stage.
+    extends: .yarn-install
+    stage: test    # It can run at the same time as unit-test-job (in parallel).
+    only: # Only run this on Merge Request
+        - "merge_request"
+    script:
+        - yarn run lint
