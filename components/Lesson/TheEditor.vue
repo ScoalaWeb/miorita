@@ -2,17 +2,10 @@
     <MonacoEditor
         v-model="workCode"
         :class="$style.editor"
-        :options="{
-            wordWrap: true,
-            minimap: {
-                enabled: false
-            },
-            overviewRulerBorder: false,
-            automaticLayout: true,
-        }"
+        :options="monacoOptions"
         :theme="schemeStore.isLightScheme ? 'miorita-light' : 'miorita-dark'"
-        language="javascript"
-        @editorWillMount="editorWillMount"
+        language="mioritajs"
+        @editorWillMount="monacoSetup"
         @editorDidMount="editorDidMount"
     />
 </template>
@@ -20,6 +13,7 @@
 <script setup>
 import { computed, defineProps, onMounted } from "vue";
 import MonacoEditor from "vue-monaco";
+import { monacoSetup, monacoOptions } from "~/lib/monacoSetup";
 import useLessonStore from "~/stores/lesson";
 import useSchemeStore from "~/stores/scheme";
 
@@ -41,25 +35,6 @@ const workCode = computed({
         lessonStore.setCode(value);
     },
 });
-
-const editorWillMount = (monaco) => {
-    monaco.editor.defineTheme("miorita-light", {
-        base: "vs",
-        inherit: true,
-        rules: [],
-        colors: {
-            "editor.background": "#fff",
-        },
-    });
-    monaco.editor.defineTheme("miorita-dark", {
-        base: "vs-dark",
-        inherit: true,
-        rules: [],
-        colors: {
-            "editor.background": "#252525",
-        },
-    });
-};
 
 const editorDidMount = (monaco) => {
     lessonStore.setEditor(monaco);
