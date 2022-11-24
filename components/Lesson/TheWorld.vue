@@ -318,6 +318,7 @@ export default class TheWorld extends Vue {
                     this.moves.push({ message: `error-${e.message}` });
                 } else {
                     this.moves.push({ message: `error-generic-${e.message}` });
+                    // eslint-disable-next-line no-console
                     console.error(e);
                 }
             })
