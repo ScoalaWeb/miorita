@@ -11,6 +11,18 @@ import TheLesson from "~/components/Lesson/TheLesson.vue";
 
 @Component({
     components: { TheLesson },
+    head () {
+        return {
+            title: "Empty playground",
+            meta: [
+                {
+                    hid: "description",
+                    name: "description",
+                    content: "Empty code and a 9x9 board where you can move however you wany. Miorița starts at the very center of the sheepfold.",
+                },
+            ],
+        };
+    },
 })
 export default class EmptyPlayground extends Vue {
     code:string = "\n";

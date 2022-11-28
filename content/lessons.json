@@ -13,7 +13,7 @@
     },
     {
         "title": "Loops & variables",
-        "description": "find ways to run the same commands multiple times in succesion",
+        "description": "find ways to run the same commands multiple times in succesion.",
         "link": "lessons/3-while",
         "background": "3-bg"
     },
