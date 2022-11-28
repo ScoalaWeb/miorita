@@ -36,6 +36,7 @@ module.exports = {
             ignoreStrings: true,
             ignorePattern: "^import .*",
         }],
+        "vue/multi-word-component-names": "off",
         "@typescript-eslint/semi": ["warn", "always"],
         "@typescript-eslint/member-delimiter-style": ["error", {
             multiline: {
