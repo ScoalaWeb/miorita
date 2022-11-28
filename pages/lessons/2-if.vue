@@ -81,6 +81,18 @@ import TheLesson from "~/components/Lesson/TheLesson.vue";
 
 @Component({
     components: { TheLesson },
+    head () {
+        return {
+            title: "Conditional statements",
+            meta: [
+                {
+                    hid: "description",
+                    name: "description",
+                    content: "Learn how to run different sets of instructions depending on a condition.",
+                },
+            ],
+        };
+    },
 })
 export default class LessonSimpleIf extends Vue {
     wall:boolean = true;

@@ -21,6 +21,20 @@ export default {
         return {
             workCode: "",
             worldOptions: {},
+            description: "",
+        };
+    },
+
+    head () {
+        return {
+            title: this.worldOptions.title,
+            meta: [
+                {
+                    hid: "description",
+                    name: "description",
+                    content: this.description,
+                },
+            ],
         };
     },
 };

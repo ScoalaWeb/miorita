@@ -11,6 +11,18 @@ import TheLesson from "~/components/Lesson/TheLesson.vue";
 
 @Component({
     components: { TheLesson },
+    head () {
+        return {
+            title: "The Hatchet",
+            meta: [
+                {
+                    hid: "description",
+                    name: "description",
+                    content: "Based on a Romanian novel, The Hatchet, Miorița has to pick the hatchet, and deliver it to Vitoria Lipan.",
+                },
+            ],
+        };
+    },
 })
 export default class Hatchet extends Vue {
     code:string = "";
