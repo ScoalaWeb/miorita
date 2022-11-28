@@ -59,6 +59,18 @@ import TheLesson from "~/components/Lesson/TheLesson.vue";
 
 @Component({
     components: { TheLesson },
+    head () {
+        return {
+            title: "The Escape",
+            meta: [
+                {
+                    hid: "description",
+                    name: "description",
+                    content: "Help Miorița escape a random sheepfold.",
+                },
+            ],
+        };
+    },
 })
 export default class Escape extends Vue {
     // eslint-disable-next-line class-methods-use-this
