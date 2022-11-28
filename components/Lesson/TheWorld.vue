@@ -1,65 +1,54 @@
 <template>
     <div :class="$style.world">
         <div ref="tableWrapper" :class="$style.table_wrapper">
-            <table :class="$style.table" :style="cellWidthStyle">
-                <tbody>
-                    <tr
-                        v-for="(row) in range(options.size.y)"
-                        :key="row"
+            <div
+                :class="$style.sheepfold"
+                :style="{
+                    ...cellWidthStyle,
+                    '--row-count': options.size.y,
+                    '--col-count': options.size.x,
+                }"
+            >
+                <div
+                    v-for="(cell) in cells"
+                    :key="cell.id"
+                    :class="[cell.css]"
+                    :style="{
+                        gridRowStart: cell.gridRow,
+                        gridColumnStart: cell.gridColumn,
+                    }"
+                >
+                    <div
+                        v-for="(obj, objIndex) in cell.objects"
+                        :key="objIndex + obj.type"
                     >
-                        <td
-                            v-for="(col) in range(options.size.x)"
-                            :key="col"
-                            :class="$style.cell"
-                        >
-                            <div
-                                :class="{
-                                    [$style.cell__inner]: true,
-                                    [$style.cell_current]: isCurrent(row, col),
-                                    [$style.wall_right]: hasWallRight(row, col),
-                                    [$style.wall_left]: hasWallLeft(row, col),
-                                    [$style.wall_top]: hasWallTop(row, col),
-                                    [$style.wall_bottom]: hasWallBottom(row, col),
-                                    [$style.facing_up]: current.orientation === 'N',
-                                    [$style.facing_down]: current.orientation === 'S',
-                                    [$style.facing_left]: current.orientation === 'W',
-                                    [$style.facing_right]: current.orientation === 'E',
-                                }"
-                            >
-                                <div
-                                    v-for="(obj, objIndex) in objectsAt(row, col)"
-                                    :key="objIndex + obj.type"
-                                >
-                                    <template v-if="obj.type === 'grass'">
-                                        <GrassObject
-                                            :class="[$style.cell__object, $style.obj_grass]"
-                                            style="fill: green"
-                                        />
-                                    </template>
-                                    <template v-if="obj.type === 'hatchet'">
-                                        <HatchetObject
-                                            :class="[$style.cell__object, $style.obj_hatchet]"
-                                        />
-                                    </template>
-                                    <template v-if="obj.type === 'vitoria'">
-                                        <VitoriaObject
-                                            :class="[$style.cell__object, $style.obj_vitoria]"
-                                        />
-                                    </template>
-                                </div>
-                                <img
-                                    v-if="isCurrent(row, col)"
-                                    src="~/assets/img/character.svg"
-                                    alt="Miorița"
-                                    :class="$style.cell__img"
-                                >
-                            </div>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
+                        <template v-if="obj.type === 'grass'">
+                            <GrassObject
+                                :class="[$style.object, $style.grass]"
+                                style="fill: green"
+                            />
+                        </template>
+                        <template v-if="obj.type === 'hatchet'">
+                            <HatchetObject
+                                :class="[$style.object, $style.hatchet]"
+                            />
+                        </template>
+                        <template v-if="obj.type === 'vitoria'">
+                            <VitoriaObject
+                                :class="[$style.object, $style.vitoria]"
+                            />
+                        </template>
+                    </div>
+                    <img
+                        v-if="cell.withCharacter"
+                        src="~/assets/img/character.svg"
+                        alt="Miorița"
+                        :class="$style.character"
+                    >
+                </div>
+            </div>
         </div>
-        <div :class="$style.menu">
+        <div :class="$style.toolbar">
             <span :class="$style.buttons">
                 <TheRunButton
                     v-if="!isRunning"
@@ -219,9 +208,68 @@ export default class TheWorld extends Vue {
         } as WorldOptions),
     }) options!: WorldOptions;
 
-    // eslint-disable-next-line class-methods-use-this
-    range (size:number): number[] {
-        return [...new Array(size)].map((_, index) => index);
+    get cells () {
+        const { options: { size } } = this;
+        const cells = [];
+
+        for (let row = 0; row < size.y; row += 1) {
+            for (let col = 0; col < size.x; col += 1) {
+                const gridRow = row * 2 + 1;
+                const gridColumn = col * 2 + 1;
+                const withCharacter = this.isCurrent(row, col);
+                const css = [this.$style.cell];
+
+                if (withCharacter) {
+                    switch (this.current.orientation) {
+                    case "N":
+                        css.push(this.$style.facing_up);
+                        break;
+                    case "S":
+                        css.push(this.$style.facing_down);
+                        break;
+                    case "W":
+                        css.push(this.$style.facing_left);
+                        break;
+                    case "E":
+                        css.push(this.$style.facing_right);
+                        break;
+                    default:
+                    }
+                }
+
+                cells.push({
+                    row,
+                    col,
+                    gridRow,
+                    gridColumn,
+                    withCharacter,
+                    css,
+                    objects: this.objectsAt(row, col),
+                });
+
+                if (this.hasWallBottom(row, col)) {
+                    cells.push({
+                        row,
+                        col,
+                        gridRow: gridRow + 1,
+                        gridColumn,
+                        css: [this.$style.wall, this.$style.horizontal],
+                    });
+                }
+
+                if (this.hasWallRight(row, col)) {
+                    cells.push({
+                        row,
+                        col,
+                        gridRow,
+                        gridColumn: gridColumn + 1,
+                        css: [this.$style.wall, this.$style.vertical],
+                    });
+                }
+            }
+        }
+
+        return cells;
     }
 
     current:WorldCurrent = {
@@ -262,17 +310,9 @@ export default class TheWorld extends Vue {
             this.options.walls.x.some((pos:Coordinates) => row === pos.y && col === pos.x);
     }
 
-    hasWallLeft (row:number, col:number) {
-        return this.hasWallRight(row, col - 1);
-    }
-
     hasWallBottom (row:number, col:number) {
         return this.options.walls.y &&
             this.options.walls.y.some((pos:Coordinates) => row === pos.y && col === pos.x);
-    }
-
-    hasWallTop (row:number, col:number) {
-        return this.hasWallBottom(row - 1, col);
     }
 
     actions:Actions | null = null;
@@ -354,6 +394,8 @@ export default class TheWorld extends Vue {
 
     get cellWidthStyle () {
         return {
+            "--row-count": `${this.options.size.y}`,
+            "--col-count": `${this.options.size.x}`,
             "--cell-width": `${this.cellWidth}`,
         };
     }
@@ -364,21 +406,16 @@ export default class TheWorld extends Vue {
             return;
         }
 
-        // @ts-ignore
-        wrapper.querySelector("table").attributes.style.value = "--cell-width: 1px";
-
         const cellWidth = Math.floor(
             Math.min(
                 // @ts-ignore
                 wrapper.clientWidth / this.options.size.x,
                 // @ts-ignore
                 wrapper.clientHeight / this.options.size.y,
-            ) * 0.95,
+            ) * 0.85,
         );
 
         this.cellWidth = `${cellWidth}px`;
-        // @ts-ignore
-        wrapper.querySelector("table").attributes.style.value = `--cell-width: ${cellWidth}px`;
     }
 
     reset () {
@@ -417,7 +454,9 @@ export default class TheWorld extends Vue {
 }
 </script>
 
-<style module>
+<style module lang="scss">
+@import "../../assets/fonts/icons/Mioritza-Icons-v2.0/variables";
+
 .world {
     display: flex;
     flex-direction: column;
@@ -425,7 +464,95 @@ export default class TheWorld extends Vue {
     user-select: none;
 }
 
-.menu {
+.table_wrapper {
+    flex-grow: 1;
+    display: grid;
+    align-items: center;
+    justify-items: center;
+    padding-inline: 0.5rem;
+}
+
+.sheepfold {
+    --fence-width: calc(var(--cell-width) / 9);
+
+    display: grid;
+    grid-template-rows: 1fr repeat(calc(var(--row-count) - 1), var(--fence-width) 1fr);
+    grid-template-columns: 1fr repeat(calc(var(--col-count) - 1), var(--fence-width) 1fr);
+    max-width: 100%;
+}
+
+.cell {
+    position: relative;
+    align-self: center;
+    justify-self: center;
+
+    // Older browsers
+    min-height: var(--cell-width);
+    min-width: var(--cell-width);
+    padding-bottom: var(--cell-width);
+
+    // Newer browsers
+    aspect-ratio: 1 / 1;
+
+    &::before {
+        content: $mi-plus;
+        font-family: Mioritza-Icons, fantasy;
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        display: grid;
+        justify-content: center;
+        align-items: center;
+        font-weight: bold;
+        font-size: calc(var(--cell-width) / 6);
+        color: var(--element-accent-color);
+    }
+}
+
+.wall {
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+
+    &.vertical {
+        background-image: url("~/assets/img/fenceY.svg");
+    }
+    &.horizontal {
+        background-image: url("~/assets/img/fenceX.svg");
+    }
+}
+
+.object {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    z-index: 2;
+    margin-left: auto;
+    margin-right: auto;
+
+    &.grass {
+        transform: scale(0.65) translateY(40%);
+    }
+
+    &.hatchet {
+        transform: scale(0.95) translateY(8%);
+    }
+
+    &.vitoria {
+        transform: scale(0.95);
+    }
+}
+
+.character {
+    max-width: 100%;
+    max-height: 100%;
+    position: absolute;
+    z-index: 2;
+}
+
+.toolbar {
     display: flex;
     justify-content: space-between;
     border-bottom: 1px solid var(--color-gray-500);
@@ -444,133 +571,22 @@ export default class TheWorld extends Vue {
     color: var(--color-white);
     cursor: pointer;
     border-radius: 1.25rem;
+    white-space: nowrap;
+
+    &:hover {
+        background: var(--secondary-button-hover);
+    }
 }
 
-.button:hover {
-    background: var(--secondary-button-hover);
-}
-.table_wrapper {
-    flex-grow: 1;
-}
-
-.table {
-    --cell-width: 1rem;
-    --wall-color: #c9c9c9;
-    --wall-warning-color: rgba(255  156 156 / 44%);
-
-    border-collapse: separate;
-    table-layout: fixed;
-    flex-grow: 1;
-    margin-left: auto;
-    margin-right: auto;
-}
-
-.cell {
-    height: var(--cell-width);
-    width: var(--cell-width);
-    padding-bottom: var(--cell-width);
-    position: relative;
-}
-
-.cell::before {
-    content: "+";
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    display: grid;
-    justify-content: center;
-    align-items: center;
-    font-weight: bold;
-    font-size: calc(var(--cell-width) / 3);
-    color: var(--element-accent-color);
-}
-
-.cell__inner {
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    justify-content: center;
-    align-items: center;
-    border: 2px solid transparent;
-    overflow: hidden;
-}
-
-.cell__img {
-    max-width: 100%;
-    max-height: 100%;
-    position: absolute;
-    z-index: 2;
-}
-
-.cell__object {
-    width: 100%;
-    height: 100%;
-    position: absolute;
-    z-index: 2;
-    margin-left: auto;
-    margin-right: auto;
-}
-
-.obj_grass {
-    transform: scale(0.95) translateY(20%);
-}
-
-.obj_hatchet {
-    transform: scale(0.95) translateY(20%);
-}
-
-.obj_vitoria {
-    transform: scale(0.95) translateY(20%);
-}
-
-.wall_right {
-    border-right-color: var(--wall-color);
-}
-
-.cell_current.wall_right.facing_right {
-    border-right-color: var(--wall-warning-color);
-
-    /* box-shadow: inset -4px 0 4px 0 var(--wall-warning-color); */
-
-}
-
-.wall_left {
-    border-left-color: var(--wall-color);
-}
-
-.cell_current.wall_left.facing_left {
-    border-left-color: var(--wall-warning-color);
-}
-
-.wall_top {
-    border-top-color: var(--wall-color);
-}
-
-.cell_current.wall_top.facing_up {
-    border-top-color: var(--wall-warning-color);
-}
-
-.wall_bottom {
-    border-bottom-color: var(--wall-color);
-}
-
-.cell_current.wall_bottom.facing_down {
-    border-bottom-color: var(--wall-warning-color);
-}
-
-.facing_up .cell__img {
+.facing_up .character {
     transform: rotate(-90deg);
 }
 
-.facing_down .cell__img {
+.facing_down .character {
     transform: rotate(90deg);
 }
 
-.facing_left .cell__img {
+.facing_left .character {
     transform: scaleX(-1);
 }
 
@@ -586,7 +602,7 @@ export default class TheWorld extends Vue {
 }
 
 .error {
-    color: #f00;
+    color: var(--color-red);
 }
 
 </style>

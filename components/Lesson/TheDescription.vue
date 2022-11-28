@@ -57,7 +57,6 @@ const resizeEditor = () => store.editor.layout();
     background-color: var(--panel-background-color);
     border-right: 1.5px solid var(--panel-border-color);
     transition: width 0.2s linear;
-    user-select: all;
 
     &.closed {
         grid-template-columns: 1fr;
@@ -174,6 +173,10 @@ const resizeEditor = () => store.editor.layout();
 
 .section--code {
     font-family: var(--font-default);
+
+    .text p {
+        user-select: all;
+    }
 }
 
 @keyframes slide-out {

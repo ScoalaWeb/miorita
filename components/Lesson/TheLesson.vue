@@ -51,7 +51,7 @@ store.setOptions(props.options);
 }
 .world {
     grid-column: 3/4;
-    border-left: 1px solid var(--color-gray-500);
+    border-left: 1.5px solid var(--color-gray-500);
 }
 
 @media (orientation: portrait) {
