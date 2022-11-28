@@ -1,6 +1,6 @@
 <template>
     <div
-        :class="[$style.panel, active ? '' : $style.closed]"
+        :class="[$style.panel, value ? '' : $style.closed]"
         @transitionend="resizeEditor"
     >
         <div :class="$style.toggle" @click="handleClick">
@@ -27,17 +27,21 @@
 </template>
 
 <script setup lang="ts">
-import { ref, computed } from "vue";
+import { computed } from "vue";
 import useLessonStore from "~/stores/lesson";
 
-const store = useLessonStore();
+const props = defineProps<{
+    value: boolean
+}>();
 
-const active = ref(true);
+const emit = defineEmits(["input"]);
+
+const store = useLessonStore();
 
 const details = computed(() => store.options.details);
 
 const handleClick = () => {
-    active.value = !active.value;
+    emit("input", !props.value);
 };
 
 const resizeEditor = () => store.editor.layout();
