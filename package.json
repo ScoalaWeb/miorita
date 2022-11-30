@@ -4,6 +4,7 @@
     "private": true,
     "scripts": {
         "dev": "nuxt",
+        "editor": "nuxt --config-file editor.config.js",
         "build": "nuxt build",
         "start": "nuxt start",
         "generate": "nuxt generate",
