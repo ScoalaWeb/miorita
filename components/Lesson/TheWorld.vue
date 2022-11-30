@@ -44,6 +44,7 @@
                         src="~/assets/img/character.svg"
                         alt="Miorița"
                         :class="$style.character"
+                        draggable="false"
                     >
                 </div>
             </div>
@@ -208,6 +209,8 @@ export default class TheWorld extends Vue {
         } as WorldOptions),
     }) options!: WorldOptions;
 
+    @Prop() readonly width!: number;
+
     get cells () {
         const { options: { size } } = this;
         const cells = [];
@@ -330,6 +333,11 @@ export default class TheWorld extends Vue {
         });
     }
 
+    @Watch("width", { deep: true })
+    onWidthUpdated () {
+        this.resizeCell();
+    }
+
     run (debug = false) {
         this.moves = [];
         this.actions = new Actions(this.options, this.current, debug);
@@ -414,7 +422,6 @@ export default class TheWorld extends Vue {
                 wrapper.clientHeight / this.options.size.y,
             ) * 0.85,
         );
-
         this.cellWidth = `${cellWidth}px`;
     }
 
@@ -466,10 +473,10 @@ export default class TheWorld extends Vue {
 
 .table_wrapper {
     flex-grow: 1;
+    width: 100%;
     display: grid;
     align-items: center;
     justify-items: center;
-    padding-inline: 0.5rem;
 }
 
 .sheepfold {
