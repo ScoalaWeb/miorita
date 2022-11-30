@@ -220,6 +220,7 @@ onUnmounted(() => {
     font-size: 14vmin;
     font-weight: 700;
     opacity: 0;
+    transition: color .2s;
 
     &:hover {
         color: var(--link-color-hover);

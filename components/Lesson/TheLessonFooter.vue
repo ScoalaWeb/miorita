@@ -92,6 +92,7 @@ const previousLesson = () => {
     font-size: 1.25rem;
     color: var(--text-color);
     cursor: pointer;
+    transition: all .2s;
 }
 
 .button:hover {

@@ -41,7 +41,7 @@ onMounted(() => {
 
 .content {
     position: relative;
-    grid-row: 2/4;
+    grid-row: 2/3;
     grid-column: 1;
     z-index: 0;
 }

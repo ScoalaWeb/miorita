@@ -1,6 +1,7 @@
 a {
     color: var(--link-color);
     text-decoration: none;
+    transition: color .2s;
 
     &:hover,
     &:focus,
