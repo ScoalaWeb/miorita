@@ -43,7 +43,7 @@ const store = useMenuStore();
     color: var(--menu-color);
     font-size: 1.38rem;
     background-color: transparent;
-    transition: font-size .2s;
+    transition: all .2s;
 
     &:hover {
         color: var(--menu-color-hover);

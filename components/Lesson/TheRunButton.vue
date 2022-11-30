@@ -33,9 +33,10 @@
         color: var(--color-white);
         cursor: pointer;
         padding-block: 0.38rem;
+        transition: background-color .2s;
 
         &:hover {
-            background: var(--secondary-button-hover);
+            background-color: var(--secondary-button-hover);
         }
     }
 }

@@ -33,7 +33,7 @@ import MainContainer from "~/components/Editor/MainContainer";
     border-radius: 0.5rem;
     background-color: var(--color-green);
     color: var(--color-white);
-    transition: all 100ms linear;
+    transition: all .1s;
 
     &:hover, &:focus, &:focus-within {
         background-color: var(--color-green-lighter);

@@ -38,12 +38,14 @@ import TheSheep from "../GhostSheep.vue";
     align-items: center;
     gap: 1rem;
     padding: 0.75rem 2rem 1rem;
+    margin-block-end: 4rem;
     font-size: 1.75rem;
     text-decoration: none;
     border-radius: 3.12rem;
     color: var(--secondary-button-color);
     background-color: var(--secondary-button);
     z-index: 1;
+    transition: all .2s;
 }
 
 .button:hover {
@@ -57,10 +59,10 @@ import TheSheep from "../GhostSheep.vue";
 }
 
 .miorita {
-    height: 46vh;
+    height: 44vh;
     width: auto;
     position: absolute;
-    bottom: 1%;
+    bottom: 0;
     left: 2%;
     z-index: 0;
 }
