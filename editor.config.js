@@ -2,6 +2,13 @@ export default {
     // Target: https://go.nuxtjs.dev/config-target
     target: "server",
 
+    serverMiddleware: [
+        {
+            path: "/api",
+            handler: "~/server-middleware/handler",
+        },
+    ],
+
     dir: {
         pages: "editor",
         layouts: "editor-layouts",

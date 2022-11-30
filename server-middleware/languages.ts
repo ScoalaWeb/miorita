@@ -21,8 +21,8 @@ export default function languages (app: Application) {
                 languagesMap[code] = readLanguage(code);
             });
             res.json(languagesMap);
-        } catch {
-            res.sendStatus(500);
+        } catch (e) {
+            res.status(500).json(e);
         }
     });
     app.get("/language", (req:Request, res:Response) => {
@@ -50,7 +50,7 @@ export default function languages (app: Application) {
         try {
             const content = readLanguage("en");
             writeLanguage(req.query.lang as string, content);
-            res.sendStatus(200);
+            res.json(content);
         } catch (e) {
             res.status(500).json(e);
         }
