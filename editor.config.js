@@ -4,11 +4,16 @@ export default {
 
     dir: {
         pages: "editor",
+        layouts: "editor-layouts",
+    },
+
+    server: {
+        port: 3001,
     },
 
     // Global page headers: https://go.nuxtjs.dev/config-head
     head: {
-        title: "Miorița level editor",
+        title: "Miorița Editor",
         meta: [
             { charset: "utf-8" },
             {
