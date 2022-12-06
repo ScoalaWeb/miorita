@@ -1,3 +1,47 @@
 {
-    "test": "henlo sir"
+    "texts": {
+        "main-labels": {
+            "menu": {
+                "about-us": "About",
+                "lessons": "Lessons",
+                "playgrounds": "Playgrounds"
+            },
+            "labels": {
+                "heading": "Miorita is here to kick ass and chew bubblegum and she's all outta gum",
+                "button": "play now",
+                "credits": "by Scoala web"
+            }
+        },
+        "button-text": {
+            "buttons": {
+                "run": "Run",
+                "reset": "Reset",
+                "stop": "Stop",
+                "debug": "Debug",
+                "step-over": "Step-over",
+                "fence": "Fence",
+                "play": "play"
+            },
+            "navigation": {
+                "next": "Next",
+                "back": "Back"
+            }
+        },
+        "console-output": {
+            "message": {
+                "reset": "Miorița teleported to the start position",
+                "rotate-left": "Miorița turned left (counter-clockwise)",
+                "rotate-right": "Miorița turned right (clockwise)",
+                "forward": "Miorița moved forward",
+                "move-possible": "Miorița realized she can move forward",
+                "move-blocked": "Miorița realized she cannot move forward",
+                "found": "Miorița has found \"{0}\"",
+                "not-found": "Miorița has not found \"{0}\"",
+                "pick": "Miorița has picked \"{0}\"",
+                "drop": "Miorița has dropped \"{0}\"",
+                "next-turnLeft": "Miorița will turn left",
+                "next-turnRight": "Miorița will turn right"
+            }
+        }
+    }
 }

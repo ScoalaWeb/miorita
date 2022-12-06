@@ -106,7 +106,7 @@ html {
 
 .editor_main {
     width: 96%;
-    height: 100%;
+    flex-grow: 1;
     font-family: var(--font-editor);
 }
 
