@@ -37,9 +37,23 @@ export default function languages (app: Application) {
     app.patch("/language", (req:Request, res:Response) => {
         try {
             const { lang } = req.query as {lang: string;};
-            const { key, text } = req.body;
+            const { path: keyPath, text } = req.body;
             const content = readLanguage(lang);
-            content[key] = text;
+
+            let current = content;
+            let lastKey = keyPath[0];
+
+            while (keyPath.length) {
+                const key = keyPath.shift();
+                if (keyPath.length < 1) {
+                    lastKey = key;
+                } else {
+                    current = current[key];
+                }
+            }
+
+            current[lastKey] = text;
+
             writeLanguage(lang, content);
             res.json(content);
         } catch (e) {

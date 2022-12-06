@@ -1,4 +1,47 @@
 {
-    "test": "salut domle"
+    "texts": {
+        "main-labels": {
+            "menu": {
+                "about-us": "Despre",
+                "lessons": "Lecții",
+                "playgrounds": "Joacă"
+            },
+            "labels": {
+                "heading": "Miorița te ajută să înveți programare",
+                "button": "Hai la joacă",
+                "credits": "de la Școala web"
+            }
+        },
+        "button-text": {
+            "buttons": {
+                "run": "Rulează",
+                "reset": "Reset",
+                "stop": "Stop",
+                "debug": "Debug",
+                "step-over": "Pas-cu-pas",
+                "fence": "Gard",
+                "play": "Rulează"
+            },
+            "navigation": {
+                "next": "Înapoi",
+                "back": "Înainte"
+            }
+        },
+        "console-output": {
+            "message": {
+                "reset": "Miorița teleported to the start position",
+                "rotate-left": "Miorița turned left (counter-clockwise)",
+                "rotate-right": "Miorița turned right (clockwise)",
+                "forward": "Miorița moved forward",
+                "move-possible": "Miorița realized she can move forward",
+                "move-blocked": "Miorița realized she cannot move forward",
+                "found": "Miorița has found \"{0}\"",
+                "not-found": "Miorița has not found \"{0}\"",
+                "pick": "Miorița has picked \"{0}\"",
+                "drop": "Miorița has dropped \"{0}\"",
+                "next-turnLeft": "Miorița will turn left",
+                "next-turnRight": "Miorița will turn right"
+            }
+        }
+    }
 }
- 
