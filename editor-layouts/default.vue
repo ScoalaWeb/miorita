@@ -3,10 +3,15 @@
         <nav class="editor_menu">
             <NuxtLink class="editor_title" to="/">Miorița Editor</NuxtLink>
             <div class="menu_items">
-                <NuxtLink to="/languages">Languages</NuxtLink>
+                <NuxtLink to="/languages">
+                    Languages
+                </NuxtLink>
                 <NuxtLink to="/texts">Texts</NuxtLink>
                 <NuxtLink to="/lessons">Lessons</NuxtLink>
                 <NuxtLink to="/playgrounds">Playgrounds</NuxtLink>
+            </div>
+            <div class="language">
+                {{ store.selectedLanguage }}
             </div>
         </nav>
         <div class="editor_main">
@@ -14,6 +19,12 @@
         </div>
     </div>
 </template>
+
+<script setup>
+import useEditorStore from "~/stores/editor";
+
+const store = useEditorStore();
+</script>
 
 <style lang="scss">
 @import "~/assets/fonts/Montserrat/Montserrat.css";
@@ -85,9 +96,12 @@ html {
 }
 
 .menu_items {
+    flex-grow: 1;
     display: flex;
     gap: 2rem;
     flex-flow: row wrap;
+    justify-content: end;
+    padding-inline: 4rem;
 }
 
 .editor_main {
