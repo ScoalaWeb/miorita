@@ -43,5 +43,37 @@
                 "next-turnRight": "Miorița will turn right"
             }
         }
-    }
+    },
+    "lessons": [
+        {
+            "title": "Meet Miorița",
+            "slug": "1-intro"
+        },
+        {
+            "title": "Conditional statements",
+            "slug": "2-if"
+        },
+        {
+            "title": "Loops & variables",
+            "slug": "3-while"
+        },
+        {
+            "title": "Functions",
+            "slug": "4-function"
+        }
+    ],
+    "playgrounds": [
+        {
+            "title": "Empty playground",
+            "slug": "index"
+        },
+        {
+            "title": "The Hatchet",
+            "slug": "hatchet"
+        },
+        {
+            "title": "The Escape",
+            "slug": "escape"
+        }
+    ]
 }
