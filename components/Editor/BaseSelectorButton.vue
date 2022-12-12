@@ -11,34 +11,18 @@
             type="button"
             :class="[canDelete ? $style.remove : $style.none]"
             @click="remove"
-        ></button>
+        />
     </div>
 </template>
 
 <script setup lang="ts">
-import { computed } from "vue";
-import useEditorStore from "~/stores/editor";
-
 const props = defineProps<{
     code: string
-    active: boolean
+    active?: boolean
+    canDelete?: boolean
 }>();
 
-const store = useEditorStore();
-
 const emit = defineEmits(["select", "remove"]);
-
-const canDelete = computed(() => {
-    if (props.code === "en") {
-        return false;
-    }
-
-    if (props.code === store.selectedLanguage) {
-        return false;
-    }
-
-    return true;
-});
 
 const select = () => {
     emit("select", props.code);
@@ -51,9 +35,9 @@ const remove = () => {
 
 <style module lang="scss">
 .editor_group {
-    width: 15rem;
+    min-width: 15rem;
     display: flex;
-    align-items: center;
+    align-items: stretch;
     justify-content: space-between;
     border-radius: 0.5rem;
     background-color: var(--color-green);
@@ -90,7 +74,6 @@ const remove = () => {
         }
 
         &.remove {
-            height: 100%;
             width: 3rem;
             background-repeat: no-repeat;
             background-position: center;

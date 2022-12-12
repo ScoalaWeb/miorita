@@ -14,7 +14,6 @@
                 </span>
                 <input
                     class="entry"
-                    contenteditable="true"
                     :value="entry"
                     @input="e => handleInput(e, entryKey)"
                     @change="store.init()"
