@@ -15,6 +15,7 @@ export default interface WorldOptions {
 
     timeout: number
     title: string
+    slug: string
     lesson?: number
     nextLesson?: string
     previousLesson?: string

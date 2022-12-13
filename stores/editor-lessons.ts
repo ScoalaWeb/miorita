@@ -1,53 +1,40 @@
-import { ref, computed } from "vue";
+import { ref } from "vue";
 import editorApi from "@/lib/editorApi";
 import WorldOptions from "~/interfaces/WorldOptions";
 
 // @ts-ignore
-export default function editorLessons ({ currentTranslations, selectedLanguage }) {
-    const selectedLesson = ref<WorldOptions | null>(null);
-    const category = ref<string | null>();
+export default function editorLessons ({ selectedLanguage }) {
+    const lessonIndex = ref<number | null>(null);
+    const category = ref<string>("");
 
-    const selectLesson = (lesson: WorldOptions) => {
-        selectedLesson.value = lesson;
+    const selectIndex = (index: number) => {
+        lessonIndex.value = index;
+        localStorage.setItem("lessonIndex", `${index}`);
     };
 
-    const currentLessons = computed(() => currentTranslations.value[category.value ?? ""]);
-
-    const removeLesson = async (lesson: WorldOptions) => {
-        const index = currentLessons.value.indexOf(lesson);
-        currentLessons.value.splice(index, 1);
-
-        const data = {
-            path: [
-                category.value,
-            ],
-            text: currentLessons.value,
-        };
-        const url = `api/language?lang=${selectedLanguage.value}`;
-        await editorApi(url, { data, method: "PATCH" });
-    };
-
-    const setCategory = (type: string) => {
+    const selectCategory = (type: string) => {
         category.value = type;
+        localStorage.setItem("lessonCategory", type);
     };
 
-    const reorderLessons = async (lessons: Array<WorldOptions>) => {
+    const url = `api/language?lang=${selectedLanguage.value}`;
+
+    const handleChange = async (lessons: Array<WorldOptions>) => {
         const data = {
             path: [
                 category.value,
             ],
             text: lessons,
         };
-        const url = `api/language?lang=${selectedLanguage.value}`;
 
         await editorApi(url, { data, method: "PATCH" });
     };
 
     return {
-        selectLesson,
-        selectedLesson,
-        setCategory,
-        removeLesson,
-        reorderLessons,
+        selectIndex,
+        selectCategory,
+        handleChange,
+        lessonIndex,
+        category,
     };
 }
