@@ -4,6 +4,8 @@ interface IFetchInput {
 export default function editorApi (url: string, args: IFetchInput & Record<string, any> = {}) {
     const { data, ...otherParams } = args;
 
+    const { origin } = window.location;
+
     let body;
     try {
         body = JSON.stringify(data);
@@ -11,7 +13,7 @@ export default function editorApi (url: string, args: IFetchInput & Record<strin
         body = args.body;
     }
 
-    return fetch(url, {
+    return fetch(`${origin}/${url}`, {
         ...otherParams,
         body,
         headers: {

@@ -44,23 +44,44 @@
             }
         }
     },
-
     "lessons": [
         {
             "title": "Bună Miorița",
-            "slug": "1-intro"
+            "slug": "1-intro",
+            "workCode": "buna miorita!",
+            "details": [
+                {
+                    "title": "new section",
+                    "text": "new section text",
+                    "class": "paragraph"
+                }
+            ]
         },
         {
             "title": "Conditional statements",
-            "slug": "2-if"
+            "slug": "2-if",
+            "details": []
         },
         {
             "title": "Loops & variables",
-            "slug": "3-while"
+            "slug": "3-while",
+            "details": []
         },
         {
             "title": "Functions",
-            "slug": "4-function"
+            "slug": "4-function",
+            "details": [
+                {
+                    "title": "new section",
+                    "text": "new section text",
+                    "class": "paragraph"
+                },
+                {
+                    "title": "new section",
+                    "text": "new section text",
+                    "class": "paragraph"
+                }
+            ]
         }
     ],
     "playgrounds": [

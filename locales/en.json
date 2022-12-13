@@ -47,33 +47,139 @@
     "lessons": [
         {
             "title": "Meet Miorița",
-            "slug": "1-intro"
+            "slug": "1-intro",
+            "size": {
+                "x": 3,
+                "y": 3
+            },
+            "start": {
+                "position": {
+                    "x": 0,
+                    "y": 0
+                },
+                "orientation": "E"
+            },
+            "walls": {
+                "x": {
+                    "x": 0,
+                    "y": 0
+                },
+                "y": {
+                    "x": 1,
+                    "y": 0
+                }
+            },
+            "objects": {
+                "type": "grass",
+                "position": {
+                    "x": 1,
+                    "y": 0
+                },
+                "fixed": false
+            },
+            "timeout": 1000,
+            "lesson": 1,
+            "nextLesson": "2-if",
+            "details": [
+                {
+                    "title": "instructions",
+                    "text": "Miorița is a sheep that can be programmed to move in her sheepfold.\n\nTo program her, you simply write instructions.\n\nIn this page, we will learn some of the things she can do.",
+                    "class": "paragraph"
+                },
+                {
+                    "title": "new command",
+                    "text": "turnRight(),\nmove(),\nreset(),\n// comments,\n/* comments */",
+                    "class": "code"
+                },
+                {
+                    "title": "challenge",
+                    "text": "Using the commands we learned, have Miorița go to the grass zone, beyond the wall.",
+                    "class": "paragraph"
+                }
+            ],
+            "workCode": "// The following line makes Miorița turn to her right (clockwise, like the hands of old clocks).\nturnRight()\n\n// The following line makes Miorița move forward, in the direction she is facing.\nmove()\n\n// Miorița cannot move outside the sheepfold, or cross any of the walls.\n// She always starts where you left her (maybe from previous runs).\n// The following line makes Miorița get back to her start position.\nreset()\n\n// BTW, these green lines of text are called \"comments\".\n// They allow programmers to write anything they want without it being executed.\n// They're great for describing what we did in the code,\n// for programmers who might look at the code again.\n\n// Every programming language has comments.,\n// In the one we are using to control Miorița, there are two types ,of comments:\n//  1. Line comments, where everything after the first // is ignored on the same line\n//  2. Block comments, where everything after /* and before */ is ignored, even if it spans over multiple lines.\n// Now delete everything in this panel, and try to solve the challenge."
         },
         {
             "title": "Conditional statements",
-            "slug": "2-if"
+            "slug": "2-if",
+            "workCode": "dragi tovarasi si concetateni",
+            "details": [
+                {
+                    "title": "new section",
+                    "text": "new section text",
+                    "class": "paragraph"
+                }
+            ]
         },
         {
             "title": "Loops & variables",
-            "slug": "3-while"
+            "slug": "3-while",
+            "details": []
         },
         {
             "title": "Functions",
-            "slug": "4-function"
+            "slug": "4-function",
+            "details": [
+                {
+                    "title": "new section",
+                    "text": "new section text",
+                    "class": "paragraph"
+                },
+                {
+                    "title": "new section",
+                    "text": "new section text",
+                    "class": "paragraph"
+                }
+            ],
+            "workCode": "test"
         }
     ],
     "playgrounds": [
         {
             "title": "Empty playground",
-            "slug": "index"
+            "slug": "index",
+            "details": [
+                {
+                    "title": "new section",
+                    "text": "new section text",
+                    "class": "paragraph"
+                }
+            ],
+            "workCode": "test 24321312321"
         },
         {
             "title": "The Hatchet",
-            "slug": "hatchet"
+            "slug": "hatchet",
+            "details": [
+                {
+                    "title": "new section",
+                    "text": "new section text",
+                    "class": "paragraph"
+                },
+                {
+                    "title": "new section",
+                    "text": "new section text text text text\n\nnewline",
+                    "class": "paragraph"
+                }
+            ],
+            "workCode": "fasdfdashgdfs\n\nsalut"
         },
         {
             "title": "The Escape",
-            "slug": "escape"
+            "slug": "escape",
+            "details": [
+                {
+                    "title": "new sectiondasdas",
+                    "text": "new section text",
+                    "class": "paragraph"
+                },
+                {
+                    "title": "new section",
+                    "text": "new section text",
+                    "class": "paragraph"
+                }
+            ],
+            "workCode": "fdasfdas"
         }
     ]
 }

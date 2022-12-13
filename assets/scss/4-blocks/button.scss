@@ -19,3 +19,23 @@
     background-color: var(--hover-color);
     color: var(--color-white);
 }
+
+.editor_button {
+    display: flex;
+    align-items: center;
+    gap: 0.93rem;
+    background-color: var(--color-green);
+    padding: 0.5rem 1.25rem;
+    border: none;
+    border-radius: 0.5rem;
+    font-family: var(--font-editor);
+    font-weight: 500;
+    font-size: 1rem;
+    color: var(--color-white);
+    cursor: pointer;
+
+    &:hover {
+        background-color: var(--color-green-lighter);
+        color: var(--color-white);
+    }
+}
