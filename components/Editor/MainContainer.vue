@@ -17,5 +17,6 @@
     align-items: center;
     gap: 0.75rem;
     background-color: var(--color-gray-800);
+    overflow-y: auto;
 }
 </style>

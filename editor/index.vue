@@ -6,7 +6,7 @@
             class="home_sheep"
         >
         <h1 class="home_title">It's time to edit Miorița</h1>
-        <NuxtLink class="home_button" to="languages">Get Started</NuxtLink>
+        <NuxtLink class="editor_button" to="languages">Get Started</NuxtLink>
     </MainContainer>
 </template>
 
@@ -26,19 +26,11 @@ import MainContainer from "~/components/Editor/MainContainer";
     font-size: 3rem;
 }
 
-.home_button {
+.editor_button {
     font-size: 1.25rem;
     font-weight: 600;
     padding: 0.5rem 2rem;
-    border-radius: 0.5rem;
-    background-color: var(--color-green);
-    color: var(--color-white);
     transition: all .1s;
-
-    &:hover, &:focus, &:focus-within {
-        background-color: var(--color-green-lighter);
-        color: var(--color-white);
-    }
 }
 
 </style>
