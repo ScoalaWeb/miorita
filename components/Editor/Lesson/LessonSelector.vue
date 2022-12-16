@@ -19,6 +19,7 @@
         <AddButton @show="onAdd" />
     </MainContainer>
 </template>
+
 <script lang="ts">
 import { mapActions, mapState } from "pinia";
 import { computed, onMounted } from "vue";
@@ -41,8 +42,8 @@ export default {
     },
 };
 </script>
-<script setup lang="ts">
 
+<script setup lang="ts">
 const props = defineProps<{
     type: string
 }>();
@@ -71,6 +72,7 @@ const onAdd = () => {
 };
 
 </script>
+
 <style lang="scss">
 .list {
     display: flex;
