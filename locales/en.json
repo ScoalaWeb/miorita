@@ -48,6 +48,9 @@
         {
             "title": "Meet Miorița",
             "slug": "1-intro",
+            "link": "lessons/1-intro",
+            "description": "take a look at what Miorița can do",
+            "background": "1-bg",
             "size": {
                 "x": 3,
                 "y": 3
@@ -102,6 +105,9 @@
         {
             "title": "Conditional statements",
             "slug": "2-if",
+            "link": "lessons/2-if",
+            "description": "learn to run different sets of instructions depending on a condition.",
+            "background": "2-bg",
             "workCode": "dragi tovarasi si concetateni",
             "details": [
                 {
@@ -114,11 +120,17 @@
         {
             "title": "Loops & variables",
             "slug": "3-while",
+            "link": "lessons/3-while",
+            "description": "find ways to run the same commands multiple times in succesion.",
+            "background": "3-bg",
             "details": []
         },
         {
             "title": "Functions",
             "slug": "4-function",
+            "link": "lessons/4-function",
+            "description": "create your own insructions that you can reuse whenever you want.",
+            "background": "4-bg",
             "details": [
                 {
                     "title": "new section",
@@ -138,6 +150,8 @@
         {
             "title": "Empty playground",
             "slug": "index",
+            "link": "playgrounds",
+            "description": "Empty code and a 9x9 board where you can move however you want. Miorița starts at the very center of the sheepfold.",
             "details": [
                 {
                     "title": "new section",
@@ -150,6 +164,8 @@
         {
             "title": "The Hatchet",
             "slug": "hatchet",
+            "link": "playgrounds/hatchet",
+            "description": "Based on a Romanian novel, The Hatchet, Miorița has to pick the hatchet, and deliver it to Vitoria Lipan.",
             "details": [
                 {
                     "title": "new section",
@@ -167,6 +183,8 @@
         {
             "title": "The Escape",
             "slug": "escape",
+            "link": "playgrounds/escape",
+            "description": "Help Miorița escape a random sheepfold.",
             "details": [
                 {
                     "title": "new sectiondasdas",

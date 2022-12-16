@@ -1,5 +1,5 @@
 <template>
-    <div class="editor_layout">
+    <div class="editor_layout dark-mode">
         <nav class="editor_menu">
             <NuxtLink class="editor_title" to="/">Miorița Editor</NuxtLink>
             <div class="menu_items">
@@ -10,7 +10,7 @@
                 <NuxtLink to="/lessons">Lessons</NuxtLink>
                 <NuxtLink to="/playgrounds">Playgrounds</NuxtLink>
             </div>
-            <div class="language">
+            <div class="editor_language">
                 {{ store.selectedLanguage }}
             </div>
         </nav>
@@ -110,4 +110,8 @@ html {
     font-family: var(--font-editor);
 }
 
+.editor_language {
+    text-transform: uppercase;
+    font-family: var(--font-editor);
+}
 </style>

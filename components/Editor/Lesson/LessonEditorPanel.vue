@@ -1,5 +1,5 @@
 <template>
-    <LessonContainer :section="type">
+    <LessonContainer :section="$props.section">
         <div class="description">
             <div
                 v-for="(entry, index) in currentLesson.details"
@@ -38,6 +38,7 @@
         </div>
     </LessonContainer>
 </template>
+
 <script setup lang="ts">
 import { computed } from "vue";
 import CodeButton from "../CodeButton.vue";
@@ -45,6 +46,10 @@ import DeleteButton from "../DeleteButton.vue";
 import LessonContainer from "./LessonContainer.vue";
 import editApi from "~/lib/editorApi";
 import useEditorStore from "~/stores/editor";
+
+defineProps<{
+    section: string
+}>();
 
 const store = useEditorStore();
 
@@ -96,13 +101,17 @@ const addSection = async () => {
 };
 
 </script>
+
 <style scoped lang="scss">
 .description {
+    height: 68vh;
     display: flex;
     flex-direction: column;
     gap: 0.93rem;
+    overflow-y: auto;
 
     &_entry {
+        width: 95%;
         display: grid;
         align-items: center;
         column-gap: 0.3rem;
@@ -142,7 +151,7 @@ const addSection = async () => {
     }
 
     .entry_text {
-        height: 8rem;
+        height: 9rem;
         grid-column: 1/4;
     }
 
@@ -150,7 +159,8 @@ const addSection = async () => {
         align-self: flex-start;
         gap: 0.62rem;
         padding: 0.5rem 0.62rem;
-        font-weight: 500;
+        font-size: 1rem;
+        font-weight: 900;
     }
 }
 

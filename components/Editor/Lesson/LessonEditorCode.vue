@@ -1,5 +1,5 @@
 <template>
-    <LessonContainer :section="type">
+    <LessonContainer :section="$props.section">
         <div class="code">
             <textarea
                 :value="currentLesson.workCode"
@@ -9,11 +9,16 @@
         </div>
     </LessonContainer>
 </template>
+
 <script setup lang="ts">
 import { computed } from "vue";
 import LessonContainer from "./LessonContainer.vue";
 import editApi from "~/lib/editorApi";
 import useEditorStore from "~/stores/editor";
+
+defineProps<{
+    section: string
+}>();
 
 const store = useEditorStore();
 
@@ -37,6 +42,7 @@ const handleInput = async (e: Event, key: string, ...otherKeys: Array<number|str
 };
 
 </script>
+
 <style scoped lang="scss">
 .code {
     height: 100%;

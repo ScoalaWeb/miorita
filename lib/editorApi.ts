@@ -13,7 +13,9 @@ export default function editorApi (url: string, args: IFetchInput & Record<strin
         body = args.body;
     }
 
-    return fetch(`${origin}/${url}`, {
+    const fixedUrl = url.startsWith("/") ? url.substring(1) : url;
+
+    return fetch(`${origin}/${fixedUrl}`, {
         ...otherParams,
         body,
         headers: {
