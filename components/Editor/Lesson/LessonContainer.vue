@@ -20,6 +20,7 @@ defineProps<{
     flex-grow: 1;
     gap: 1.25rem;
     overflow-y: auto;
+    overflow-x: hidden;
     border-radius: 1rem;
     padding: 1.56rem;
     background-color: var(--color-gray-800);

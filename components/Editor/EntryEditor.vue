@@ -84,6 +84,7 @@ const handleInput = async (e: Event, entryKey: string) => {
 }
 
 .entry {
+    font-family: var(--font-editor);
     font-size: 1.56rem;
     font-weight: 400;
     cursor: pointer;

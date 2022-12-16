@@ -1,13 +1,14 @@
 <template>
     <div v-if="store.currentTranslations" class="lesson_editor">
-        <LessonEditorPanel />
-        <LessonEditorCode />
+        <LessonEditorPanel section="Panel" />
+        <LessonEditorCode section="Editor" />
         <LessonContainer section="Sheepfold">
             Content
         </LessonContainer>
         <LessonFooter />
     </div>
 </template>
+
 <script setup>
 import LessonContainer from "./LessonContainer.vue";
 import LessonEditorCode from "./LessonEditorCode.vue";
@@ -24,7 +25,7 @@ const store = useEditorStore();
     height: 100%;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    grid-template-rows: 10fr 1fr;
+    grid-template-rows: 10fr;
     gap: 1.25rem;
 }
 </style>

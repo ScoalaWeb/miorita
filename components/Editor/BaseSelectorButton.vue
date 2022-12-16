@@ -62,7 +62,6 @@ const remove = () => {
         font-family: var(--font-editor);
         font-weight: 600;
         font-size: 1.25rem;
-        text-transform: uppercase;
         text-align: start;
         color: var(--color-white);
         background-color: transparent;
