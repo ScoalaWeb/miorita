@@ -1,9 +1,10 @@
 <!-- eslint-disable vue/multi-word-component-names -->
 <template>
     <span :class="$style.footer">
-        <a href="https://scoalaweb.ro" target="_blank">by Școala Web</a>
+        <a href="https://scoalaweb.ro" target="_blank">{{ $t("texts.main-labels.labels.credits") }}</a>
     </span>
 </template>
+
 <style module>
 .footer {
     background: transparent;

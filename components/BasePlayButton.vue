@@ -2,14 +2,14 @@
 <template>
     <NuxtLink
         v-if="link"
-        :to="link"
+        :to="localePath(link)"
         class="button"
         :style="String(color) === 'green'
             ? '--background-color:  var(--secondary-button); --hover-color: var(--secondary-button-hover)'
             : '--background-color:  var(--primary-button); --hover-color: var(--primary-button-hover)'"
     >
         <span class="label">
-            play
+            <slot>{{ $t("texts.button-text.buttons.play") }}</slot>
         </span>
         <span class="arrows micon mi-caret" />
     </NuxtLink>
@@ -28,5 +28,9 @@ defineProps<{
 .arrows {
     padding-top: 0.25rem;
     font-size: 1rem;
+}
+
+.label {
+    text-transform: lowercase;
 }
 </style>

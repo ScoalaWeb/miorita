@@ -9,13 +9,14 @@
             :class="$style.container"
             :style="{'--sheepfold-width': `${sheepfoldWidthCss}`}"
         >
-            <TheDescription v-model="isDescriptionOpen" />
-            <TheEditor :code="code" :class="$style.editor" />
+            <TheDescription v-model="isDescriptionOpen" :lesson="lesson" />
+            <TheEditor :code="lesson.workCode" :class="$style.editor" />
             <button
                 :class="[$style.resize, dragging && $style.dragging]"
+                :title="$t('texts.screen-reader.lesson.drag-to-resize')"
                 @mousedown="dragStart"
             >
-                <span class="invisible">Drag to resize</span>
+                <span class="invisible">{{ $t("texts.screen-reader.lesson.drag-to-resize") }}</span>
             </button>
             <TheWorld
                 ref="sheepfold"
@@ -28,7 +29,7 @@
                 </template>
             </TheWorld>
         </div>
-        <TheLessonFooter />
+        <TheLessonFooter :lesson="lesson" />
     </div>
 </template>
 
@@ -39,16 +40,20 @@ import TheEditor from "./TheEditor.vue";
 import TheLessonFooter from "./TheLessonFooter";
 import TheLessonHeader from "./TheLessonHeader.vue";
 import TheWorld from "./TheWorld.vue";
+import LessonTranslation from "~/interfaces/LessonTranslation";
 import WorldOptions from "~/interfaces/WorldOptions";
 import useLessonStore from "~/stores/lesson";
 
 const props = defineProps<{
-    code: string
+    lesson: LessonTranslation
     options: WorldOptions
 }>();
 
 const store = useLessonStore();
-store.setOptions(props.options);
+store.setOptions({
+    ...props.options,
+    ...props.lesson,
+});
 
 const sheepfold = ref();
 const isDescriptionOpen: Ref<boolean> = ref(true);

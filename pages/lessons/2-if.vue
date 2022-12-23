@@ -1,65 +1,8 @@
 <!-- eslint-disable max-len -->
 <template>
     <TheLesson
-        :code="code"
-        :options="{
-            size: { x: 4, y: 2 },
-            start: {
-                position: { x: 0, y: 1 },
-                orientation: 'E',
-                picked: {},
-            },
-            walls: {
-                x: wall ? [
-                    {x: 0, y: 1}
-                ] : undefined
-            },
-            objects: [
-                {
-                    position: { x: 3, y: 0 },
-                    type: 'grass',
-                    fixed: true
-                },
-                {
-                    position: { x: 3, y: 1 },
-                    type: 'grass',
-                    fixed: true
-                },
-            ],
-            timeout: 1000,
-            title: 'Conditional statements',
-            lesson: 2,
-            nextLesson: '3-while',
-            previousLesson: '1-intro',
-            details: [
-                {
-                    title: 'instructions',
-                    text: [
-                        'We are faced with two paths, both having a happy ending: A happy and stuffed Miorița.',
-                        'She is very hungry, and needs to be led to the nearest patch of grass. However, there may be a fence in the way.',
-                        'We should come up with one set of instructions that will tackle both scenarios.',
-                    ],
-                    class: 'paragraph'
-                },
-                {
-                    title: 'new commands',
-                    text: [
-                        'if() && else',
-                        'canMove()',
-                        '!canMove()',
-                    ],
-                    class: 'code'
-                },
-                {
-                    title: 'challenge',
-                    text: [
-                        'Help Miorița reach the closest patch of grass so she can finally eat.',
-                        'Delete the code that already does this and come up with the best way to do it.',
-                    ],
-                    class: 'paragraph'
-                },
-            ],
-        }"
+        :lesson="lesson"
+        :options="worldOptionsWithWall"
     >
         <template #options>
             <label :class="$style.fence">
@@ -69,104 +12,92 @@
                     class="micon"
                     :class="$style.checkbox"
                 >
-                fence
+                {{ $t('texts.main-labels.labels.fence') }}
             </label>
         </template>
     </TheLesson>
 </template>
 
 <script lang="ts">
-import { Vue, Component } from "vue-property-decorator";
+import { defineComponent } from "vue";
 import TheLesson from "~/components/Lesson/TheLesson.vue";
+import LessonTranslation from "~/interfaces/LessonTranslation";
+import WorldOptions from "~/interfaces/WorldOptions";
 
-@Component({
+const IF_LESSON_SLUG = "2-if";
+
+export default defineComponent({
+    name: "LessonPage",
     components: { TheLesson },
+
+    asyncData ({ $content, error }) {
+        return $content?.(`lessons/${IF_LESSON_SLUG}`)
+            .fetch()
+            .then(worldOptions => ({ worldOptions }))
+            .catch(() => {
+                error?.({ statusCode: 404, message: "Page not found" });
+            });
+    },
+
+    data () {
+        return {
+            worldOptions: {},
+            wall: true,
+        };
+    },
+
     head () {
         return {
-            title: "Conditional statements",
+            title: this.worldOptions.title,
             meta: [
                 {
                     hid: "description",
                     name: "description",
-                    content: "Learn how to run different sets of instructions depending on a condition.",
+                    content: this.lesson.description,
                 },
             ],
         };
     },
-})
-export default class LessonSimpleIf extends Vue {
-    wall:boolean = true;
+    computed: {
+        lessons (): Array<LessonTranslation> {
+            return this.$t("lessons");
+        },
+        lessonIndex (): number {
+            return this.lessons.findIndex(lesson => lesson.slug === IF_LESSON_SLUG);
+        },
 
-    code:string = `/*
-    if() is a special instruction that causes the next instruction to run or not
-    depending on the condition given between the parenthesis.
-*/
+        lesson () {
+            const { lessons, lessonIndex } = this;
+            const nextIndex = lessonIndex + 1;
+            const prevIndex = lessonIndex - 1;
+            return {
+                ...lessons[lessonIndex],
+                lessonIndex,
+                lessonCount: lessons.length,
+                nextLesson: nextIndex < lessons.length ? lessons[nextIndex].slug : null,
+                previousLesson: prevIndex >= 0 ? lessons[prevIndex].slug : null,
+            };
+        },
 
-if ( canMove() ) {
-    /*
-        Using { curly braces } allows running multiple instructions in response
-        to a single condition. These are called "code blocks".
-    */
+        workCode () {
+            return this.lesson.workCode;
+        },
 
-    move()
-    move()
-    move()
-} else {
-    /*
-        The "else" statement can be attached to an "if" statement and represents
-        instructions that run when the "if" condition is false.
-    */
-
-    turnRight()
-    turnRight()
-    turnRight()
-    // Turing right 3 times gets us to the same result as turning left one time.
-
-    move()
-    turnRight()
-    move()
-    move()
-    move()
-}
-
-// After the if+else statements, we can continue doing stuff...
-
-// The next instruction makes Miorița move to the start position.
-// It is a code alternative to the "Reset" button.
-reset()
-
-/*
-    Both the "if", and the "else" blocks end with the move() instruction used
-    multiple times.
-    Seeing the sheepfold from above, we can notice that once Miorița is facing
-    left, she always has to move 3 times.
-    We can move the 3 instructions after the if+else statement.
-    We can also remove the "else" statement if we use the ! operator in the
-    "if" condition. ! flips the expression after it.
-    So true becomes false, and false becomes true.
-*/
-
-if ( ! canMove() ) {
-    // Handle the case where Miorița is blocked by a fence.
-}
-
-// Then, run 3 move commands regardless of anything else.
-
-/*
-    Final note #1
-    -------------
-    You may notice that "if" and "else" are colored differently,
-    and also they do not cause any output in the console.
-    They are statements of the language, not just functions made specifically
-    for this application.
-
-    Final note #2
-    -------------
-    See how instructions inside a block are indented to the right?
-    This is not required, but it makes the code slightly more readable.
-*/
-`;
-}
+        worldOptionsWithWall (): WorldOptions {
+            return {
+                ...(this.worldOptions as WorldOptions),
+                walls: {
+                    x: this.wall
+                        ? [
+                            { x: 0, y: 1 },
+                        ]
+                        : undefined,
+                }
+                ,
+            } as WorldOptions;
+        },
+    },
+});
 </script>
 
 <style module lang="scss">

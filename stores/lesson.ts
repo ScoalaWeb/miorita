@@ -1,5 +1,6 @@
 import { defineStore } from "pinia";
 import { ref } from "vue";
+import LessonTranslation from "../interfaces/LessonTranslation";
 import type WorldOptions from "../interfaces/WorldOptions";
 // @ts-ignore
 import lessons from "@/content/lessons.json";
@@ -7,7 +8,7 @@ import lessons from "@/content/lessons.json";
 const WORK_CODE = "workCode";
 
 const useLessonStore = defineStore("lesson", () => {
-    const options = ref<WorldOptions>({
+    const options = ref<Partial<WorldOptions & LessonTranslation>>({
         size: { x: 4, y: 4 },
         start: {
             position: { x: 0, y: 0 },
@@ -51,7 +52,7 @@ const useLessonStore = defineStore("lesson", () => {
         }
     };
 
-    const setOptions = (value: WorldOptions) => {
+    const setOptions = (value: WorldOptions & LessonTranslation) => {
         options.value = JSON.parse(JSON.stringify(value));
     };
 

@@ -5,7 +5,7 @@
             @click="$emit('run')"
         >
             <i class="micon mi-play" />
-            Run
+            {{ $t('texts.button-text.buttons.run') }}
         </button>
 
         <button
@@ -13,7 +13,9 @@
             @click="$emit('debug')"
         >
             <i class="micon mi-bug" />
-            <span class="invisible">Debug</span>
+            <span class="invisible">
+                {{ $t('texts.button-text.buttons.debug') }}
+            </span>
         </button>
     </div>
 </template>

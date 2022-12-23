@@ -40,6 +40,7 @@
 </template>
 
 <script setup lang="ts">
+import { debounce } from "debounce";
 import { computed } from "vue";
 import CodeButton from "../CodeButton.vue";
 import DeleteButton from "../DeleteButton.vue";
@@ -74,12 +75,12 @@ const handleCheck = (e: Event, ...otherKeys: Array<number|string>) => {
     );
 };
 
-const handleInput = (e: Event, ...otherKeys: Array<number|string>) => {
+const handleInput = debounce((e: Event, ...otherKeys: Array<number|string>) => {
     store.patchLanguage(
         createPath(otherKeys),
         (e.target as HTMLTextAreaElement | HTMLInputElement).value,
     );
-};
+}, 1000, false);
 
 const addSection = () => {
     const details = [

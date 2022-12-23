@@ -1,6 +1,6 @@
 <template>
     <TheLesson
-        :code="code"
+        :lesson="playground"
         :options="{
             size: size,
             start: {
@@ -20,32 +20,6 @@
             },
             objects: grassObjects,
             timeout: 1000,
-            title: 'The Escape',
-            details: [
-                {
-                    title: 'challenge',
-                    text: [
-                        'You can never know where the fence is going to be or how big the sheepfold is.',
-                        'Think of a solution that will get Miorița to a patch of grass as quickly as possible.',
-                    ],
-                    class: 'paragraph'
-                },
-                {
-                    title: 'commands',
-                    text: [
-                        'move()',
-                        'canMove()',
-                        'turnRight()',
-                        'reset()',
-                        'if() { }',
-                        'else { }',
-                        'while() { }',
-                        'for() { }',
-                        'var',
-                    ],
-                    class: 'code'
-                },
-            ],
         }"
     />
 </template>
@@ -53,20 +27,21 @@
 <script lang="ts">
 import { Vue, Component } from "vue-property-decorator";
 import WorldObject from "../../interfaces/WorldObject";
-import { Coordinates } from "../../interfaces/WorldOptions";
 import arrayRandom from "../../lib/arrayRandom";
 import TheLesson from "~/components/Lesson/TheLesson.vue";
+import LessonTranslation from "~/interfaces/LessonTranslation";
+import { Coordinates } from "~/interfaces/WorldOptions";
 
 @Component({
     components: { TheLesson },
     head () {
         return {
-            title: "The Escape",
+            title: this.playground.title,
             meta: [
                 {
                     hid: "description",
                     name: "description",
-                    content: "Help Miorița escape a random sheepfold.",
+                    content: this.playground.description,
                 },
             ],
         };
@@ -86,6 +61,11 @@ export default class Escape extends Vue {
             x: Math.floor(this.size.x / 2),
             y: Math.floor(this.size.y / 2),
         };
+    }
+
+    get playground () : LessonTranslation {
+        const playgrounds = this.$t("playgrounds") as Array<LessonTranslation>;
+        return playgrounds.find(playground => playground.slug === "escape");
     }
 
     startOrientation:string = arrayRandom(["N", "S", "W", "E"]);

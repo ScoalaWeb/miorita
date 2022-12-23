@@ -1,9 +1,10 @@
 <template>
     <div :class="$style.bar">
         <h1 :class="$style.brand">
-            <NuxtLink to="/" :class="$style.main">Miorița</NuxtLink>
+            <NuxtLink to="/" :class="$style.main">{{ $t('texts.main-labels.labels.brand') }}</NuxtLink>
         </h1>
         <div :class="$style.buttons">
+            <LanguageSelector />
             <ColorModeSwitcher />
         </div>
         <MainMenu :class="$style.menu" />
@@ -12,6 +13,7 @@
 
 <script setup>
 import ColorModeSwitcher from "../ColorModeSwitcher.vue";
+import LanguageSelector from "../LanguageSelector.vue";
 import MainMenu from "./MainMenu.vue";
 </script>
 

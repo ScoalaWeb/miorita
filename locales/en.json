@@ -7,9 +7,12 @@
                 "playgrounds": "Playgrounds"
             },
             "labels": {
+                "switch-to": "Switch to English",
+                "brand": "Miorița",
                 "heading": "Miorița is here to help you in your programming journey",
                 "button": "play now",
-                "credits": "by Școala Web"
+                "credits": "by Școala Web",
+                "fence": "fence"
             }
         },
         "button-text": {
@@ -18,7 +21,7 @@
                 "reset": "Reset",
                 "stop": "Stop",
                 "debug": "Debug",
-                "step-over": "Step-over",
+                "step-over": "Step over",
                 "fence": "Fence",
                 "play": "play"
             },
@@ -26,6 +29,15 @@
                 "next": "Next",
                 "back": "Back",
                 "more": "More"
+            }
+        },
+        "screen-reader": {
+            "carousel": {
+                "previous": "Previous",
+                "next": "Next"
+            },
+            "lesson": {
+                "drag-to-resize": "Drag to resize."
             }
         },
         "console-output": {
@@ -41,7 +53,19 @@
                 "pick": "Miorița has picked \"{0}\"",
                 "drop": "Miorița has dropped \"{0}\"",
                 "next-turnLeft": "Miorița will turn left",
-                "next-turnRight": "Miorița will turn right"
+                "next-turnRight": "Miorița will turn right",
+                "next-canMove": "Miorița is analyzing if she can move forward",
+                "next-move": "Miorița will try to move forward",
+                "next-found": "Miorița is trying to find \"{0}\"",
+                "next-pick": "Miorița is trying to pick \"{0}\"",
+                "next-drop": "Miorița is trying to drop \"{0}\"",
+                "end": "Miorița has ended her programming",
+                "error-orientation": "Miorița is a little dizzy",
+                "error-map-overflow": "Miorița cannot get out of her sheepfold",
+                "error-wall-hit": "Miorița cannot get over the fence",
+                "error-stop": "Miorița has stopped",
+                "error-build": "Miorița cannot understand . Here's why: {0}",
+                "error-generic": "{0}"
             }
         }
     },
@@ -58,7 +82,7 @@
                     "class": "paragraph"
                 },
                 {
-                    "title": "new command",
+                    "title": "commands",
                     "text": "turnRight()\nmove()\nreset()\n// comments\n/* comments */",
                     "class": "code"
                 },
@@ -82,7 +106,7 @@
                     "class": "paragraph"
                 },
                 {
-                    "title": "new section",
+                    "title": "commands",
                     "text": "if() && else\ncanMove()\ncanMove()",
                     "class": "code"
                 },
@@ -97,7 +121,6 @@
         {
             "title": "Loops & variables",
             "slug": "3-while",
-            "link": "lessons/3-while",
             "description": "find ways to run the same commands multiple times in succesion.",
             "background": "3-bg",
             "details": [
@@ -107,7 +130,7 @@
                     "class": "paragraph"
                 },
                 {
-                    "title": "new commands",
+                    "title": "commands",
                     "text": "for() { }\nwhile() { }\nvar\n",
                     "class": "paragraph"
                 },
@@ -131,7 +154,7 @@
                     "class": "paragraph"
                 },
                 {
-                    "title": "new commands",
+                    "title": "commands",
                     "text": "function\npick(\"hatchet\")\ndrop(\"hatchet\")",
                     "class": "code"
                 },

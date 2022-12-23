@@ -2,14 +2,14 @@
     <nav>
         <article
             :class="$style.cards"
-            :style="{'--grid-cards-count': playground.length}"
+            :style="{'--grid-cards-count': $t('playgrounds').length}"
         >
             <BaseCard
-                v-for="(scenario) in playground"
+                v-for="(scenario) in $t('playgrounds')"
                 :key="scenario.title"
                 :class="$style.card"
                 :description="scenario.description"
-                :link="scenario.link"
+                :link="scenarioLink(scenario)"
                 :title="scenario.title"
                 color="green"
             />
@@ -19,7 +19,9 @@
 
 <script setup>
 import BaseCard from "~/components/Home/PlaygroundCard.vue";
-import playground from "~/content/playground.json";
+
+const prefix = "playgrounds";
+const scenarioLink = scenario => `/${prefix}/${scenario.slug}`;
 </script>
 
 <style module lang="scss">
