@@ -7,7 +7,7 @@
                 :class="{[$style.selected]: store.selected === button.slug}"
                 :href="`#${button.slug}`"
             >
-                {{ button.label }}
+                {{ $t(button.label) }}
             </a>
         </span>
         <div :class="$style.underlines" :style="`--line-position: ${store.selectedIndex}`">

@@ -28,17 +28,22 @@
 
 <script setup lang="ts">
 import { computed } from "vue";
+import LessonTranslation from "~/interfaces/LessonTranslation";
 import useLessonStore from "~/stores/lesson";
 
 const props = defineProps<{
     value: boolean
+    lesson: LessonTranslation
 }>();
 
 const emit = defineEmits(["input"]);
 
 const store = useLessonStore();
 
-const details = computed(() => store.options.details);
+const details = computed(() => props.lesson.details.map(detail => ({
+    ...detail,
+    text: detail.text.split("\n"),
+})));
 
 const handleClick = () => {
     emit("input", !props.value);

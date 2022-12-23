@@ -11,6 +11,7 @@
 </template>
 
 <script setup lang="ts">
+import { debounce } from "debounce";
 import { computed } from "vue";
 import LessonContainer from "./LessonContainer.vue";
 import useEditorStore from "~/stores/editor";
@@ -19,8 +20,8 @@ const store = useEditorStore();
 
 const currentLesson = computed(() => store.currentTranslations[store.category][store.lessonIndex ?? ""] ?? {});
 
-const handleInput = (e: Event) => {
-    store.patchLanguage(
+const handleInput = debounce(async (e: Event) => {
+    await store.patchLanguage(
         [
             store.category,
             store.lessonIndex,
@@ -28,7 +29,7 @@ const handleInput = (e: Event) => {
         ],
         (e.target as HTMLTextAreaElement).value,
     );
-};
+}, 1000, false);
 
 </script>
 

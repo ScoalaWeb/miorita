@@ -42,7 +42,7 @@
                     <img
                         v-if="cell.withCharacter"
                         src="~/assets/img/character.svg"
-                        alt="Miorița"
+                        :alt="$t('texts.main-labels.labels.brand')"
                         :class="$style.character"
                         draggable="false"
                     >
@@ -62,7 +62,7 @@
                     :class="$style.button"
                     @click="stepOver"
                 >
-                    Step over
+                    {{ $t('texts.button-text.buttons.step-over') }}
                 </BaseActionButton>
                 <BaseActionButton
                     v-if="!isRunning && canReset"
@@ -70,7 +70,7 @@
                     :class="$style.button"
                     @click="reset"
                 >
-                    Reset
+                    {{ $t('texts.button-text.buttons.reset') }}
                 </BaseActionButton>
                 <BaseActionButton
                     v-if="isRunning"
@@ -78,7 +78,7 @@
                     :class="$style.button"
                     @click="stop"
                 >
-                    Stop
+                    {{ $t('texts.button-text.buttons.stop') }}
                 </BaseActionButton>
             </span>
             <slot name="options" />
@@ -88,78 +88,8 @@
                 v-for="({message, args}, index) in moves"
                 :key="message + index"
             >
-                <template v-if="message === 'reset'">
-                    Miorița teleported to the start position
-                </template>
-                <template v-else-if="message === 'rotate-left'">
-                    Miorița turned left (counter-clockwise)
-                </template>
-                <template v-else-if="message === 'rotate-right'">
-                    Miorița turned right (clockwise)
-                </template>
-                <template v-else-if="message === 'forward'">
-                    Miorița moved forward
-                </template>
-                <template v-else-if="message === 'move-possible'">
-                    Miorița realized she can move forward
-                </template>
-                <template v-else-if="message === 'move-blocked'">
-                    Miorița realized she cannot move forward
-                </template>
-                <template v-else-if="message === 'found'">
-                    Miorița has found "{{ args[0] }}"
-                </template>
-                <template v-else-if="message === 'not-found'">
-                    Miorița has not found "{{ args[0] }}"
-                </template>
-                <template v-else-if="message === 'pick'">
-                    Miorița has picked "{{ args[0] }}"
-                </template>
-                <template v-else-if="message === 'drop'">
-                    Miorița has dropped "{{ args[0] }}"
-                </template>
-                <template v-else-if="message === 'next-turnLeft'">
-                    Miorița will turn left
-                </template>
-                <template v-else-if="message === 'next-turnRight'">
-                    Miorița will turn right
-                </template>
-                <template v-else-if="message === 'next-canMove'">
-                    Miorița is analyzing if she can move forward
-                </template>
-                <template v-else-if="message === 'next-move'">
-                    Miorița will try to move forward
-                </template>
-                <template v-else-if="message === 'next-found'">
-                    Miorița is trying to find "{{ args[0] }}"
-                </template>
-                <template v-else-if="message === 'next-pick'">
-                    Miorița is trying to pick "{{ args[0] }}"
-                </template>
-                <template v-else-if="message === 'next-drop'">
-                    Miorița is trying to drop "{{ args[0] }}"
-                </template>
-                <template v-else-if="message === 'end'">
-                    Miorița has ended her programming
-                </template>
-                <span v-else-if="message === 'error-orientation'" :class="$style.error">
-                    Miorița is a little dizzy
-                </span>
-                <span v-else-if="message === 'error-map-overflow'" :class="$style.error">
-                    Miorița cannot get out of her sheepfold
-                </span>
-                <span v-else-if="message === 'error-wall-hit'" :class="$style.error">
-                    Miorița cannot get over the fence
-                </span>
-                <span v-else-if="message === 'error-stop'" :class="$style.error">
-                    Miorița has stopped
-                </span>
-                <span v-else-if="message.startsWith('error-build')" :class="$style.error">
-                    Miorița cannot understand . Here's why:
-                    {{ message.substring('error-build-'.length) }}
-                </span>
-                <span v-else-if="message.startsWith('error-generic')" :class="$style.error">
-                    {{ message.substring('error-generic-'.length) }}
+                <span :class="message.startsWith('error-') ? $style.error : false">
+                    {{ $t(`texts.console-output.message.${message}`, args) }}
                 </span>
             </div>
         </div>
@@ -349,7 +279,7 @@ export default class TheWorld extends Vue {
         try {
             runner = makeRunner(this.store.code);
         } catch (e) {
-            this.moves.push({ message: `error-build-${e.message}` });
+            this.moves.push({ message: "error-build", args: [e.message] });
             this.actions = null;
             return;
         }
@@ -365,7 +295,7 @@ export default class TheWorld extends Vue {
                 if (e.isRunnerError) {
                     this.moves.push({ message: `error-${e.message}` });
                 } else {
-                    this.moves.push({ message: `error-generic-${e.message}` });
+                    this.moves.push({ message: "error-generic", args: [e.message] });
                     // eslint-disable-next-line no-console
                     console.error(e);
                 }

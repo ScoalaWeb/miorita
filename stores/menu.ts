@@ -3,15 +3,15 @@ import { ref, onMounted } from "vue";
 
 const buttons = [
     {
-        label: "About",
+        label: "texts.main-labels.menu.about-us",
         slug: "about",
     },
     {
-        label: "Lessons",
+        label: "texts.main-labels.menu.lessons",
         slug: "lessons",
     },
     {
-        label: "Playground",
+        label: "texts.main-labels.menu.playgrounds",
         slug: "playground",
     },
 ];

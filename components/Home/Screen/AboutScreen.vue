@@ -1,8 +1,8 @@
 <template>
     <header id="About" :class="$style.about">
-        <h1>Miorița is here to help you in your programming journey</h1>
+        <h1>{{ $t("texts.main-labels.labels.heading") }}</h1>
         <a href="#lessons" :class="$style.button">
-            play now
+            {{ $t("texts.main-labels.labels.button") }}
             <span class="micon mi-caret" :class="$style.arrows" />
         </a>
         <TheSheep :class="$style.miorita" />
