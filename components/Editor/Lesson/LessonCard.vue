@@ -1,65 +1,64 @@
 <template>
-    <div v-if="props.active" :class="$style.card_open">
-        <div :class="$style.card_box">
+    <div v-if="props.active" class="card_open">
+        <div class="card_box">
             <input
-                :class="$style.card_url"
-                :value="currentLesson.link"
+                class="card_url"
+                :value="currentLesson.slug"
                 placeholder="URL slug"
-                @input="e => handleInput(e, 'link')"
+                @input="handleInput($event, 'slug')"
             />
             <div
                 v-if="store.category === 'lessons'"
-                :class="$style.card_lesson"
+                class="card_lesson"
                 :style="{
                     backgroundImage:
                         `url('${require(`~/assets/img/lessons/${currentLesson.background}.svg`)}')`
                 }"
             >
                 <textarea
-                    :class="$style.title"
+                    class="title"
                     :value="currentLesson.title"
                     placeholder="Titlu"
-                    @input="e => handleInput(e, 'title')"
+                    @input="handleInput($event, 'title')"
                 />
                 <textarea
-                    :class="$style.description"
+                    class="description"
                     :value="currentLesson.description"
                     placeholder="Descriere"
-                    @input="e => handleInput(e, 'description')"
+                    @input="handleInput($event, 'description')"
                 />
                 <input
-                    :class="$style.number"
+                    class="number"
                     :value="store.lessonIndex"
                     readonly
                 />
             </div>
             <div
                 v-if="store.category === 'playgrounds'"
-                :class="$style.card_playground"
+                class="card_playground"
             >
                 <textarea
-                    :class="$style.title"
+                    class="title"
                     :value="currentLesson.title"
                     placeholder="Title"
-                    @input="e => handleInput(e, 'title')"
+                    @input="handleInput($event, 'title')"
                 />
                 <textarea
-                    :class="$style.description"
+                    class="description"
                     :value="currentLesson.description"
                     placeholder="Description"
-                    @input="e => handleInput(e, 'description')"
+                    @input="handleInput($event, 'description')"
                 />
             </div>
             <input
                 v-show="store.category === 'lessons'"
-                :class="$style.card_svg"
+                class="card_svg"
                 :value="currentLesson.background"
                 placeholder="Background image"
-                @input="e => handleInput(e, 'background')"
-                @change="store.init()"
+                @input="handleInput($event, 'background')"
             />
             <button
-                :class="$style.exit"
+                class="exit"
                 type="button"
                 @click="handleClick"
             >
@@ -70,7 +69,6 @@
 
 <script setup lang="ts">
 import { computed } from "vue";
-import editApi from "~/lib/editorApi";
 import useEditorStore from "~/stores/editor";
 
 const store = useEditorStore();
@@ -85,27 +83,24 @@ const handleClick = () => {
     emit("closeCard", props.active);
 };
 
-const createDataObject = (text: string, ...keys: any) => ({
-    path: [
-        store.category,
-        store.lessonIndex,
-        ...keys,
-    ],
-    text,
-});
-
 const currentLesson = computed(() => store.currentTranslations[store.category][store.lessonIndex ?? ""] ?? {});
 
-const url = `api/language?lang=${store.selectedLanguage}`;
+const handleInput = async (e: Event, key: string) => {
+    const { value } = e.target as HTMLTextAreaElement | HTMLInputElement;
 
-const handleInput = async (e: Event, key: string, ...otherKeys: Array<number|string>) => {
-    const text = (e.target as HTMLTextAreaElement | HTMLInputElement).value;
-    const data = createDataObject(text, key, ...otherKeys);
-    await editApi(url, { data, method: "PATCH" });
+    if (key === "slug") {
+        await store.renameLesson(currentLesson.value.slug, value);
+    }
+
+    await store.patchLanguage([
+        store.category,
+        store.lessonIndex,
+        key,
+    ], value);
 };
 </script>
 
-<style lang="scss" module>
+<style lang="scss">
 .card_open {
     width: 100vw;
     height: 100vh;
@@ -115,6 +110,7 @@ const handleInput = async (e: Event, key: string, ...otherKeys: Array<number|str
     position: absolute;
     inset-block-start: 0;
     background-color: var(--color-gray-900);
+    z-index: 1000;
 
     .exit {
         position: absolute;

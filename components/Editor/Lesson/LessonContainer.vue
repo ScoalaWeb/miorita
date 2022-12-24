@@ -13,12 +13,12 @@ defineProps<{
 
 </script>
 
-<style>
+<style lang="scss">
 .lesson_container {
     display: flex;
     flex-direction: column;
     flex-grow: 1;
-    gap: 1.25rem;
+    gap: 1rem;
     overflow-y: auto;
     overflow-x: hidden;
     border-radius: 1rem;
@@ -28,7 +28,7 @@ defineProps<{
 }
 
 .section {
-    font-weight: 500;
+    font-weight: 900;
     font-size: 1.56rem;
 }
 

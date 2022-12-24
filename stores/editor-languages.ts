@@ -1,4 +1,5 @@
 import { ref, watch, onMounted, computed } from "vue";
+import editApi from "../lib/editorApi";
 import editorApi from "@/lib/editorApi";
 
 type Translations = Record<string, any>;
@@ -33,7 +34,28 @@ export default function editorLanguages () {
         translations.value = { ...translations.value, [item]: content };
     };
 
+    const patchLanguage = async (path: Array<string>, text: any) => {
+        const response = await editApi(
+            `api/language?lang=${selectedLanguage.value}`,
+            {
+                data: {
+                    path,
+                    text,
+                },
+                method: "PATCH",
+            },
+        );
+
+        const newTranslations = await response.json();
+
+        translations.value = {
+            ...translations.value,
+            [selectedLanguage.value]: newTranslations,
+        };
+    };
+
     const removeLanguage = async (item: string) => {
+        // eslint-disable-next-line no-alert
         if (!window.confirm("Are you sure?")) {
             return;
         }
@@ -48,6 +70,7 @@ export default function editorLanguages () {
 
         res.status === 200
             ? translations.value = newObj
+            // eslint-disable-next-line no-console
             : console.log(res.json());
     };
 
@@ -72,6 +95,7 @@ export default function editorLanguages () {
         setTranslations,
         currentTranslations,
         addLanguage,
+        patchLanguage,
         removeLanguage,
         reloadTranslations,
     };

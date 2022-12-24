@@ -1,0 +1,61 @@
+{
+    "size": {
+        "x": 7,
+        "y": 2
+    },
+    "start": {
+        "position": {
+            "x": 1,
+            "y": 0
+        },
+        "orientation": "W"
+    },
+    "walls": {
+        "x": [],
+        "y": [
+            {
+                "x": 0,
+                "y": 0
+            },
+            {
+                "x": 1,
+                "y": 0
+            },
+            {
+                "x": 2,
+                "y": 0
+            },
+            {
+                "x": 3,
+                "y": 0
+            },
+            {
+                "x": 4,
+                "y": 0
+            },
+            {
+                "x": 5,
+                "y": 0
+            }
+        ]
+    },
+    "objects": [
+        {
+            "type": "hatchet",
+            "position": {
+                "x": 2,
+                "y": 1
+            },
+            "fixed": false
+        },
+        {
+            "type": "vitoria",
+            "position": {
+                "x": 0,
+                "y": 0
+            },
+            "fixed": true
+        }
+    ],
+    "timeout": 1000
+}

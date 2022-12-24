@@ -1,10 +1,10 @@
 <template>
-    <LessonContainer :section="$props.section">
+    <LessonContainer section="Code">
         <div class="code">
             <textarea
                 :value="currentLesson.workCode"
                 class="code_text"
-                @input="e => handleInput(e, 'workCode')"
+                @input="handleInput"
             />
         </div>
     </LessonContainer>
@@ -13,32 +13,21 @@
 <script setup lang="ts">
 import { computed } from "vue";
 import LessonContainer from "./LessonContainer.vue";
-import editApi from "~/lib/editorApi";
 import useEditorStore from "~/stores/editor";
-
-defineProps<{
-    section: string
-}>();
 
 const store = useEditorStore();
 
-const createDataObject = (text: string, ...keys: any) => ({
-    path: [
-        store.category,
-        store.lessonIndex,
-        ...keys,
-    ],
-    text,
-});
-
 const currentLesson = computed(() => store.currentTranslations[store.category][store.lessonIndex ?? ""] ?? {});
 
-const url = `api/language?lang=${store.selectedLanguage}`;
-
-const handleInput = async (e: Event, key: string, ...otherKeys: Array<number|string>) => {
-    const text = (e.target as HTMLTextAreaElement | HTMLInputElement).value;
-    const data = createDataObject(text, key, ...otherKeys);
-    await editApi(url, { data, method: "PATCH" });
+const handleInput = (e: Event) => {
+    store.patchLanguage(
+        [
+            store.category,
+            store.lessonIndex,
+            "workCode",
+        ],
+        (e.target as HTMLTextAreaElement).value,
+    );
 };
 
 </script>
@@ -50,6 +39,9 @@ const handleInput = async (e: Event, key: string, ...otherKeys: Array<number|str
     &_text {
         height: 100%;
         font-size: 0.87rem;
+        font-family: var(--font-default);
+        white-space: pre;
+        overflow: auto;
     }
 }
 </style>

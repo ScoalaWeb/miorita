@@ -14,9 +14,14 @@ export default {
     mounted () {
         this.selectCategory(localStorage.lessonCategory);
         this.selectIndex(localStorage.lessonIndex);
+        this.getLesson(localStorage.lessonCategory, this.$route.params.playground);
     },
     methods: {
-        ...mapActions(useEditorStore, ["selectCategory", "selectIndex"]),
+        ...mapActions(useEditorStore, [
+            "selectCategory",
+            "selectIndex",
+            "getLesson",
+        ]),
     },
 };
 </script>

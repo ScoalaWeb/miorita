@@ -1,0 +1,19 @@
+{
+    "size": {
+        "x": 3,
+        "y": 3
+    },
+    "start": {
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "orientation": "E"
+    },
+    "walls": {
+        "x": [],
+        "y": []
+    },
+    "objects": [],
+    "timeout": 1000
+}
