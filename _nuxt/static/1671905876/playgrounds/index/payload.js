@@ -1,0 +1,1 @@
+__NUXT_JSONP__("/playgrounds/index", (function(a,b,c){return {data:[{worldOptions:{slug:"index",size:{x:a,y:a},start:{position:{x:b,y:b},orientation:"W"},walls:{x:[],y:[]},objects:[],timeout:1000,dir:"\u002Fplaygrounds",path:"\u002Fplaygrounds\u002Findex",extension:".json",createdAt:c,updatedAt:c}}],fetch:{},mutations:void 0}}(7,3,"2022-12-24T18:16:18.538Z")));

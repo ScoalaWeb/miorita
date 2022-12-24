@@ -1,0 +1,1 @@
+__NUXT_JSONP__("/playgrounds/escape", {data:[{}],fetch:{},mutations:void 0});
