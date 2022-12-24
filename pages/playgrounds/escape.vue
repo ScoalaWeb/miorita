@@ -106,7 +106,5 @@ export default class Escape extends Vue {
 
         return objects;
     }
-
-    code:string = "";
 }
 </script>
