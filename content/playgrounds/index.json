@@ -1,0 +1,19 @@
+{
+    "size": {
+        "x": 7,
+        "y": 7
+    },
+    "start": {
+        "position": {
+            "x": 3,
+            "y": 3
+        },
+        "orientation": "W"
+    },
+    "walls": {
+        "x": [],
+        "y": []
+    },
+    "objects": [],
+    "timeout": 1000
+}

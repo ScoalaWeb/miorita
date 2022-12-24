@@ -14,14 +14,7 @@ export default interface WorldOptions {
     objects: WorldObject[]
 
     timeout: number
-    title: string
-    slug: string
     lesson?: number
     nextLesson?: string
     previousLesson?: string
-    details: {
-        title: string
-        text: string[]
-        class: "paragraph" | "code"
-    }[]
 }

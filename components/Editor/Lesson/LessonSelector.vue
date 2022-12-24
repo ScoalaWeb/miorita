@@ -11,20 +11,24 @@
                         :code="item.title"
                         :can-delete="true"
                         @select="onSelect(item.slug, index)"
-                        @remove="onRemove(index)"
+                        @remove="onRemove(item.slug, index)"
                     />
                 </drag>
             </template>
         </drop-list>
-        <AddButton @show="onAdd" />
+        <AddButton @show="toggle" />
+        <div v-show="showForm">
+            <AddForm @add="onAdd" />
+        </div>
     </MainContainer>
 </template>
 
 <script lang="ts">
 import { mapActions, mapState } from "pinia";
-import { computed, onMounted } from "vue";
+import { ref, computed, onMounted } from "vue";
 import { Drag, DropList, ReorderEvent } from "vue-easy-dnd";
-import AddButton from "../AddButton.vue";
+import AddButton from "../AddButton";
+import AddForm from "../AddForm";
 import BaseSelectorButton from "../BaseSelectorButton.vue";
 import MainContainer from "../MainContainer";
 import useEditorStore from "~/stores/editor";
@@ -38,7 +42,14 @@ export default {
             this.$router.push(`${this.category}/${slug}`);
             this.selectIndex(index);
         },
-        ...mapActions(useEditorStore, ["selectIndex"]),
+        async onAdd (title: string) {
+            const { slug, index } = await this.addLesson(title);
+            this.onSelect(slug, index);
+        },
+        async onRemove (slug: string, index: number) {
+            await this.removeLesson(slug, index);
+        },
+        ...mapActions(useEditorStore, ["selectIndex", "addLesson", "removeLesson"]),
     },
 };
 </script>
@@ -61,14 +72,10 @@ const onReorder = (e: ReorderEvent) => {
     store.handleChange(lessons.value);
 };
 
-const onRemove = (index: number) => {
-    if (!window.confirm("Are you sure")) { return; }
-    lessons.value.splice(index, 1);
-    store.handleChange(lessons.value);
-};
+const showForm = ref(false);
 
-const onAdd = () => {
-    console.log("redirect to editor page");
+const toggle = () => {
+    showForm.value = !showForm.value;
 };
 
 </script>

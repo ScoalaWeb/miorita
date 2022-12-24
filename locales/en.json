@@ -7,9 +7,9 @@
                 "playgrounds": "Playgrounds"
             },
             "labels": {
-                "heading": "Miorita is here to kick ass and chew bubblegum and she's all outta gum",
+                "heading": "Miorița is here to help you in your programming journey",
                 "button": "play now",
-                "credits": "by Scoala web"
+                "credits": "by Școala Web"
             }
         },
         "button-text": {
@@ -24,7 +24,8 @@
             },
             "navigation": {
                 "next": "Next",
-                "back": "Back"
+                "back": "Back",
+                "more": "More"
             }
         },
         "console-output": {
@@ -48,55 +49,22 @@
         {
             "title": "Meet Miorița",
             "slug": "1-intro",
-            "link": "lessons/1-intro",
             "description": "take a look at what Miorița can do",
             "background": "1-bg",
-            "size": {
-                "x": 3,
-                "y": 3
-            },
-            "start": {
-                "position": {
-                    "x": 0,
-                    "y": 0
-                },
-                "orientation": "E"
-            },
-            "walls": {
-                "x": {
-                    "x": 0,
-                    "y": 0
-                },
-                "y": {
-                    "x": 1,
-                    "y": 0
-                }
-            },
-            "objects": {
-                "type": "grass",
-                "position": {
-                    "x": 1,
-                    "y": 0
-                },
-                "fixed": false
-            },
-            "timeout": 1000,
-            "lesson": 1,
-            "nextLesson": "2-if",
             "details": [
                 {
                     "title": "instructions",
-                    "text": "Miorița is a sheep that can be programmed to move in her sheepfold.\n\nTo program her, you simply write instructions.\n\nIn this page, we will learn some of the things she can do.",
+                    "text": "Miorița is a sheep that can be programmed to move in her sheepfold.\nTo program her, you simply write instructions.\nIn this page, we will learn some of the things she can do.",
                     "class": "paragraph"
                 },
                 {
                     "title": "new command",
-                    "text": "turnRight(),\nmove(),\nreset(),\n// comments,\n/* comments */",
+                    "text": "turnRight()\nmove()\nreset()\n// comments\n/* comments */",
                     "class": "code"
                 },
                 {
                     "title": "challenge",
-                    "text": "Using the commands we learned, have Miorița go to the grass zone, beyond the wall.",
+                    "text": "Using the commands we learned, have Miorița go to the grass zone, beyond the wall",
                     "class": "paragraph"
                 }
             ],
@@ -105,17 +73,26 @@
         {
             "title": "Conditional statements",
             "slug": "2-if",
-            "link": "lessons/2-if",
             "description": "learn to run different sets of instructions depending on a condition.",
             "background": "2-bg",
-            "workCode": "dragi tovarasi si concetateni",
             "details": [
                 {
+                    "title": "instructions",
+                    "text": "We are faced with two paths, both having a happy ending: A happy and stuffed Miorița.\nShe is very hungry, and needs to be led to the nearest patch of grass. However, there may be a fence in the way.\nWe should come up with one set of instructions that will tackle both scenarios.",
+                    "class": "paragraph"
+                },
+                {
                     "title": "new section",
-                    "text": "new section text",
+                    "text": "if() && else\ncanMove()\ncanMove()",
+                    "class": "code"
+                },
+                {
+                    "title": "challenge",
+                    "text": "Help Miorița reach the closest patch of grass so she can finally eat.\nDelete the code that already does this and come up with the best way to do it.\n",
                     "class": "paragraph"
                 }
-            ]
+            ],
+            "workCode": "/*\nif() is a special instruction that causes the next instruction to run or not depending on the condition given between the parenthesis.\n*/\n\nif ( canMove() ) {\n/*\nUsing { curly braces } allows running multiple instructions in response to a single condition. These are called \"code blocks\".\n*/\n\n    move()\n    move()\n    move()\n\n} else {\n\n    /*\nThe \"else\" statement can be attached to an \"if\" statement and represents instructions that run when the \"if\" condition is false.\n    */\n\n    turnRight()\n    turnRight()\n    turnRight()\n// Turing right 3 times gets us to the same result as turning left one time.\n\n    move()\n    turnRight()\n    move()\n    move()\n    move()\n}\n\n// After the if+else statements, we can continue doing stuff...\n\n// The next instruction makes Miorița move to the start position.\n// It is a code alternative to the \"Reset\" button.\nreset()\n\n/*\nBoth the \"if\", and the \"else\" blocks end with the move() instruction used multiple times.\nSeeing the sheepfold from above, we can notice that once Miorița is facing left, she always has to move 3 times.\nWe can move the 3 instructions after the if+else statement.\nWe can also remove the \"else\" statement if we use the ! operator in the \"if\" condition. ! flips the expression after it.\nSo true becomes false, and false becomes true.\n*/\n\nif ( ! canMove() ) {\n// Handle the case where Miorița is blocked by a fence.\n}\n\n// Then, run 3 move commands regardless of anything else.\n\n/*\n    Final note #1\n    -------------\nYou may notice that \"if\" and \"else\" are colored differently,\nand also they do not cause any output in the console.\nThey are statements of the language, not just functions made specifically for this application.\n\n    Final note #2\n    -------------\nSee how instructions inside a block are indented to the right?\nThis is not required, but it makes the code slightly more readable.\n*/"
         },
         {
             "title": "Loops & variables",
@@ -123,27 +100,48 @@
             "link": "lessons/3-while",
             "description": "find ways to run the same commands multiple times in succesion.",
             "background": "3-bg",
-            "details": []
+            "details": [
+                {
+                    "title": "instructions",
+                    "text": "We already know that Miorița can be programmed to execute certain commands.\n\nBut repeating them can be rather redundant and confusing. Sometimes we may not even know how many times we need to repeat them.\n",
+                    "class": "paragraph"
+                },
+                {
+                    "title": "new commands",
+                    "text": "for() { }\nwhile() { }\nvar\n",
+                    "class": "paragraph"
+                },
+                {
+                    "title": "challenge",
+                    "text": "Help Miorița get to the center of the spiral.\nThere are multiple ways to do it. Some are quicker, others require less code, and there are some you may think of after learning about functions in the next lesson.\nWhich one would you use?\n",
+                    "class": "paragraph"
+                }
+            ],
+            "workCode": "while(canMove()) {\n// The \"while\" command makes the following command repeat as long as the condition is true.\n        move()\n    }\n\n/*\nWhat if you know exactly how many times you need to repeat? You can use variables.\n\nVariables hold information in the computer's memory.\nA variable can have any name you want, made from letters, numbers and some special characters.\nThe name of the variable cannot start with a number.\nTo give a variable a value, you use the = sign, with the variable on the left and the value you want to assign to it on the right.\nThe value you've given the variable will be used instead of the variable in future operations.\n\nIn the programming language we use here, variables are defined using the \"var\" keyword.\n*/\n\n    var iteration = 1\n\n    while (iteration < 7) {\n        move()\n\n// The variable's value can change to anything you want including the result of a expression or even a command that returns a value.\n// There is nothing stopping us from the variable itself in that expression.\n        iteration = iteration + 1;\n    }\n\n// The above is so often needed that there is a shorter way to do it:\n\n    for (var i = 1; i < 7; i = i + 1) {\n// The \"for\" command makes the following re-run as long as the second expression is true.\n// The first expression runs only once before anything else.\n// The last expression runs at the end of every iteration.\n\n        move()\n    }\n\n/*\nVariable names should be as descriptive as possible.\nLonger names are harder to write, but most modern code editors can auto-complete them.\n\n\"i\" is often used as short for \"iteration\", so it is OK.\n*/\n"
         },
         {
             "title": "Functions",
             "slug": "4-function",
-            "link": "lessons/4-function",
-            "description": "create your own insructions that you can reuse whenever you want.",
+            "description": "create your own instructions that you can reuse whenever you want.",
             "background": "4-bg",
             "details": [
                 {
-                    "title": "new section",
-                    "text": "new section text",
+                    "title": "instructions",
+                    "text": "We need to remember that repeating code is highly unproductive. This is why, most of the time, we need to resort to reusable snippets of code, called functions.\nTo train Miorița, we need to write some functions and call them every time we need to execute the code.",
                     "class": "paragraph"
                 },
                 {
-                    "title": "new section",
-                    "text": "new section text",
+                    "title": "new commands",
+                    "text": "function\npick(\"hatchet\")\ndrop(\"hatchet\")",
+                    "class": "code"
+                },
+                {
+                    "title": "challenge",
+                    "text": "Create your own instructions and help Miorița play fetch.",
                     "class": "paragraph"
                 }
             ],
-            "workCode": "test"
+            "workCode": "/*\nFunctions are declared with the \"function\" keyword, followed by the name of the function.\nThe name of the function follows the same rules as variables.\nAfter the name, we always need a set of parenthesis.\nThe instructions that a function does are grouped in a block, so we use {curly braces}.\n*/\n\n    function turnAround()\n    {\n        turnRight()\n        turnRight()\n    }\n\n/*\nThose parenthesis allow us to define parameters, which will act like variables inside the function block.\n\nParameters can have a default value. If they are not provided, they hold that value.\n\nInside a function we can use absolutely any instructions we learned or other functions we defined.\n*/\n\n    function superMove(times = 1)\n    {\n        for(var i = 0; i < times; i = i+1) {\n            move()\n        }\n    }\n\n// Now let's use those functions.\n\n    turnAround()\n// This will cause Miorița to turn right twice, because that's what we defined in the function.\n// Note that we always need parenthesis when we use a function.\n// \"Using a function\" is also referred to as \"calling a function\".\n\n    superMove(5) // Miorița will move forward 5 times.\n\n    turnRight() // Fun fact: The instructions we learned so far are themselves functions.\n\n    superMove() // When no value is provided for a parameter, the value we set as default will be used.\n\n    turnRight()\n\n    superMove(4) // Using different parameters may cause a function to behave differently.\n    // This time, we're only moving 4 times.\n\n    pick(\"hatchet\")\n    // Parameters passed to a function can be more than just numbers.\n    // Here, we pass a string, which is a text marked with \"double quotes\".\n    // You will learn more about strings when you learn a real programming language.\n\n// Let's get Miorița back to Vitoria.\n    turnAround()\n    superMove(4)\n    turnAround()\n    turnRight()\n    move()\n    turnAround()\n    turnRight()\n    superMove(5)\n\n// And finally, we can give Vitoria the hatchet.\n    drop(\"hatchet\")\n"
         }
     ],
     "playgrounds": [
@@ -154,50 +152,55 @@
             "description": "Empty code and a 9x9 board where you can move however you want. Miorița starts at the very center of the sheepfold.",
             "details": [
                 {
-                    "title": "new section",
-                    "text": "new section text",
+                    "title": "instructions",
+                    "text": "You are free to do whatever you want. Practice your skills and see if you can train Miorița.",
                     "class": "paragraph"
+                },
+                {
+                    "title": "commands",
+                    "text": "move()\ncanMove()\nturnRight()\nreset()\nif() { }\nelse { }\nwhile() { }\nfor() { }\nvar",
+                    "class": "code"
                 }
             ],
-            "workCode": "test 24321312321"
+            "workCode": "//"
         },
         {
             "title": "The Hatchet",
             "slug": "hatchet",
-            "link": "playgrounds/hatchet",
+            "link": "hatchet",
             "description": "Based on a Romanian novel, The Hatchet, Miorița has to pick the hatchet, and deliver it to Vitoria Lipan.",
             "details": [
                 {
-                    "title": "new section",
-                    "text": "new section text",
+                    "title": "challenge",
+                    "text": "Miorița wants to help solve the mystery. Train her to bring the hatchet, give it to Vitoria and finally see justice done.\nBased on \"The Hatchet\" by Mihail Sadoveanu.",
                     "class": "paragraph"
                 },
                 {
-                    "title": "new section",
-                    "text": "new section text text text text\n\nnewline",
-                    "class": "paragraph"
+                    "title": "commands",
+                    "text": "move()\ncanMove()\nturnRight()\nreset()\nif() { }\nelse { }\nwhile() { }\nfor() { }\nvar",
+                    "class": "code"
                 }
             ],
-            "workCode": "fasdfdashgdfs\n\nsalut"
+            "workCode": "//"
         },
         {
             "title": "The Escape",
             "slug": "escape",
-            "link": "playgrounds/escape",
+            "link": "escape",
             "description": "Help Miorița escape a random sheepfold.",
             "details": [
                 {
-                    "title": "new sectiondasdas",
-                    "text": "new section text",
+                    "title": "challenge",
+                    "text": "You can never know where the fence is going to be or how big the sheepfold is.\nThink of a solution that will get Miorița to a patch of grass as quickly as possible.",
                     "class": "paragraph"
                 },
                 {
-                    "title": "new section",
-                    "text": "new section text",
-                    "class": "paragraph"
+                    "title": "commands",
+                    "text": "move()\ncanMove()\nturnRight()\nreset()\nif() { }\nelse { }\nwhile() { }\nfor() { }\nvar",
+                    "class": "code"
                 }
             ],
-            "workCode": "fdasfdas"
+            "workCode": "//"
         }
     ]
 }

@@ -16,7 +16,6 @@
                     class="entry"
                     :value="entry"
                     @input="e => handleInput(e, entryKey)"
-                    @change="store.init()"
                 />
             </li>
         </ul>
@@ -24,7 +23,6 @@
 </template>
 <script setup lang="ts">
 import { computed } from "vue";
-import editApi from "~/lib/editorApi";
 import useEditorStore from "~/stores/editor";
 
 const props = defineProps<{
@@ -37,20 +35,14 @@ const capitalizedKey = computed(() => `${props.propertyKey[0].toUpperCase()}${pr
 
 const store = useEditorStore();
 
-const handleInput = async (e: Event, entryKey: string) => {
+const handleInput = (e: Event, entryKey: string) => {
     const { property, propertyKey } = props;
-    const text = (e.target as HTMLInputElement).value;
-    const url = `api/language?lang=${store.selectedLanguage}`;
-    const data = {
-        path: [
-            "texts",
-            store.textButtons[property].key,
-            propertyKey,
-            entryKey,
-        ],
-        text,
-    };
-    await editApi(url, { data, method: "PATCH" });
+    store.patchLanguage([
+        "texts",
+        store.textButtons[property].key,
+        propertyKey,
+        entryKey,
+    ], (e.target as HTMLInputElement).value);
 };
 </script>
 <style lang="scss">
