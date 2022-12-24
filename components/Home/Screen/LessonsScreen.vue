@@ -19,7 +19,7 @@
                     <h3>{{ lesson.title }}</h3>
                     <p>{{ lesson.description }}</p>
                     <span :class="$style.lessonNumber">{{ index }}</span>
-                    <BasePlayButton :class="$style.playButton" color="red" :link="lesson.link" />
+                    <BasePlayButton :class="$style.playButton" color="red" :link="`/lessons/${lesson.slug}`" />
                 </article>
             </div>
         </div>
@@ -33,7 +33,7 @@
             @click="keen.prev()"
         >
             <span class="invisible">
-                Previous
+                {{ $t("texts.screen-reader.carousel.previous") }}
             </span>
             <span aria-hidden="true">
                 &lt;
@@ -49,7 +49,7 @@
             @click="keen.next()"
         >
             <span class="invisible">
-                Next
+                {{ $t("texts.screen-reader.carousel.next") }}
             </span>
             <span aria-hidden="true">
                 &gt;
@@ -73,71 +73,75 @@
     </main>
 </template>
 
-<script setup>
+<script lang="ts">
 import KeenSlider from "keen-slider";
-import { onMounted, onUnmounted, ref } from "vue";
-import lessons from "~/content/lessons.json";
+import { defineComponent } from "vue";
 
 const MIN_SCALE = 80;
 
-const carousel = ref(null);
-const keen = ref(null);
-const current = ref(0);
-const animating = ref(false);
-const slides = ref(lessons.map(() => ({
-    visible: true,
-    scale: MIN_SCALE,
-})));
+export default defineComponent({
+    data () {
+        const lessons = this.$t("lessons");
+        return {
+            lessons,
+            keen: null,
+            current: 0,
+            animating: false,
+            slides: lessons.map(() => ({
+                visible: true,
+                scale: MIN_SCALE,
+            })),
+        };
+    },
+    mounted () {
+        this.keen = new KeenSlider(this.$refs.carousel, {
+            initial: this.current.value,
 
-onMounted(() => {
-    keen.value = new KeenSlider(carousel.value, {
-        initial: current.value,
+            slides: {
+                origin: "center",
+                perView: 2,
+            },
 
-        slides: {
-            origin: "center",
-            perView: 2,
-        },
+            detailsChanged: (slider) => {
+                const { details } = slider.track;
+                const progress = details.progress * 100;
+                const allocation = 100 / (details.slides.length - 1);
 
-        detailsChanged (slider) {
-            const { details } = slider.track;
-            const progress = details.progress * 100;
-            const allocation = 100 / (details.slides.length - 1);
+                this.slides = details.slides.map((slide, index) => {
+                    const natural = index * allocation;
+                    const currentDistance = Math.abs(natural - progress);
 
-            slides.value = details.slides.map((slide, index) => {
-                const natural = index * allocation;
-                const currentDistance = Math.abs(natural - progress);
+                    return {
+                        visible: slide.portion > 0,
+                        scale: (100 - currentDistance),
+                    };
+                });
+            },
 
-                return {
-                    visible: slide.portion > 0,
-                    scale: (100 - currentDistance),
-                };
-            });
-        },
+            slideChanged: (slider) => {
+                this.current = slider.track.details.rel;
+            },
 
-        slideChanged (slider) {
-            current.value = slider.track.details.rel;
-        },
+            dragStarted: () => {
+                this.animating = true;
+            },
+            animationStarted: () => {
+                this.animating = true;
+            },
+            dragEnded: () => {
+                this.animating = false;
+            },
+            animationEnded: () => {
+                this.animating = false;
+            },
+        });
+    },
 
-        dragStarted () {
-            animating.value = true;
-        },
-        animationStarted () {
-            animating.value = true;
-        },
-        dragEnded () {
-            animating.value = false;
-        },
-        animationEnded () {
-            animating.value = false;
-        },
-    });
+    destroyed () {
+        this.keen?.destroy?.();
+        this.keen = null;
+    },
 });
-
-onUnmounted(() => {
-    keen.value?.destroy();
-    keen.value = null;
-});
-
 </script>
 
 <style module lang="scss">

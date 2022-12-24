@@ -1,56 +1,49 @@
-<script setup>
-import { useRouter } from "@nuxtjs/composition-api";
-import { computed } from "vue";
-import useLessonStore from "~/stores/lesson";
+<script setup lang="ts">
+import LessonTranslation from "~/interfaces/LessonTranslation";
 
-const store = useLessonStore();
-const router = useRouter();
-
-const options = computed(() => store.options);
-
-const nextLesson = () => {
-    router.push(store.options.nextLesson);
-};
-
-const previousLesson = () => {
-    router.push(store.options.previousLesson);
-};
+defineProps<{
+    lesson: LessonTranslation
+}>();
 
 </script>
 
 <template>
     <div :class="$style.bottom">
-        <div :class="$style.leftSide">
+        <div :class="$style.side">
             <p
-                v-if="options.lesson"
+                v-if="lesson.lessonCount"
                 :class="$style.slides"
             >
-                {{ options.lesson }}/{{ store.lessons.length }}
+                {{ lesson.lessonIndex + 1 }}/{{ lesson.lessonCount }}
             </p>
             <h3
-                v-if="options.title"
+                v-if="lesson.title"
                 :class="$style.lesson"
             >
-                {{ options.title }}
+                {{ lesson.title }}
             </h3>
         </div>
         <div
-            v-if="options.nextLesson"
-            :class="$style.rightSide"
+            :class="$style.side"
         >
-            <button
-                v-if="options.lesson !== 1"
+            <NuxtLink
+                v-if="lesson.previousLesson"
+                :to="localePath(`/lessons/${lesson.previousLesson}`)"
                 :class="$style.button"
-                @click="previousLesson"
             >
-                Back
-            </button>
-            <button
+                {{ $t("texts.button-text.navigation.back") }}
+            </NuxtLink>
+
+            <NuxtLink
+                v-if="lesson.nextLesson"
+                :to="localePath(`/lessons/${lesson.nextLesson}`)"
                 :class="$style.button"
-                @click="nextLesson"
             >
-                Next
-            </button>
+                {{ $t("texts.button-text.navigation.next") }}
+            </NuxtLink>
+            <NuxtLink v-else :to="localePath('/#playground')" :class="$style.button">
+                {{ $t("texts.button-text.navigation.more") }}
+            </NuxtLink>
         </div>
     </div>
 </template>
@@ -66,12 +59,16 @@ const previousLesson = () => {
     border-top: var(--editor-border);
 }
 
-.leftSide {
+.side {
     display: flex;
     align-items: center;
     gap: 0.5rem;
     color: var(--text-color);
     pointer-events: none;
+
+    .button {
+        pointer-events: auto;
+    }
 }
 
 .slides {

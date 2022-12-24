@@ -23,6 +23,7 @@ defineProps<{
 label {
     font-size: 0.75rem;
     font-weight: 400;
+    white-space: nowrap;
 }
 
 .checkbox {

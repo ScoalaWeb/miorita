@@ -1,5 +1,5 @@
 <template>
-    <LessonContainer :section="$props.section">
+    <LessonContainer section="Panel">
         <div class="description">
             <div
                 v-for="(entry, index) in currentLesson.details"
@@ -40,54 +40,50 @@
 </template>
 
 <script setup lang="ts">
+import { debounce } from "debounce";
 import { computed } from "vue";
 import CodeButton from "../CodeButton.vue";
 import DeleteButton from "../DeleteButton.vue";
 import LessonContainer from "./LessonContainer.vue";
-import editApi from "~/lib/editorApi";
 import useEditorStore from "~/stores/editor";
-
-defineProps<{
-    section: string
-}>();
 
 const store = useEditorStore();
 
 const isChecked = (entry: string) => entry === "code";
 
-const createDataObject = (text: string, ...keys: any) => ({
-    path: [
-        store.category,
-        store.lessonIndex,
-        ...keys,
-    ],
-    text,
-});
+const createPath = (keys: Array<string | number>) => ([
+    store.category,
+    store.lessonIndex,
+    ...keys,
+]);
 
 const currentLesson = computed(() => store.currentTranslations[store.category][store.lessonIndex ?? ""] ?? {});
 
-const url = `api/language?lang=${store.selectedLanguage}`;
-
-const handleRemove = async (key: string, index: number) => {
-    currentLesson.value[key].splice(index, 1);
-    const data = createDataObject(currentLesson.value[key], key);
-    await editApi(url, { data, method: "PATCH" });
+const handleRemove = (key: string, index: number) => {
+    const lessons = [...currentLesson.value[key]];
+    lessons.splice(index, 1);
+    store.patchLanguage(
+        createPath([key]),
+        lessons,
+    );
 };
 
-const handleCheck = async (e: Event, key: string, ...otherKeys: Array<number|string>) => {
-    const text = (e.target as HTMLInputElement).checked ? "code" : "paragraph";
-    const data = createDataObject(text, key, ...otherKeys);
-    await editApi(url, { data, method: "PATCH" });
+const handleCheck = (e: Event, ...otherKeys: Array<number|string>) => {
+    store.patchLanguage(
+        createPath(otherKeys),
+        (e.target as HTMLInputElement).checked ? "code" : "paragraph",
+    );
 };
 
-const handleInput = async (e: Event, key: string, ...otherKeys: Array<number|string>) => {
-    const text = (e.target as HTMLTextAreaElement | HTMLInputElement).value;
-    const data = createDataObject(text, key, ...otherKeys);
-    await editApi(url, { data, method: "PATCH" });
-};
+const handleInput = debounce((e: Event, ...otherKeys: Array<number|string>) => {
+    store.patchLanguage(
+        createPath(otherKeys),
+        (e.target as HTMLTextAreaElement | HTMLInputElement).value,
+    );
+}, 1000, false);
 
-const addSection = async () => {
-    currentLesson.value.details = [
+const addSection = () => {
+    const details = [
         ...currentLesson.value.details || [],
         {
             title: "new section",
@@ -95,9 +91,11 @@ const addSection = async () => {
             class: "paragraph",
         },
     ];
-    const text = currentLesson.value.details;
-    const data = createDataObject(text, "details");
-    await editApi(url, { data, method: "PATCH" });
+
+    store.patchLanguage(
+        createPath(["details"]),
+        details,
+    );
 };
 
 </script>
@@ -120,7 +118,7 @@ const addSection = async () => {
         row-gap: 0.5rem;
 
         &.entry {
-            &--code {
+            &--paragraph .entry_text {
                 font-family: var(--font-basic);
             }
         }

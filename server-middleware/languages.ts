@@ -3,6 +3,7 @@
 import { readdirSync, readFileSync, writeFileSync, unlinkSync } from "node:fs";
 import * as path from "path";
 import { Application, Request, Response } from "express";
+import patchObject from "../lib/patchObject";
 
 const dir = path.resolve(path.join(__dirname, "..", "locales"));
 
@@ -10,6 +11,7 @@ export default function languages (app: Application) {
     app.get("/languages", (req:Request, res:Response) => {
         try {
             const languagesMap:Record<string, Record<string, any>> = {};
+
             readdirSync(dir).forEach((file) => {
                 const matches = file.match(/^(.*)\.json$/);
                 if (matches === null) {
@@ -20,6 +22,7 @@ export default function languages (app: Application) {
 
                 languagesMap[code] = readLanguage(code);
             });
+
             res.json(languagesMap);
         } catch (e) {
             res.status(500).json(e);
@@ -40,19 +43,7 @@ export default function languages (app: Application) {
             const { path: keyPath, text } = req.body;
             const content = readLanguage(lang);
 
-            let current = content;
-            let lastKey = keyPath[0];
-
-            while (keyPath.length) {
-                const key = keyPath.shift();
-                if (keyPath.length < 1) {
-                    lastKey = key;
-                } else {
-                    current = current[key];
-                }
-            }
-
-            current[lastKey] = text;
+            patchObject(content, keyPath, text);
 
             writeLanguage(lang, content);
             res.json(content);

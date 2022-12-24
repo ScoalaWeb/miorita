@@ -1,0 +1,37 @@
+{
+    "size": {
+        "x": 5,
+        "y": 5
+    },
+    "start": {
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "orientation": "E",
+        "picked": {}
+    },
+    "walls": {
+        "x": [],
+        "y": []
+    },
+    "objects": [
+        {
+            "position": {
+                "x": 1,
+                "y": 0
+            },
+            "type": "hatchet",
+            "fixed": false
+        },
+        {
+            "position": {
+                "x": 4,
+                "y": 4
+            },
+            "type": "vitoria",
+            "fixed": true
+        }
+    ],
+    "timeout": 1000
+}

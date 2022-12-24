@@ -1,14 +1,18 @@
 <script setup>
 import ColorModeSwitcher from "../ColorModeSwitcher.vue";
+import LanguageSelector from "../LanguageSelector.vue";
 </script>
 
 <template>
     <div :class="$style.bar">
         <h1 :class="$style.brand">
-            <nuxt-link to="/" :class="$style.main">Miorița</nuxt-link>
-            <a :class="$style.secondary" href="https://scoalaweb.ro" target="_blank">by Școala Web</a>
+            <nuxt-link to="/" :class="$style.main">{{ $t('texts.main-labels.labels.brand') }}</nuxt-link>
+            <a :class="$style.secondary" href="https://scoalaweb.ro" target="_blank">
+                {{ $t('texts.main-labels.labels.credits') }}
+            </a>
         </h1>
         <span :class="$style.options">
+            <LanguageSelector />
             <ColorModeSwitcher />
         </span>
     </div>

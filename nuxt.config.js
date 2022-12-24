@@ -1,3 +1,6 @@
+import en from "./locales/en.json";
+import ro from "./locales/ro.json";
+
 export default {
     // Target: https://go.nuxtjs.dev/config-target
     target: "static",
@@ -51,7 +54,16 @@ export default {
         "@nuxtjs/pwa",
         // https://go.nuxtjs.dev/content
         "@nuxt/content",
+        "@nuxtjs/i18n",
     ],
+    i18n: {
+        locales: ["en", "ro"],
+        defaultLocale: "en",
+        vueI18n: {
+            fallbackLocale: "ro",
+            messages: { ro, en },
+        },
+    },
 
     // PWA module configuration: https://go.nuxtjs.dev/pwa
     pwa: {

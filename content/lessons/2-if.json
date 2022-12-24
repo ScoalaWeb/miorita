@@ -1,0 +1,42 @@
+{
+    "size": {
+        "x": 4,
+        "y": 2
+    },
+    "start": {
+        "position": {
+            "x": 0,
+            "y": 1
+        },
+        "orientation": "E",
+        "picked": {}
+    },
+    "walls": {
+        "x": [
+            {
+                "x": 0,
+                "y": 1
+            }
+        ],
+        "y": []
+    },
+    "objects": [
+        {
+            "type": "grass",
+            "position": {
+                "x": 3,
+                "y": 0
+            },
+            "fixed": true
+        },
+        {
+            "type": "grass",
+            "position": {
+                "x": 3,
+                "y": 1
+            },
+            "fixed": true
+        }
+    ],
+    "timeout": 1000
+}

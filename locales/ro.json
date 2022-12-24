@@ -7,9 +7,12 @@
                 "playgrounds": "Joacă"
             },
             "labels": {
+                "switch-to": "Tradu în română",
+                "brand": "Miorița",
                 "heading": "Miorița te ajută să înveți programare",
-                "button": "Hai la joacă",
-                "credits": "de la Școala web"
+                "button": "hai la joacă",
+                "credits": "de la Școala Web",
+                "fence": "gard"
             }
         },
         "button-text": {
@@ -23,79 +26,204 @@
                 "play": "Rulează"
             },
             "navigation": {
-                "next": "Înapoi",
-                "back": "Înainte"
+                "next": "Înainte",
+                "back": "Înapoi",
+                "more": "Mai vreau"
+            }
+        },
+        "screen-reader": {
+            "carousel": {
+                "previous": "Înapoi",
+                "next": "Înainte"
+            },
+            "lesson": {
+                "drag-to-resize": "Trage pentru a schimba dimensiunea"
             }
         },
         "console-output": {
             "message": {
-                "reset": "Miorița teleported to the start position",
-                "rotate-left": "Miorița turned left (counter-clockwise)",
-                "rotate-right": "Miorița turned right (clockwise)",
-                "forward": "Miorița moved forward",
-                "move-possible": "Miorița realized she can move forward",
-                "move-blocked": "Miorița realized she cannot move forward",
-                "found": "Miorița has found \"{0}\"",
-                "not-found": "Miorița has not found \"{0}\"",
-                "pick": "Miorița has picked \"{0}\"",
-                "drop": "Miorița has dropped \"{0}\"",
-                "next-turnLeft": "Miorița will turn left",
-                "next-turnRight": "Miorița will turn right"
+                "reset": "Miorița s-a întors de unde a început",
+                "rotate-left": "Miorița s-a rotit spre stânga",
+                "rotate-right": "Miorița s-a rotit spre dreapta",
+                "forward": "Miorița a mers în față",
+                "move-possible": "Miorița poate merge înainte",
+                "move-blocked": "Miorița nu poate merge înainte",
+                "found": "Miorița a găsit „{0}”",
+                "not-found": "Miorița nu a găsit „{0}”",
+                "pick": "Miorița a adunat „{0}”",
+                "drop": "Miorița a aruncat „{0}”",
+                "next-turnLeft": "Miorița se va roti spre stânga",
+                "next-turnRight": "Miorița se va roti spre dreapta",
+                "next-canMove": "Miorița se uită dacă poate merge înainte",
+                "next-move": "Miorița va încerca să meargă înainte",
+                "next-found": "Miorița caută \"{0}\"",
+                "next-pick": "Miorița va ridica \"{0}\"",
+                "next-drop": "Miorița va lăsa \"{0}\"",
+                "end": "Miorița și-a făcut treaba",
+                "error-orientation": "Miorița e puțin amețită",
+                "error-map-overflow": "Miorița nu poate ieși din stână.",
+                "error-wall-hit": "Miorița nu poate trece de gard",
+                "error-stop": "Miorița s-a oprit",
+                "error-build": "Miorița nu înțelege. Iată ce zice: {0}",
+                "error-generic": "{0}"
             }
         }
     },
     "lessons": [
         {
-            "title": "Bună Miorița",
+            "title": "Iată Miorița",
             "slug": "1-intro",
-            "workCode": "buna miorita!",
+            "link": "lessons/1-intro",
+            "description": "vezi ce poate să facă.",
+            "background": "1-bg",
             "details": [
                 {
-                    "title": "new section",
-                    "text": "new section text",
-                    "class": "paragraph"
-                }
-            ]
-        },
-        {
-            "title": "Conditional statements",
-            "slug": "2-if",
-            "details": []
-        },
-        {
-            "title": "Loops & variables",
-            "slug": "3-while",
-            "details": []
-        },
-        {
-            "title": "Functions",
-            "slug": "4-function",
-            "details": [
-                {
-                    "title": "new section",
-                    "text": "new section text",
+                    "title": "instrucțiuni",
+                    "text": "Miorița e o oiță ce poate fi programată să se miște prin stână.\nPentru a o programa, trebuie să îi scriem instrucțiuni.\nAici o să învățăm câteva lucruri pe care le poate face.",
                     "class": "paragraph"
                 },
                 {
-                    "title": "new section",
-                    "text": "new section text",
+                    "title": "comenzi",
+                    "text": "turnRight()\nmove()\nreset()\n// comentariu\n/* comentarii */",
+                    "class": "code"
+                },
+                {
+                    "title": "provocare",
+                    "text": "Folosind comenzile învățate, ajut-o pe Miorița să ajungă la iarbă.",
                     "class": "paragraph"
                 }
-            ]
+            ],
+            "workCode": "// Toate instrucțiunile pe care le dăm vor fi în engleză\n// Dar comentariile le putem lăsa în română.\n// Comentariile sunt aceste linii verzi.\n// Singurul lucru verde de care e interesată Miorița este iarba.\n// Așa că putem să scriem orice vrem în aceste comentarii:\n// - Informații pentru cine ne va citi codul (inclusiv noi din viitor).\n// - Cod pe care nu vrem să îl rulăm.\n// - Glume inginerești.\n\n// Se consideră comentariu tot ce vine după // pe o linie\n// Sau putem avea comentarii pe mai multe linii, delimitate de /* și */\n/* Acesta este un exemplu de comentariu\ncare se întinde pe\nmai multe linii. */\n\n// Următoarea instrucțiune o va face pe Miorița să se întoarcă spre dreapta\nturnRight()\n\n// Următoarea instrucțiune o face pe Miorița să meargă o căsuță în față\nmove()\n\n// Miorița va porni mereu de unde ai lăsat-o, chiar dacă nu a început de acolo.\n// O poți face să revină mereu la poziția de la care a plecat prima dată.\nreset()"
+        },
+        {
+            "title": "Expresii condiționate",
+            "slug": "2-if",
+            "link": "lessons/2-if",
+            "description": "învață să rulezi diferite seturi de instrucțiuni în funcție de o condiție.",
+            "background": "2-bg",
+            "details": [
+                {
+                    "title": "instrucțiuni",
+                    "text": "Aici avem o mioriță foarte înfometată.\nVrea să ajungă la iarbă, dar poate are un gard în față. \nVa trebui să îi dăm instrucțiuni care funcționează și când există gardul, și când nu există.\nPoți folosi bifa pentru a vizualiza și testa ambele scenarii.",
+                    "class": "paragraph"
+                },
+                {
+                    "title": "chestii noi",
+                    "text": "if() && else\ncanMove()\n!canMove()",
+                    "class": "code"
+                },
+                {
+                    "title": "provocare",
+                    "text": "Ajută Miorița să ajungă mereu la cel mai apropiat pătrat cu iarbă.",
+                    "class": "paragraph"
+                }
+            ],
+            "workCode": "/*\nif() \n    este o instrucțiune specială care face ca instrucțiunea imediat de după să se execute sau nu,\n    în funcție de condiția dată între paranteze\n\ncanMove() \n    face Miorița să ne spună dacă poate merge în față. Dacă poate, va spune „true”. Dacă nu, va spune „false”\n    Miorița nu va putea trece de garduri, și nu va putea ieși din stână.\n*/\n\nif ( canMove() ) {\n    /*\n        Folosind { acolade } putem să grupăm mai multe instrucțiuni, care se execută împreună.\n    */\n\n    move()\n\n} else {\n\n    /*\n        „instrucțiunea” else nu are paranteze, și poate apărea doar după un if()\n        Instrucțiunea (sau blocul) imediat după else va fi executată dacă este falsă condiția de la if()\n    */\n\n    turnRight()\n    turnRight()\n    turnRight()\n\n}\n\n// După if și else, putem face alte lucruri\n\n// Următoarea instrucțiune întoarce Miorița de unde a plecat prima dată. \nreset()\n\n/*\nCând punem semnul exclamării (!) în stânga unei condiții, rezultatul acesteia se inversează.\nAșadar !canMove() va fi:\n  - true dacă Miorița NU poate merge în față\n  - false dacă Miorița are cale liberă\n\nFolosind această informație, ai putea să scrii un program care nu folosește „else”?\n*/\n\nif ( ! canMove() ) {\n    // \n}\n\n/*\n    P.S. #1\n    -------------\nDupă cum vezi, if și else sunt colorate diferit în codul ne-comentat.\nȘi când se execută nu apare ceva în consolă. \nDe fapt fac parte din limbajul pe care îl folosim aici, și nu sunt specifice doar Mioriței.\nMajoritatea limbajelor de programare au instrucțiuni if și else.\n\n    P.S. #2\n    -------------\nInstrucțiunile dintr-un bloc sunt indentate (mai la dreapta). \nAcest lucru nu este cerut de limbajul pe care îl folosim, \nci este doar un mod de a face codul puțin mai ușor de citit.\n*/"
+        },
+        {
+            "title": "Repetiții & variable",
+            "slug": "3-while",
+            "description": "găsește metode să rulezi aceleași comenzi de mai multe ori.",
+            "background": "3-bg",
+            "details": [
+                {
+                    "title": "instrucțiuni",
+                    "text": "Știm deja că Miorița poate fi programată pentru a executa anumite comenzi.\nDar va deveni obositor să le scriem pe toate, mai ales într-un scenariu precum acesta, în care trebuie să viziteze toate cele 49 de căsuțe.\nDin fericire, există metode de a repeta cod de câte ori avem nevoie, inclusiv dacă nu știm de câte ori va fi nevoie.",
+                    "class": "paragraph"
+                },
+                {
+                    "title": "chestii noi",
+                    "text": "for() { }\nwhile() { }\nvar\n",
+                    "class": "paragraph"
+                },
+                {
+                    "title": "provocare",
+                    "text": "Ajută Miorița să ajungă la centrul stânei.\nSunt mai multe metode pentru a face asta. Unele mai rapide, altele care folosesc mai puțin cod, la altele poate te vei gândi după lecția viitoare.\nTu cum ai face?",
+                    "class": "paragraph"
+                }
+            ],
+            "workCode": "while(canMove()) {\n    // Comanda \"while\" face instrucțiunea (sau blocul) imediat următoare să se execute când condiția este adevărată\n    move()\n}\n\n\n\n/*\nDacă știi exact de câte ori trebuie să execuți o instrucțiune, poți folosi variabile.\n\nVariabilele sunt modul în care programele țin informații în memoria calculatorului (RAM).\nPoți da orice nume vrei variabilelor atâta timp cât folosești litere, numere, sau câteva caractere speciale. \nNumele unei variabile nu poate începe cu număr.\n\nPentru a crea o variabilă în limbajul folosit aici, se pune „var” urmat de numele variabilei.\nDe exemplu: var variabilaMeaFrumoasa\n\nPentru a pune date în memoria rezervată variabilei, se pune numele variabilei, urmat de egal (=) și valoarea pe care o dăm.\nDe exemplu: variabilaMea = 10\nValoarea poate rezulta și dintr-o ecuație sau expresie. În expresie putem pune orice, inclusiv variabila pe care o setăm.\nDe exemplu: variabila = altaVariabila * 7 / variabila\n\nPrima dată când punem date într-o variabilă, se numește „inițializare”\n\nSe pot combina declararea variabilei, cu inițializarea într-o singură expresie:\n*/\n\nvar iteration = 1\n\nwhile (iteration < 7) {\n    move()\n    iteration = iteration + 1\n}\n\n\n\n/*\n  Pentru că formatul acesta în care știm de câte ori poate fi repetată o serie instrucțiuni este atât de întâlnit,\n  multe limbaje de programare ne permit să scriem întreaga logică în mai puține linii, folosind for:\n*/\n\nfor (var i = 1; i < 7; i = i + 1) {\n    move()\n}\n\n/*\nÎn afara numelui variabilei („i” în loc de „iteration”), instrucțiunea for și while de mai sus sunt identice. \n\nNumele variabilelor trebuie să fie cât mai descriptive, așa că nu ar trebui să ne zgârcim când vine vorba de cât de lung le denumim.\nEditoarele moderne ne pot ajuta să scriem chiar și variabile lungi.\n\nÎn foarte rare cazuri, în care prescurtarea este foarte cunoscută (precum „i” pentru „iteration”, sau „btn” pentru „buton”), putem pune prescurtări.\n*/"
+        },
+        {
+            "title": "Funcții",
+            "slug": "4-function",
+            "link": "lessons/4-function",
+            "description": "Creează-ți propriile instrucțiuni pe care le poți folosi oricând.",
+            "background": "4-bg",
+            "details": [
+                {
+                    "title": "instrucțiuni",
+                    "text": "E bine să evităm să repetăm codul în programele noastre.\nAtunci când o bucată de cod poate apărea mai des, dar nu consecutiv, ar fi bine să ne gândim să extragem acel cod în funcții.\nPutem re-folosi funcția oricând avem nevoie.",
+                    "class": "paragraph"
+                },
+                {
+                    "title": "chestii noi",
+                    "text": "function\npick(\"hatchet\")\ndrop(\"hatchet\")",
+                    "class": "code"
+                },
+                {
+                    "title": "provocare",
+                    "text": "Creează propriile funcții care ajută Miorița să ia baltagul și să îl aducă Vitoriei.",
+                    "class": "paragraph"
+                }
+            ],
+            "workCode": "/*\nFuncțiile sunt creeate folosind cuvântul „function”, urmat de numele funcției și un set de paranteze.\nInstrucțiunile ce vor fi rulate atunci când este folosită funcția vor fi puse mereu între { acolade }\n*/\n\nfunction turnAround()\n{\n    turnRight()\n    turnRight()\n}\n\n// Putem folosi funcția declarată de noi oriunde avem nevoie, punând paranteze după.\nturnAround()\n\n\n\n/*\nÎntre paranteze se pun parametri, care sunt un fel de variabile pe care le dăm atunci când folosim funcția.\nDacă parametrul este cerut, dar nu este dat, valoarea va fi „undefined” (în acest limbaj. În altele, va trebui să te documentezi ce se întâmplă când nu dai un parametru declarat și fără valoare prestabilită).\nDar putem fi siguri că va fi o valoare, chiar dacă nu este dată, inițializând parametrul în declarație. Valoarea venită la apelare va avea prioritate.\n*/\n\nfunction superMove(times = 1)\n{\n    for(var i = 0; i < times; i = i+1) {\n        move()\n    }\n}\n\n\n// La apelare, se dau valorile parametrilor între paranteze\nsuperMove(5)\n\n// Dacă nu dăm valori, se va pune valoarea pusă la declararea funcției\nsuperMove()\n\n\n/*\nObservi că funcțiile declarate de noi, și cele care o controlează pe Miorița sunt asemănătoare?\nAcele funcții le-am pregătit noi, și sunt disponibile undeva în https://github.com/ScoalaWeb/miorita\n\n\nMai există două funcții de care vei avea nevoie pentru a îndeplini cerința:\n\npick(\"hatchet\")\n  Va face Miorița să ridice baltagul, atunci când a ajuns la căsuța în care are unul.\n\ndrop(\"hatchet\")\n  Va face Miorița să lase baltagul acolo unde este în acel moment.\n\n\nParametrii pe care îi dăm acestor noi funcții sunt delimitați prin \"ghilimele\".\nAșa se marchează textul în cod. Li se mai spune și „string-uri”.\n\n\n\nDacă o funcție are nevoie de mai mulți parametri, aceștia se separă prin virgulă (,), \natât la declarare, cât și la apelare.\n*/"
         }
     ],
     "playgrounds": [
         {
-            "title": "Empty playground",
-            "slug": "index"
+            "title": "Stână goală",
+            "slug": "index",
+            "description": "Fără cod și o tablă de 7x7 unde te poți mișca oricum vrei.",
+            "details": [
+                {
+                    "title": "detalii",
+                    "text": "Ai libertate deplină, să faci ce vrei printr-o stână de 7 pe 7, fără obstacole\n",
+                    "class": "paragraph"
+                },
+                {
+                    "title": "comenzi",
+                    "text": "move()\ncanMove()\nturnRight()\nreset()\nif() { }\nelse { }\nwhile() { }\nfor() { }\nvar",
+                    "class": "code"
+                }
+            ],
+            "workCode": "//"
         },
         {
-            "title": "The Hatchet",
-            "slug": "hatchet"
+            "title": "Baltagul",
+            "slug": "hatchet",
+            "description": "Miorița trebuie să ia Baltagul și să-l ducă Vitoriei Lipan, la fel ca în nuvela cu același nume.",
+            "details": [
+                {
+                    "title": "provocare",
+                    "text": "Bazat pe romanul „Baltagul” de Mihail Sadoveanu, prefă-te că ești Nechifor Programator și dă-i Mioriței instrucțiunile pentru a merge lua baltagul și a-l duce la Vitoria.",
+                    "class": "paragraph"
+                },
+                {
+                    "title": "comenzi",
+                    "text": "move()\ncanMove()\nturnRight()\nreset()\nif() { }\nelse { }\nwhile() { }\nfor() { }\nvar",
+                    "class": "code"
+                }
+            ],
+            "workCode": "//"
         },
         {
-            "title": "The Escape",
-            "slug": "escape"
+            "title": "Evadarea",
+            "slug": "escape",
+            "description": "Ajut-o pe Miorița să scape din țarc.",
+            "details": [
+                {
+                    "title": "provocare",
+                    "text": "Aceasta este o stână generată aleator.\nMiorița va începe mereu la centru, orientată într-o direcție mereu diferită.\nVa fi înconjurată de 3 garduri, dar nu știm care.\nTrebuie să găsim direcția în care nu există gard, și să ajutăm Miorița să scape până la marginea stânei, unde va găsi iarba mult visată.",
+                    "class": "paragraph"
+                },
+                {
+                    "title": "comenzi",
+                    "text": "move()\ncanMove()\nturnRight()\nreset()\nif() { }\nelse { }\nwhile() { }\nfor() { }\nvar",
+                    "class": "code"
+                }
+            ],
+            "workCode": "//"
         }
     ]
 }
