@@ -1,5 +1,4 @@
 import { ref, watch, onMounted, computed } from "vue";
-import editApi from "../lib/editorApi";
 import editorApi from "@/lib/editorApi";
 
 type Translations = Record<string, any>;
@@ -35,7 +34,7 @@ export default function editorLanguages () {
     };
 
     const patchLanguage = async (path: Array<string>, text: any) => {
-        const response = await editApi(
+        const response = await editorApi(
             `api/language?lang=${selectedLanguage.value}`,
             {
                 data: {

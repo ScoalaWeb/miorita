@@ -1,4 +1,3 @@
-/* eslint-disable max-classes-per-file */
 import WorldObject from "../interfaces/WorldObject";
 import WorldCurrent from "~/interfaces/WorldCurrent";
 import WorldOptions from "~/interfaces/WorldOptions";

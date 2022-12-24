@@ -1,5 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
-
 import { readFileSync, writeFileSync, unlinkSync } from "node:fs";
 import * as path from "path";
 import { Application, Request, Response } from "express";
