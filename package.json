@@ -27,7 +27,7 @@
         "@nuxtjs/i18n": "^7.3.0",
         "@nuxtjs/pwa": "^3.3.5",
         "@pinia/nuxt": "0.2.1",
-        "core-js": "^3.26.1",
+        "core-js": "^3.27.0",
         "debounce": "^1.2.1",
         "howler": "^2.2.3",
         "keen-slider": "^6.8.5",
