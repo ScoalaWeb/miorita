@@ -85,10 +85,16 @@
         </div>
         <div ref="console" :class="$style.console">
             <div
-                v-for="({message, args}, index) in moves"
+                v-for="({message, lineNumber, args}, index) in moves"
                 :key="message + index"
             >
                 <span :class="message.startsWith('error-') ? $style.error : false">
+                    <span
+                        v-if="lineNumber"
+                        :class="$style.lineNumber"
+                    >
+                        {{ lineNumber }}
+                    </span>
                     {{ $t(`texts.console-output.message.${message}`, args) }}
                 </span>
             </div>
@@ -252,6 +258,7 @@ export default class TheWorld extends Vue {
 
     moves:{
         message: string
+        lineNumber: number
         args?: any[]
     }[] = [];
 
@@ -271,8 +278,8 @@ export default class TheWorld extends Vue {
     run (debug = false) {
         this.moves = [];
         this.actions = new Actions(this.options, this.current, debug);
-        this.actions.onMove((message, ...args) => {
-            this.moves.push({ message, args });
+        this.actions.onMove((message, lineNumber, ...args) => {
+            this.moves.push({ message, lineNumber, args });
         });
         let runner: (_action: Actions) => Promise<any>;
 
@@ -540,6 +547,10 @@ export default class TheWorld extends Vue {
 
 .error {
     color: var(--color-red);
+}
+
+.lineNumber {
+    color: var(--console-line-number);
 }
 
 </style>
