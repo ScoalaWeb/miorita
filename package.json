@@ -33,7 +33,7 @@
         "keen-slider": "^6.8.5",
         "nuxt": "^2.15.8",
         "pinia": "^2.0.28",
-        "postcss": "^8.4.20",
+        "postcss": "^8.4.21",
         "postcss-scss": "^4.0.6",
         "postinstall": "^0.8.0",
         "sass": "^1.57.1",
