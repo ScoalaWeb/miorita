@@ -52,21 +52,25 @@ const replacers:Replacer[] = [
 ];
 
 export default function makeRunner (code:string): RunnerFunction {
-    let script = code;
+    let script = "";
 
     const actions = Actions.GetActions();
 
     const actionVar = `_${(Math.random() * 1000).toFixed(0)}`;
 
-    actions.forEach((action) => {
-        const realAction = `await ${actionVar}.${action}`;
+    const lines = code.split("\n");
 
-        script = script.replace(regexpForAction(action), realAction);
-    });
-
-    replacers.forEach((matchers) => {
-        // @ts-ignore
-        script = script.replace(matchers.regex, matchers.replacer);
+    lines.forEach((line, index) => {
+        let lineScript = line;
+        actions.forEach((action) => {
+            const realAction = `await ${actionVar}.onLine(${index + 1}).${action}`;
+            lineScript = lineScript.replace(regexpForAction(action), realAction);
+        });
+        replacers.forEach((matchers) => {
+            // @ts-ignore
+            lineScript = lineScript.replace(matchers.regex, matchers.replacer);
+        });
+        script += `${lineScript}\n`;
     });
 
     if (!script.includes("await")) {

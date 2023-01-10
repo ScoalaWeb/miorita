@@ -80,6 +80,8 @@ export default class Actions {
         }
     } = {};
 
+    lineNumber = 0;
+
     /**
      * @param options   Run settings
      * @param current   Data about the current state of the world
@@ -348,7 +350,7 @@ export default class Actions {
      */
     addMove (move:string, ...args:any[]) {
         this.moveWatchers.forEach((callback) => {
-            callback(move, ...args);
+            callback(move, this.lineNumber, ...args);
         });
     }
 
@@ -395,5 +397,9 @@ export default class Actions {
         this.stepOver();
     }
 
+    onLine (lineNumber: number) {
+        this.lineNumber = lineNumber;
+        return this;
+    }
     // endregion
 }
