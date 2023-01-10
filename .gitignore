@@ -91,3 +91,5 @@ sw.*
 
 assets/fonts/icons/Mioritza-Icons-v2.0/style.css
 assets/fonts/icons/Mioritza-Icons-v2.0/demo-files/
+
+cypress/videos/

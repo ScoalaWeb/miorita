@@ -312,13 +312,12 @@ export default class Actions {
             [axis]: nextValue,
         };
 
-        const wallHitError = new RunnerError("wall-hit");
         const wallHitTest = sign < 0 ? nextPosition : position;
 
         // @ts-ignore
 
         if (walls[axis] && walls[axis].some(w => w.x === wallHitTest.x && w.y === wallHitTest.y)) {
-            throw wallHitError;
+            throw new RunnerError("wall-hit");
         }
 
         return {

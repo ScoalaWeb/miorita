@@ -60,6 +60,7 @@
                     v-if="isRunning && actions.debug"
                     icon="mi-step-over"
                     :class="$style.button"
+                    data-cypress="button__stepover"
                     @click="stepOver"
                 >
                     {{ $t('texts.button-text.buttons.step-over') }}
@@ -68,6 +69,7 @@
                     v-if="!isRunning && canReset"
                     icon="mi-undo"
                     :class="[$style.button, $style.reset]"
+                    data-cypress="button__reset"
                     @click="reset"
                 >
                     {{ $t('texts.button-text.buttons.reset') }}
@@ -76,6 +78,7 @@
                     v-if="isRunning"
                     icon="mi-stop"
                     :class="$style.button"
+                    data-cypress="button__stop"
                     @click="stop"
                 >
                     {{ $t('texts.button-text.buttons.stop') }}
@@ -83,7 +86,7 @@
             </span>
             <slot name="options" />
         </div>
-        <div ref="console" :class="$style.console">
+        <div ref="console" :class="$style.console" data-cypress="console">
             <div
                 v-for="({message, lineNumber, args}, index) in moves"
                 :key="message + index"
@@ -258,7 +261,7 @@ export default class TheWorld extends Vue {
 
     moves:{
         message: string
-        lineNumber: number
+        lineNumber?: number
         args?: any[]
     }[] = [];
 
@@ -299,6 +302,7 @@ export default class TheWorld extends Vue {
                 (new Howl({
                     src: `${this.$nuxt.context.base}sounds/bleating.mp3`,
                 })).play();
+                debugger;
                 if (e.isRunnerError) {
                     this.moves.push({ message: `error-${e.message}` });
                 } else {

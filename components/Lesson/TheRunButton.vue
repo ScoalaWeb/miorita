@@ -2,6 +2,7 @@
     <div :class="$style.group">
         <button
             :class="$style.run"
+            data-cypress="button__run"
             @click="$emit('run')"
         >
             <i class="micon mi-play" />
@@ -10,6 +11,7 @@
 
         <button
             :class="$style.debug"
+            data-cypress="button__debug"
             @click="$emit('debug')"
         >
             <i class="micon mi-bug" />

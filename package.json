@@ -13,6 +13,9 @@
         "lint:style": "stylelint \"**/*.{vue,css,scss}\" --ignore-path .gitignore",
         "lint-fix:style": "stylelint \"**/*.{vue,css,scss}\" --fix",
         "lint": "yarn lint:js && yarn lint:style",
+        "cypress": "cypress open",
+        "cypress:e2e": "cypress open --e2e",
+        "test:e2e": "./node_modules/.bin/cypress run --e2e",
         "prepare": "husky install && npx patch-package"
     },
     "lint-staged": {
@@ -59,6 +62,7 @@
         "@types/howler": "^2.2.7",
         "babel-eslint": "^10.1.0",
         "body-parser": "^1.20.1",
+        "cypress": "^12.3.0",
         "eslint": "^8.32.0",
         "eslint-config-airbnb-base": "^15.0.0",
         "eslint-config-prettier": "^8.6.0",

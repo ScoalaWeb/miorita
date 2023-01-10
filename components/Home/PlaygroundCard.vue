@@ -1,5 +1,5 @@
 <template>
-    <div :class="$style.card">
+    <article :class="$style.card">
         <h2
             v-if="title"
             :class="$style.title"
@@ -13,7 +13,7 @@
             {{ description }}
         </p>
         <BasePlayButton :color="color" :link="link" :class="$style.playButton" />
-    </div>
+    </article>
 </template>
 
 <script setup lang="ts">

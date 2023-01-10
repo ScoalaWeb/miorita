@@ -6,7 +6,7 @@ stages: # List of stages for jobs, and their order of execution
 
 .yarn-install:
     before_script:
-        - yarn install
+        - yarn
 
 build-job: # This job runs in the build stage, which runs first.
     extends: .yarn-install
@@ -25,3 +25,13 @@ lint-test-job: # This job also runs in the test stage.
         - "merge_request"
     script:
         - yarn run lint
+
+e2e-test-job: # This job runs in the test stage.
+    extends: .yarn-install
+    image: cypress/browsers:node18.12.0-chrome107
+    stage: test    # It only starts when the job in the build stage completes successfully.
+    only: # Only run this on Merge Request
+        - "merge_request"
+    script:
+        - chmod +x .gitlab/e2e.sh
+        - ./.gitlab/e2e.sh

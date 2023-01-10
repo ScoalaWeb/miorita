@@ -54,4 +54,20 @@ module.exports = {
         "vue/script-indent": ["error", 4],
         "vue/singleline-html-element-content-newline": "off",
     },
+
+    overrides: [
+        {
+            files: [
+                "**/*.cy.{j,t}s",
+                "cypress/support/**.*",
+            ],
+            env: {
+                jest: true,
+            },
+            globals: {
+                Cypress: true,
+                cy: true,
+            },
+        },
+    ],
 };
