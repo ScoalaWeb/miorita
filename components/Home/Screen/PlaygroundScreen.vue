@@ -1,19 +1,20 @@
 <template>
     <nav>
-        <article
+        <div
             :class="$style.cards"
             :style="{'--grid-cards-count': $t('playgrounds').length}"
         >
             <BaseCard
-                v-for="(scenario) in $t('playgrounds')"
+                v-for="(scenario, index) in $t('playgrounds')"
                 :key="scenario.title"
                 :class="$style.card"
                 :description="scenario.description"
                 :link="scenarioLink(scenario)"
                 :title="scenario.title"
                 color="green"
+                :data-cypress="'playground' + index"
             />
-        </article>
+        </div>
     </nav>
 </template>
 

@@ -13,12 +13,14 @@ defineProps<{
             <p
                 v-if="lesson.lessonCount"
                 :class="$style.slides"
+                data-cypress="lesson__number"
             >
                 {{ lesson.lessonIndex + 1 }}/{{ lesson.lessonCount }}
             </p>
             <h3
                 v-if="lesson.title"
                 :class="$style.lesson"
+                data-cypress="lesson__title"
             >
                 {{ lesson.title }}
             </h3>
@@ -30,6 +32,7 @@ defineProps<{
                 v-if="lesson.previousLesson"
                 :to="localePath(`/lessons/${lesson.previousLesson}`)"
                 :class="$style.button"
+                data-cypress="back__button"
             >
                 {{ $t("texts.button-text.navigation.back") }}
             </NuxtLink>
@@ -38,10 +41,16 @@ defineProps<{
                 v-if="lesson.nextLesson"
                 :to="localePath(`/lessons/${lesson.nextLesson}`)"
                 :class="$style.button"
+                data-cypress="next__button"
             >
                 {{ $t("texts.button-text.navigation.next") }}
             </NuxtLink>
-            <NuxtLink v-else :to="localePath('/#playground')" :class="$style.button">
+            <NuxtLink
+                v-else
+                :to="localePath('/#playground')"
+                :class="$style.button"
+                data-cypress="more__button"
+            >
                 {{ $t("texts.button-text.navigation.more") }}
             </NuxtLink>
         </div>

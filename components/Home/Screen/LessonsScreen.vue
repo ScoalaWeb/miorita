@@ -15,8 +15,9 @@
                         backgroundImage:
                             `url('${require(`~/assets/img/lessons/${lesson.background}.svg`)}')`
                     }"
+                    :data-cypress="'lesson' + index"
                 >
-                    <h3>{{ lesson.title }}</h3>
+                    <h2>{{ lesson.title }}</h2>
                     <p>{{ lesson.description }}</p>
                     <span :class="$style.lessonNumber">{{ index }}</span>
                     <BasePlayButton :class="$style.playButton" color="red" :link="`/lessons/${lesson.slug}`" />
@@ -46,6 +47,7 @@
                 [$style.active]: current < (lessons.length - 1),
                 [$style.animating]: animating,
             }"
+            data-cypress="keen__next"
             @click="keen.next()"
         >
             <span class="invisible">
