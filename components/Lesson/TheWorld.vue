@@ -67,7 +67,7 @@
                 <BaseActionButton
                     v-if="!isRunning && canReset"
                     icon="mi-undo"
-                    :class="$style.button"
+                    :class="[$style.button, $style.reset]"
                     @click="reset"
                 >
                     {{ $t('texts.button-text.buttons.reset') }}
@@ -520,6 +520,10 @@ export default class TheWorld extends Vue {
     &:hover {
         background: var(--secondary-button-hover);
     }
+}
+
+.reset {
+    padding: 0 0.81rem;
 }
 
 .facing_up .character {

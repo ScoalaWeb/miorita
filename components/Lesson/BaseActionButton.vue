@@ -20,7 +20,6 @@ defineProps<{
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 0 0.81rem;
     gap: 0.41rem;
     border-radius: 1.25rem;
 }

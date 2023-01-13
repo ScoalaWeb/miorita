@@ -43,6 +43,8 @@
     --checkmark-color: var(--color-red);
     --sheepfold-background-color: var(--color-white);
     --console-line-number: var(--color-gray-300);
+    --reset-button: var(--color-green-lighter);
+    --reset-button-hover: var(--color-green);
 }
 
 @mixin dark-mode-colors {
@@ -71,6 +73,8 @@
     --checkmark-color: var(--color-green-checkmark);
     --sheepfold-background-color: var(--color-gray-800);
     --console-line-number: var(--color-gray-500);
+    --reset-button: var(--color-green);
+    --reset-button-hover: var(--color-green-lighter);
 }
 
 :root {
