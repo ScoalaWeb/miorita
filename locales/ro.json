@@ -23,7 +23,8 @@
                 "debug": "Debug",
                 "step-over": "Pas-cu-pas",
                 "fence": "Gard",
-                "play": "Rulează"
+                "play": "Rulează",
+                "reset-code": "Resetează codul"
             },
             "navigation": {
                 "next": "Înainte",

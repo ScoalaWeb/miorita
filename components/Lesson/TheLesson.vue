@@ -11,6 +11,7 @@
         >
             <TheDescription v-model="isDescriptionOpen" :lesson="lesson" />
             <TheEditor :code="lesson.workCode" :class="$style.editor" />
+            <TheResetButton />
             <button
                 :class="[$style.resize, dragging && $style.dragging]"
                 :title="$t('texts.screen-reader.lesson.drag-to-resize')"
@@ -39,6 +40,7 @@ import TheDescription from "./TheDescription.vue";
 import TheEditor from "./TheEditor.vue";
 import TheLessonFooter from "./TheLessonFooter";
 import TheLessonHeader from "./TheLessonHeader.vue";
+import TheResetButton from "./TheResetButton.vue";
 import TheWorld from "./TheWorld.vue";
 import LessonTranslation from "~/interfaces/LessonTranslation";
 import WorldOptions from "~/interfaces/WorldOptions";
@@ -142,7 +144,7 @@ onUnmounted(() => {
 .container {
     position: relative;
     display: grid;
-    grid-template-columns: min-content 5fr min-content var(--sheepfold-width);
+    grid-template-columns: min-content 5fr min-content min-content var(--sheepfold-width);
 }
 
 .resize {
@@ -150,7 +152,7 @@ onUnmounted(() => {
 
     background: transparent;
     border: 0;
-    grid-column: 3/4;
+    grid-column: 4/5;
     position: absolute;
     width: var(--hitbox-width);
     height: 100%;
@@ -163,7 +165,7 @@ onUnmounted(() => {
 }
 
 .world {
-    grid-column: 4/5;
+    grid-column: 5/6;
     border-left: 1.5px solid var(--color-gray-500);
 }
 

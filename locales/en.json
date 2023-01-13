@@ -23,7 +23,8 @@
                 "debug": "Debug",
                 "step-over": "Step over",
                 "fence": "Fence",
-                "play": "play"
+                "play": "play",
+                "reset-code": "Reset the code"
             },
             "navigation": {
                 "next": "Next",
