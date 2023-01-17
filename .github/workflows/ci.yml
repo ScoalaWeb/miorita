@@ -15,20 +15,20 @@ jobs:
         strategy:
             matrix:
                 os: [ ubuntu-latest ]
-                node: [ 17 ]
+                node: [ 18 ]
 
         steps:
             -   name: Checkout 🛎
                 uses: actions/checkout@master
 
             -   name: Setup node env 🏗
-                uses: actions/setup-node@v3.5.0
+                uses: actions/setup-node@v3.6.0
                 with:
                     node-version: ${{ matrix.node }}
                     check-latest: true
 
             -   name: Cache node_modules 📦
-                uses: actions/cache@v3.0.10
+                uses: actions/cache@v3.2.3
                 with:
                     path: ~/.npm
                     key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
