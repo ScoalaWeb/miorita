@@ -49,7 +49,11 @@ const handleClick = () => {
     emit("input", !props.value);
 };
 
-const resizeEditor = () => store.editor.layout();
+const resizeEditor = () => {
+    if (store.editor) {
+        store.editor.layout();
+    }
+};
 </script>
 
 <style module lang="scss">
