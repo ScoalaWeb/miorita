@@ -22,22 +22,19 @@
                         v-for="(obj, objIndex) in cell.objects"
                         :key="objIndex + obj.type"
                     >
-                        <template v-if="obj.type === 'grass'">
-                            <GrassObject
-                                :class="[$style.object, $style.grass]"
-                                style="fill: green"
-                            />
-                        </template>
-                        <template v-if="obj.type === 'hatchet'">
-                            <HatchetObject
-                                :class="[$style.object, $style.hatchet]"
-                            />
-                        </template>
-                        <template v-if="obj.type === 'vitoria'">
-                            <VitoriaObject
-                                :class="[$style.object, $style.vitoria]"
-                            />
-                        </template>
+                        <GrassObject
+                            v-if="obj.type === 'grass'"
+                            :class="[$style.object, $style.grass]"
+                            style="fill: green"
+                        />
+                        <HatchetObject
+                            v-if="obj.type === 'hatchet'"
+                            :class="[$style.object, $style.hatchet]"
+                        />
+                        <VitoriaObject
+                            v-if="obj.type === 'vitoria'"
+                            :class="[$style.object, $style.vitoria]"
+                        />
                     </div>
                     <img
                         v-if="cell.withCharacter"

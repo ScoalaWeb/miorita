@@ -71,7 +71,7 @@ export default class Escape extends Vue {
     startOrientation:string = arrayRandom(["N", "S", "W", "E"]);
     startGap:string = arrayRandom(["N", "S", "W", "E"]);
 
-    get grassObjects (): WorldObject[] {
+    mounted () {
         const { size } = this;
         const objects:WorldObject[] = [];
 
@@ -104,7 +104,9 @@ export default class Escape extends Vue {
             }
         }
 
-        return objects;
+        this.grassObjects = objects;
     }
+
+    grassObjects: WorldObject[] = [];
 }
 </script>
