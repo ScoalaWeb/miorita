@@ -375,6 +375,7 @@ export default class TheWorld extends Vue {
             picked: {},
         };
         this.moves = [];
+        this.actions = null;
     }
 
     store = null;
